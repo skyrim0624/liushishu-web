@@ -61,8 +61,8 @@
             <main class="pt-6 px-6 max-w-2xl mx-auto space-y-6 pb-24">
                 <section class="flex justify-between items-end">
                     <div class="space-y-1">
-                        <p class="text-on-surface-variant text-sm font-medium tracking-wider" id="home-date-label">癸卯年 腊月</p>
-                        <h2 class="text-2xl font-bold tracking-tight text-on-surface" id="greeting-text">早安，修行者</h2>
+                        <p class="text-on-surface-variant text-[10px] font-bold tracking-[0.2em] uppercase" id="home-date-label">Neo-Age / 4.8</p>
+                        <h2 class="text-2xl font-bold tracking-tight text-on-surface" id="greeting-text">你好，共创玩家</h2>
                     </div>
                     <div class="bg-surface-container-high px-4 py-2 rounded-full flex items-center gap-2 border border-outline-variant/10">
                         <span class="material-symbols-outlined text-orange-400 text-sm" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
@@ -70,55 +70,55 @@
                     </div>
                 </section>
                 
-                <section class="relative group cursor-pointer" id="btn-start-checkin">
-                    <div class="absolute -inset-1 bg-gradient-to-tr from-primary/10 to-secondary/5 rounded-[2rem] blur-xl opacity-50 transition duration-1000"></div>
-                    <div class="relative bg-surface-container-low rounded-[2rem] p-6 border border-outline-variant/5 flex flex-col items-center text-center space-y-6">
+                <!-- QUICK START (Unified but specific routing via JS) -->
+                <section class="relative group cursor-pointer" id="btn-quick-flash">
+                    <div class="absolute -inset-1 bg-gradient-to-tr from-primary/20 to-tertiary/10 rounded-[2rem] blur-xl opacity-30 group-hover:opacity-60 transition duration-1000"></div>
+                    <div class="relative bg-surface-container-low rounded-[2rem] p-6 border border-outline-variant/10 flex flex-col items-center text-center space-y-6">
                         <div class="relative w-40 h-40 flex items-center justify-center">
                             <svg class="w-full h-full transform -rotate-90" viewBox="0 0 160 160" fill="none">
-                                <circle class="text-surface-container-highest" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-width="6"></circle>
-                                <circle class="text-primary transition-all duration-1000 ease-out" id="home-ring-progress" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-dasharray="464.96" stroke-dashoffset="232.48" stroke-linecap="round" stroke-width="10"></circle>
+                                <circle class="text-surface-container-highest" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-width="4"></circle>
+                                <circle class="text-primary transition-all duration-1000 ease-out" id="home-ring-progress" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-dasharray="464.96" stroke-dashoffset="464.96" stroke-linecap="round" stroke-width="8"></circle>
                             </svg>
                             <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                <span class="text-4xl font-extrabold text-on-surface"><span id="home-ring-done">2</span>/<span id="home-ring-total">4</span></span>
-                                <span class="text-on-surface-variant text-[10px] uppercase tracking-widest mt-1">今日进度</span>
+                                <span class="text-4xl font-extrabold text-on-surface tracking-tighter"><span id="home-ring-done">0</span>/<span id="home-ring-total">4</span></span>
+                                <span class="text-on-surface-variant text-[9px] uppercase tracking-[0.2em] mt-1 font-bold">每日同步</span>
                             </div>
                         </div>
-                        <div class="space-y-1">
-                            <p class="text-xl font-bold text-on-surface tracking-tight" id="next-reminder-time">07:00</p>
-                            <p class="text-on-surface-variant text-xs">距离下一次觉察 还有 <span class="text-primary" id="reminder-countdown">6h55m</span></p>
-                        </div>
-                        <button class="w-full bg-gradient-to-tr from-primary to-primary-container py-4 rounded-xl text-on-primary font-bold shadow-[0_10px_20px_rgba(242,202,80,0.2)] active:scale-95 transition-transform flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">spa</span> 开启止观
+                        <p class="text-on-surface-variant text-xs font-medium">连续同步 <span class="text-primary" id="streak-days">3</span> 天 · 能量场稳定</p>
+                        <button class="w-full bg-gradient-to-tr from-primary to-[#d4af37] py-4 rounded-xl text-on-primary font-bold shadow-[0_10px_30px_rgba(242,202,80,0.25)] active:scale-95 transition-transform flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">bolt</span> 开启能量闪充
                         </button>
                     </div>
                 </section>
 
                 <section class="grid grid-cols-3 gap-3">
-                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2">
-                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-sm">savings</span></div>
-                        <div class="text-center"><p class="text-xl font-bold text-on-surface" id="seed-money-today">12</p><p class="text-[9px] text-on-surface-variant tracking-widest">财富种子</p></div>
+                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-wealth">
+                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shadow-lg shadow-primary/5"><span class="material-symbols-outlined text-primary text-sm">savings</span></div>
+                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-money-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">财富吸引</p></div>
                     </div>
-                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2">
-                        <div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center"><span class="material-symbols-outlined text-secondary text-sm">volunteer_activism</span></div>
-                        <div class="text-center"><p class="text-xl font-bold text-on-surface" id="seed-love-today">3</p><p class="text-[9px] text-on-surface-variant tracking-widest">善行种子</p></div>
+                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-kindness">
+                        <div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center shadow-lg shadow-secondary/5"><span class="material-symbols-outlined text-secondary text-sm">auto_awesome</span></div>
+                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-love-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">高光善意</p></div>
                     </div>
-                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2">
-                        <div class="w-10 h-10 rounded-xl bg-tertiary-container/10 flex items-center justify-center"><span class="material-symbols-outlined text-tertiary text-sm">cleaning_services</span></div>
-                        <div class="text-center"><p class="text-xl font-bold text-on-surface" id="seed-clean-today">1</p><p class="text-[9px] text-on-surface-variant tracking-widest">觉察随喜</p></div>
+                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-debug">
+                        <div class="w-10 h-10 rounded-xl bg-tertiary-container/10 flex items-center justify-center shadow-lg shadow-tertiary/5"><span class="material-symbols-outlined text-tertiary text-sm">bug_report</span></div>
+                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-clean-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">状态 Debug</p></div>
                     </div>
                 </section>
 
-                <section class="bg-surface-container-low rounded-[1.5rem] p-5 border border-outline-variant/5 space-y-4">
+                <!-- AI INSIGHT PREVIEW -->
+                <section class="bg-gradient-to-br from-surface-container-low to-surface-container p-5 rounded-[1.5rem] border border-outline-variant/10 space-y-4 cursor-pointer" id="btn-goto-ai">
                     <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary text-sm">energy_savings_leaf</span>
-                            <h3 class="font-bold text-on-surface text-sm">流转财富池</h3>
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <span class="material-symbols-outlined text-primary text-sm">psychology</span>
+                                <div class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                            </div>
+                            <h3 class="font-bold text-on-surface text-sm">AI 智慧周报已送达</h3>
                         </div>
-                        <span class="text-primary font-bold text-sm">¥<span id="wealth-monthly">286</span> <span class="text-on-surface-variant text-[10px] font-normal">/ ¥500</span></span>
+                        <span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_forward_ios</span>
                     </div>
-                    <div class="h-2 bg-surface-container-highest rounded-full overflow-hidden">
-                        <div id="wealth-bar" class="h-full bg-gradient-to-r from-primary to-primary-container w-[57%] rounded-full shadow-[0_0_10px_rgba(242,202,80,0.3)] transition-all duration-1000"></div>
-                    </div>
+                    <p class="text-xs text-on-surface-variant/70 leading-relaxed">“本周你的财富吸引力提升了 12%，主要归功于..."</p>
                 </section>
             </main>
         </div>
@@ -146,87 +146,146 @@
                     <div class="relative space-y-0" id="timeline-detail">
                         <div class="absolute left-[15px] top-4 bottom-4 w-[1px] bg-gradient-to-b from-primary/30 via-outline-variant/20 to-transparent"></div>
                         <div class="relative flex gap-4 pb-8 group">
-                            <div class="relative z-10 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:scale-110 transition-transform"><span class="material-symbols-outlined text-sm">spa</span></div>
-                            <div class="flex-1 pt-1"><div class="flex justify-between items-start"><div><p class="text-[10px] text-outline mb-0.5">07:00</p><h4 class="text-on-surface text-sm font-medium">止观记录</h4></div><span class="text-[9px] px-1.5 py-0.5 rounded bg-primary-container/20 text-primary border border-primary/10">晨起</span></div><p class="mt-2 text-xs text-on-surface-variant leading-relaxed">内心的宁静开始显现。</p></div>
+                            <div class="relative z-10 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:scale-110 transition-transform"><span class="material-symbols-outlined text-sm">bolt</span></div>
+                            <div class="flex-1 pt-1"><div class="flex justify-between items-start"><div><p class="text-[10px] text-outline mb-0.5">07:00</p><h4 class="text-on-surface text-sm font-medium">能量闪充记录</h4></div><span class="text-[9px] px-1.5 py-0.5 rounded bg-primary-container/20 text-primary border border-primary/10">晨起</span></div><p class="mt-2 text-xs text-on-surface-variant leading-relaxed">内心的宁静开始显现。</p></div>
                         </div>
                     </div>
                 </section>
             </main>
         </div>
 
-        <!-- CHECKIN SCREEN -->
+        <!-- CHECKIN SCREEN (Unified Layout, Specific Panels) -->
         <div class="screen hidden" id="screen-checkin">
             <main class="pt-4 pb-12 px-6 max-w-2xl mx-auto min-h-screen">
-                <section class="flex flex-col items-center justify-center mb-8 relative cursor-pointer" id="timer-box" title="点击可跳过发呆">
+                <section class="flex flex-col items-center justify-center mb-8 relative cursor-pointer" id="timer-box">
                     <div class="relative w-40 h-40 flex items-center justify-center">
                         <div class="absolute inset-0 rounded-full bg-primary/5 blur-2xl"></div>
                         <svg class="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 160 160" fill="none">
-                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-surface-container-low" stroke="currentColor" stroke-width="6"></circle>
-                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-primary transition-all duration-1000 ease-linear" id="checkin-timer-ring" stroke="currentColor" stroke-width="6" stroke-dasharray="464.96" stroke-dashoffset="0" stroke-linecap="round"></circle>
+                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-surface-container-low" stroke="currentColor" stroke-width="4"></circle>
+                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-primary transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(242,202,80,0.3)]" id="checkin-timer-ring" stroke="currentColor" stroke-width="6" stroke-dasharray="464.96" stroke-dashoffset="0" stroke-linecap="round"></circle>
                         </svg>
                         <div class="text-center z-10 mt-1">
-                            <span class="text-4xl font-light text-primary block tracking-tighter" id="checkin-seconds">60</span>
-                            <span class="text-[10px] text-on-surface-variant font-medium tracking-[0.2em] uppercase">Seconds</span>
+                            <span class="text-4xl font-extrabold text-primary block tracking-tighter" id="checkin-seconds">60</span>
+                            <span class="text-[9px] text-on-surface-variant font-bold tracking-[0.3em] uppercase">Charging</span>
                         </div>
                     </div>
-                    <p class="mt-4 text-on-surface-variant tracking-widest text-xs font-medium" id="checkin-session-label">第 3 次止观</p>
+                    <p class="mt-4 text-on-surface-variant tracking-[0.2em] text-[10px] font-bold uppercase" id="checkin-session-label">能量同步中...</p>
                 </section>
 
-                <section class="mb-6">
-                    <div class="flex p-1 bg-surface-container-low rounded-[1rem]" id="checkin-tabs-container">
-                        <button class="checkin-tab flex-1 py-2.5 text-xs font-medium rounded-xl transition-all duration-300 bg-surface-container text-primary shadow-sm flex items-center justify-center gap-1.5" data-tab="money"><span class="material-symbols-outlined text-[14px]">savings</span>财富种子</button>
-                        <button class="checkin-tab flex-1 py-2.5 text-xs font-medium rounded-xl transition-all duration-300 text-on-surface-variant flex items-center justify-center gap-1.5" data-tab="love"><span class="material-symbols-outlined text-[14px]">volunteer_activism</span>善行记录</button>
-                        <button class="checkin-tab flex-1 py-2.5 text-xs font-medium rounded-xl transition-all duration-300 text-on-surface-variant flex items-center justify-center gap-1.5" data-tab="clean"><span class="material-symbols-outlined text-[14px]">cleaning_services</span>觉察清理</button>
-                    </div>
-                </section>
-
-                <!-- Money Config -->
-                <div id="panel-money" class="checkin-panel block mb-8 animation-fade-in">
-                    <div class="bg-surface-container-low p-5 rounded-2xl text-center space-y-4">
-                        <h3 class="text-on-surface-variant text-xs font-bold tracking-widest">今日播种金额</h3>
+                <!-- WEALTH PANEL -->
+                <div id="panel-wealth" class="checkin-panel hidden space-y-8 animation-fade-in">
+                    <div class="bg-surface-container-low p-6 rounded-[2rem] border border-outline-variant/10 text-center space-y-4">
+                        <h3 class="text-on-surface-variant text-[10px] font-bold tracking-[0.2em] uppercase">财富吸引力注入</h3>
                         <div class="flex items-end justify-center text-primary font-bold gap-1 mb-2">
-                            <span class="text-xl pb-1">¥</span><input type="number" id="checkin-money-input" value="5" class="bg-transparent text-4xl w-20 text-center border-b border-primary/30 focus:ring-0 focus:border-primary p-0 outline-none">
+                            <span class="text-xl pb-1">¥</span><input type="number" id="checkin-money-input" value="10" class="bg-transparent text-5xl w-24 text-center border-none focus:ring-0 p-0 outline-none tracking-tighter">
                         </div>
                     </div>
                 </div>
 
-                <section class="mb-8 block" id="panel-tags">
-                    <div class="flex flex-wrap gap-2" id="checkin-tags-grid"></div>
-                </section>
-
-                <section class="mb-8">
-                    <div class="group relative bg-surface-container-low rounded-2xl p-4 transition-all focus-within:bg-surface-container">
-                        <textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/40 resize-none h-20 leading-relaxed text-sm outline-none" placeholder="想补充什么？（可选）" id="checkin-note"></textarea>
-                        <div class="absolute bottom-3 right-4 text-[9px] text-on-surface-variant/40 uppercase tracking-widest font-bold">Reflections</div>
+                <!-- KINDNESS PANEL -->
+                <div id="panel-kindness" class="checkin-panel hidden space-y-8 animation-fade-in">
+                    <div class="bg-surface-container-low p-6 rounded-[2rem] border border-outline-variant/10 space-y-4">
+                        <h3 class="text-on-surface-variant text-[10px] font-bold tracking-[0.2em] uppercase text-center">高光时刻描述</h3>
+                        <div class="flex flex-wrap gap-2" id="kindness-tags-grid"></div>
                     </div>
-                </section>
+                </div>
 
-                <section class="flex justify-center mt-8 pb-32">
-                    <button id="btn-submit-checkin" class="w-full py-4 bg-gradient-to-tr from-primary to-primary-container text-on-primary font-bold text-sm rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition shadow-lg shadow-primary/20">
-                        <span class="material-symbols-outlined text-[18px]">park</span> 种下这颗种子
+                <!-- DEBUG PANEL -->
+                <div id="panel-debug" class="checkin-panel hidden space-y-8 animation-fade-in">
+                    <div class="bg-surface-container-low p-6 rounded-[2rem] border border-outline-variant/10 space-y-4">
+                        <h3 class="text-on-surface-variant text-[10px] font-bold tracking-[0.2em] uppercase text-center">意识 Bug 修复</h3>
+                        <div class="flex flex-wrap gap-2" id="debug-tags-grid"></div>
+                    </div>
+                </div>
+
+                <section class="mt-8 space-y-6">
+                    <div class="group relative bg-surface-container-low rounded-2xl p-4 border border-outline-variant/10 focus-within:border-primary/50 transition-all">
+                        <textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/30 resize-none h-24 leading-relaxed text-sm outline-none" placeholder="记录此刻的起心动念..." id="checkin-note"></textarea>
+                    </div>
+                    <button id="btn-submit-checkin" class="w-full py-4 bg-gradient-to-tr from-primary to-[#d4af37] text-on-primary font-bold text-sm rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition shadow-xl shadow-primary/20">
+                        <span class="material-symbols-outlined text-lg">bolt</span> 完成本次闪充
                     </button>
                 </section>
             </main>
         </div>
-
         <!-- SUCCESS SCREEN -->
         <div class="screen hidden" id="screen-success">
             <main class="flex flex-col items-center pt-24 px-6 max-w-sm mx-auto w-full text-center pb-24">
-                <div class="relative w-48 h-48 bg-surface-container-low rounded-full flex items-center justify-center mb-8 shadow-[0_0_60px_rgba(242,202,80,0.1)]">
-                    <span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">eco</span>
-                    <div class="absolute inset-0 border border-primary/10 rounded-full scale-110 animate-ping opacity-20" style="animation-duration: 3s"></div>
+                <div class="relative w-48 h-48 bg-surface-container-low rounded-full flex items-center justify-center mb-8">
+                    <span class="material-symbols-outlined text-6xl text-primary drop-shadow-[0_0_20px_rgba(242,202,80,0.4)]" style="font-variation-settings: 'FILL' 1;">add_task</span>
+                    <div class="absolute inset-0 border border-primary/10 rounded-full scale-125 animate-pulse"></div>
                 </div>
-                <h2 class="text-2xl font-medium text-primary tracking-tight mb-2">种子已入土</h2>
-                <p class="text-on-surface-variant font-light text-sm mb-10">今天第 <span id="success-count">3</span> 次止观完成</p>
+                <h2 class="text-2xl font-bold text-on-surface tracking-tighter mb-2">同步成功</h2>
+                <p class="text-on-surface-variant text-xs mb-10 font-medium opacity-60">能量已注入你的人生系统</p>
                 
-                <div class="bg-surface-container-low p-5 rounded-3xl border border-outline-variant/10 w-full text-left mb-8">
-                    <div class="grid grid-cols-2 gap-3 divide-x divide-outline-variant/10">
-                        <div class="px-2 text-center"><p class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">财富汇入</p><p class="text-on-surface font-bold text-lg">¥<span id="success-money">5</span></p></div>
-                        <div class="px-2 text-center"><p class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">印记留存</p><p class="text-secondary font-medium" id="success-tag-count">2</p></div>
+                <div class="bg-surface-container-high p-6 rounded-[2rem] border border-outline-variant/10 w-full text-left mb-8 shadow-2xl">
+                    <p class="text-[9px] text-primary font-bold tracking-[0.3em] uppercase mb-4">本次闪充贡献</p>
+                    <div class="flex justify-between items-center"><span class="text-on-surface-variant text-sm" id="success-label">注入财富吸引力</span><span class="text-on-surface font-bold text-lg">¥<span id="success-money">0</span></span></div>
+                </div>
+                
+                <button id="btn-success-home" class="w-full py-4 rounded-2xl bg-primary text-on-primary font-bold tracking-widest text-sm active:scale-95 transition shadow-lg shadow-primary/20">回到个人宇宙</button>
+            </main>
+        </div>
+
+        <!-- AI INSIGHT SCREEN -->
+        <div class="screen hidden" id="screen-ai-insight">
+            <main class="pt-8 px-6 max-w-2xl mx-auto space-y-8 pb-32">
+                <header class="flex flex-col items-center mb-10">
+                    <div class="w-16 h-16 rounded-3xl bg-primary/10 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-3xl text-primary">psychology</span></div>
+                    <h2 class="text-2xl font-bold text-on-surface tracking-tight">AI 洞察报</h2>
+                    <p class="text-on-surface-variant text-xs font-medium mt-1 tracking-widest uppercase">The Quantum Review</p>
+                </header>
+
+                <!-- Achievement Badges -->
+                <section class="space-y-4">
+                    <h3 class="text-[10px] text-on-surface-variant font-bold tracking-[0.2em] uppercase pl-1">荣耀勋章</h3>
+                    <div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+                        <div class="flex-shrink-0 w-24 h-32 bg-surface-container-low rounded-[1.5rem] border border-outline-variant/10 flex flex-col items-center justify-center p-3 text-center">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-3"><span class="material-symbols-outlined text-primary">currency_yuan</span></div>
+                            <p class="text-[9px] text-on-surface font-bold">黄金矿工</p>
+                        </div>
+                        <div class="flex-shrink-0 w-24 h-32 bg-surface-container-low rounded-[1.5rem] border border-outline-variant/10 flex flex-col items-center justify-center p-3 text-center opacity-40 grayscale">
+                            <div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center mb-3"><span class="material-symbols-outlined">favorite</span></div>
+                            <p class="text-[9px] text-on-surface-variant font-bold">爱心大使</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI Report -->
+                <section class="bg-surface-container-low p-6 rounded-[2rem] border border-outline-variant/10 space-y-6">
+                    <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span><span class="text-[10px] text-primary font-bold tracking-widest">能量场实时分析中...</span></div>
+                    <div class="space-y-4" id="ai-report-content">
+                        <p class="text-sm leading-relaxed text-on-surface/90">本周你的**财富吸引力**显著提升，这与你每日清晨 07:00 的同步动作高度相关。你的潜意识中关于“丰盛”的神经链接正在加强。</p>
+                        <p class="text-sm leading-relaxed text-on-surface/90">建议：尝试在明早增加一次“状态 Debug”，清理关于“匮乏感”的无效进程。</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- TUTORIAL SCREEN -->
+        <div class="screen hidden" id="screen-tutorial">
+            <main class="pt-8 px-6 max-w-2xl mx-auto space-y-12 pb-32">
+                <header class="text-center space-y-2">
+                    <h2 class="text-2xl font-bold text-on-surface">如何玩转六时书？</h2>
+                    <p class="text-on-surface-variant text-xs">掌握改写命运的“脑机接口”</p>
+                </header>
+
+                <div class="space-y-10">
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-primary">1</span></div>
+                        <div class="space-y-2"><h4 class="text-on-surface font-bold">建立输入源</h4><p class="text-xs text-on-surface-variant leading-relaxed">每一次记录都是在潜意识中按下“保存”。你的世界是这些意识碎片的投影。</p></div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 rounded-full bg-secondary/20 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-secondary">2</span></div>
+                        <div class="space-y-2"><h4 class="text-on-surface font-bold">定向注入能量</h4><p class="text-xs text-on-surface-variant leading-relaxed">想要财富？就用实打实的布施动作触发“财富吸引”。想要快乐？就记录高光善意。</p></div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-tertiary">3</span></div>
+                        <div class="space-y-2"><h4 class="text-on-surface font-bold">每日 AI 纠偏</h4><p class="text-xs text-on-surface-variant leading-relaxed">通过 AI 分析找出你意识中的 Bug，进行实时热修复，确保人生轨道准确。</p></div>
                     </div>
                 </div>
                 
-                <button id="btn-success-home" class="w-full py-4 px-8 rounded-2xl bg-surface-container text-on-surface font-bold tracking-widest text-sm active:scale-95 transition flex justify-center items-center gap-2 border border-outline-variant/20"><span class="material-symbols-outlined text-sm">home</span>回到首页</button>
+                <button class="w-full py-4 rounded-2xl bg-surface-container-high text-on-surface font-bold text-sm border border-outline-variant/10 active:scale-95 transition" id="btn-tutorial-back">我明白了，去赚取能量</button>
             </main>
         </div>
 
@@ -241,12 +300,16 @@
                     
                     <div class="w-full space-y-6 text-left">
                         <div class="bg-surface-container p-4 rounded-xl">
-                            <label class="text-[10px] text-on-surface-variant font-bold tracking-widest uppercase mb-2 flex items-center gap-1.5"><span class="material-symbols-outlined text-xs">favorite</span> 值得感恩的片刻</label>
-                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface resize-none h-16 text-sm outline-none px-0" placeholder="写下你的感恩..."></textarea>
+                            <label class="text-[9px] text-on-surface-variant font-bold tracking-[0.2em] uppercase mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-xs">volunteer_activism</span> 今日最高光（值得感恩的事）</label>
+                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface resize-none h-16 text-sm outline-none px-0" placeholder="哪些瞬间让你感到丰盛..." id="bedtime-q1"></textarea>
                         </div>
                         <div class="bg-surface-container p-4 rounded-xl">
-                            <label class="text-[10px] text-on-surface-variant font-bold tracking-widest uppercase mb-2 flex items-center gap-1.5"><span class="material-symbols-outlined text-xs">psychology</span> 满意的善行</label>
-                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface resize-none h-16 text-sm outline-none px-0" placeholder="今天帮助了谁..."></textarea>
+                            <label class="text-[9px] text-on-surface-variant font-bold tracking-[0.2em] uppercase mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-xs">tips_and_updates</span> 意识优化建议（做错的事）</label>
+                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface resize-none h-16 text-sm outline-none px-0" placeholder="哪些地方可以做得更完美..." id="bedtime-q2"></textarea>
+                        </div>
+                        <div class="bg-surface-container p-4 rounded-xl">
+                            <label class="text-[9px] text-on-surface-variant font-bold tracking-[0.2em] uppercase mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-xs">rocket_launch</span> 明日的能量部署</label>
+                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface resize-none h-16 text-sm outline-none px-0" placeholder="打算如何度过明天..." id="bedtime-q3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -262,27 +325,28 @@
             <main class="pt-6 px-6 max-w-2xl mx-auto space-y-8 pb-32">
                 <section class="flex items-center space-x-4 bg-surface-container-low p-5 rounded-[2rem] border border-outline-variant/5">
                     <div class="w-16 h-16 rounded-[1.2rem] bg-surface-container-high flex items-center justify-center border border-outline-variant/10">
-                        <span class="material-symbols-outlined text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">spa</span>
+                        <span class="material-symbols-outlined text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-xl font-bold text-on-surface">林静安</h2>
-                        <p class="text-on-surface-variant text-xs mt-1 bg-surface-container px-2 py-0.5 rounded inline-block">新芽阶段 · 已修行 128 天</p>
+                        <h2 class="text-xl font-bold text-on-surface">林玩家</h2>
+                        <p id="profile-level-badge" class="text-on-surface-variant text-[9px] mt-1 bg-surface-container px-3 py-1 rounded-full inline-block font-bold tracking-widest uppercase">Lv.2 意识觉醒中</p>
                     </div>
+                    <button class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant" id="btn-show-tutorial"><span class="material-symbols-outlined text-sm">help</span></button>
                 </section>
 
                 <section class="grid grid-cols-2 gap-3">
-                    <div class="bg-surface-container-low p-4 rounded-[1.5rem] flex flex-col justify-between h-28 border border-outline-variant/5">
-                        <span class="material-symbols-outlined text-secondary text-[18px]">task_alt</span>
-                        <div><div class="text-xl font-bold text-on-surface">54</div><div class="text-[9px] text-on-surface-variant uppercase tracking-widest mt-0.5">累计打卡</div></div>
+                    <div class="bg-surface-container-low p-5 rounded-[2rem] flex flex-col justify-between h-32 border border-outline-variant/5">
+                        <span class="material-symbols-outlined text-secondary text-[18px]">bolt</span>
+                        <div><div class="text-2xl font-bold text-on-surface tracking-tighter" id="profile-xp">54</div><div class="text-[9px] text-on-surface-variant uppercase tracking-[0.2em] font-bold mt-1">累计能量 (XP)</div></div>
                     </div>
-                    <div class="bg-surface-container-low p-4 rounded-[1.5rem] flex flex-col justify-between h-28 border border-outline-variant/5">
-                        <span class="material-symbols-outlined text-primary text-[18px]">energy_savings_leaf</span>
-                        <div><div class="text-xl font-bold text-on-surface" id="profile-money">286</div><div class="text-[9px] text-on-surface-variant uppercase tracking-widest mt-0.5">财富归档 (¥)</div></div>
+                    <div class="bg-surface-container-low p-5 rounded-[2rem] flex flex-col justify-between h-32 border border-outline-variant/5">
+                        <span class="material-symbols-outlined text-primary text-[18px]">currency_yuan</span>
+                        <div><div class="text-2xl font-bold text-on-surface tracking-tighter" id="profile-money">286</div><div class="text-[9px] text-on-surface-variant uppercase tracking-[0.2em] font-bold mt-1">财富吸引值</div></div>
                     </div>
                 </section>
 
                 <section class="space-y-4">
-                    <h3 class="text-xs font-medium text-on-surface-variant tracking-widest uppercase pl-1">修行频率设置</h3>
+                    <h3 class="text-[10px] font-bold text-on-surface-variant tracking-[0.2em] uppercase pl-1">同步频率设置</h3>
                     <div class="flex space-x-3 overflow-x-auto pb-2 scrollbar-hide snap-x">
                         <button class="freq-btn snap-center flex-shrink-0 w-24 bg-surface-container p-3 rounded-3xl border border-outline-variant/10 flex flex-col items-center text-center space-y-2 opacity-60 transition" data-freq="2">
                             <span class="text-[10px] font-medium text-on-surface-variant">2次/日</span>
@@ -301,7 +365,7 @@
                 </section>
 
                 <section class="space-y-3">
-                    <h3 class="text-xs font-medium text-on-surface-variant tracking-widest uppercase pl-1">修行愿景</h3>
+                    <h3 class="text-[10px] font-bold text-on-surface-variant tracking-[0.2em] uppercase pl-1">人生愿景</h3>
                     <div class="space-y-2">
                         <div class="bg-surface-container-low px-5 py-4 rounded-2xl flex items-center justify-between border border-outline-variant/5">
                             <div class="flex items-center space-x-3">
@@ -326,17 +390,17 @@
 
     <!-- BOTTOM NAV (Absolute within app-wrapper) -->
     <nav id="bottom-nav" class="absolute bottom-0 left-0 w-full flex justify-around items-center h-20 px-2 bg-[#1d1b19]/95 backdrop-blur-3xl rounded-t-[1.5rem] z-50 border-t border-outline-variant/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)] transition-transform duration-300">
-        <button class="nav-item flex flex-col items-center justify-center w-14 h-14 bg-gradient-to-tr from-[#f2ca50]/15 to-[#f2ca50]/5 rounded-xl text-[#f2ca50] transition" data-target="home">
-            <span class="material-symbols-outlined text-[22px] mb-0.5" style="font-variation-settings: 'FILL' 1;">home</span><span class="text-[9px] tracking-wider uppercase font-bold">首页</span>
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-[#f2ca50] transition" data-target="home">
+            <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">home</span><span class="text-[9px] tracking-widest uppercase font-bold">主舱</span>
         </button>
-        <button class="nav-item flex flex-col items-center justify-center w-14 h-14 text-on-surface-variant hover:text-[#f2ca50] transition" data-target="timeline">
-            <span class="material-symbols-outlined text-[20px] mb-0.5">timeline</span><span class="text-[9px] tracking-wider uppercase">宝盒</span>
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#f2ca50] transition" data-target="timeline">
+            <span class="material-symbols-outlined text-[22px]">auto_stories</span><span class="text-[9px] tracking-widest uppercase font-bold">宝盒</span>
         </button>
-        <button class="nav-item flex flex-col items-center justify-center w-14 h-14 text-on-surface-variant hover:text-[#f2ca50] transition" data-target="bedtime">
-            <span class="material-symbols-outlined text-[20px] mb-0.5">nightlight</span><span class="text-[9px] tracking-wider uppercase">三问</span>
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#f2ca50] transition" data-target="bedtime">
+            <span class="material-symbols-outlined text-[22px]">nightlight</span><span class="text-[9px] tracking-widest uppercase font-bold">复盘</span>
         </button>
-        <button class="nav-item flex flex-col items-center justify-center w-14 h-14 text-on-surface-variant hover:text-[#f2ca50] transition" data-target="profile">
-            <span class="material-symbols-outlined text-[20px] mb-0.5">person</span><span class="text-[9px] tracking-wider uppercase">我的</span>
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#f2ca50] transition" data-target="profile">
+            <span class="material-symbols-outlined text-[22px]">account_circle</span><span class="text-[9px] tracking-widest uppercase font-bold">我的</span>
         </button>
     </nav>
 
