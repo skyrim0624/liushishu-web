@@ -1,7 +1,17 @@
-/* 六时书 JS Logic Overhauled */
-document.addEventListener('DOMContentLoaded', () => {
-    const state = { currentScreen: 'home', checkInCount: 2, totalSessions: 4, money: 5, tags: new Set() };
+/* 六时书 JS Logic Overhauled with Supabase */
+const SUPABASE_URL = 'https://ntzbtmnzwapgxwocffkc.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50emJ0bW56d2FwZ3h3b2NmZmtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzAyNzQsImV4cCI6MjA5MTIwNjI3NH0.VrnNTDT5DcwjhnE1OqU3VCkBG31kOeT3LgNT7ZT8cF8';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const state = { currentScreen: 'home', checkInCount: 0, totalSessions: 4, money: 0, tags: new Set(), user_id: null, category: 'money' };
     
+    // Auth: Anonymous Login
+    const { data: authData, error: authErr } = await supabase.auth.signInAnonymously();
+    if (authData?.user) {
+        state.user_id = authData.user.id;
+        loadTodayData();
+    }
     // Elements
     const screens = document.querySelectorAll('.screen');
     const navItems = document.querySelectorAll('.nav-item');
@@ -86,13 +96,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Submitting Checkin
     const submitBtn = document.getElementById('btn-submit-checkin');
-    submitBtn.addEventListener('click', () => {
+    submitBtn.addEventListener('click', async () => {
         if(timerInt) clearInterval(timerInt);
+        const addedMoney = parseInt(document.getElementById('checkin-money-input').value) || 0;
+        
+        // Save to Supabase
+        if (state.user_id) {
+            await supabase.from('checkins').insert([
+                { user_id: state.user_id, money_amount: addedMoney, tags: Array.from(state.tags), category: state.category }
+            ]);
+        }
+        
         state.checkInCount++;
-        state.money = parseInt(document.getElementById('checkin-money-input').value) || 0;
+        state.money += addedMoney;
         
         document.getElementById('success-count').textContent = state.checkInCount;
-        document.getElementById('success-money').textContent = state.money;
+        document.getElementById('success-money').textContent = addedMoney;
         document.getElementById('success-tag-count').textContent = `${state.tags.size} 个`;
         
         showScreen('success', true);
@@ -133,21 +152,17 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.remove('text-on-surface-variant');
             
             // hide show money panel
-            const isMoney = btn.dataset.tab === 'money';
+            state.category = btn.dataset.tab;
+            const isMoney = state.category === 'money';
             document.getElementById('panel-money').style.display = isMoney ? 'block' : 'none';
-            updateCheckinTags(btn.dataset.tab);
+            updateCheckinTags(state.category);
         });
     });
     updateCheckinTags('money'); // initial load
 
     // Success to Home
     document.getElementById('btn-success-home').addEventListener('click', () => {
-        // Sync home stats
-        document.getElementById('seed-money-today').textContent = 12 + state.money;
-        document.getElementById('wealth-monthly').textContent = 286 + state.money;
-        document.getElementById('home-ring-done').textContent = state.checkInCount;
-        const ratio = state.checkInCount / state.totalSessions;
-        document.getElementById('home-ring-progress').style.strokeDashoffset = 552.92 * (1 - Math.min(ratio, 1));
+        updateHomeUI();
         showScreen('home');
     });
 
@@ -177,9 +192,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Bedtime submit
-    document.getElementById('btn-bedtime-done').addEventListener('click', () => {
+    document.getElementById('btn-bedtime-done').addEventListener('click', async () => {
         const btn = document.getElementById('btn-bedtime-done');
         btn.innerHTML = '<span class="material-symbols-outlined text-xl">nightlight</span> 晚安，好梦';
+        
+        if (state.user_id) {
+            const q1 = document.getElementById('bedtime-q1').value;
+            const q2 = document.getElementById('bedtime-q2').value;
+            const q3 = document.getElementById('bedtime-q3').value;
+            await supabase.from('bedtime_reviews').insert([
+                { user_id: state.user_id, q1_good: q1, q2_bad: q2, q3_plan: q3 }
+            ]);
+        }
+
         setTimeout(() => {
             btn.innerHTML = '<span class="material-symbols-outlined text-lg">bedtime</span>保存并入睡';
             showScreen('home');
@@ -198,7 +223,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Init Home Ring
-    const initRatio = state.checkInCount / state.totalSessions;
-    document.getElementById('home-ring-progress').style.strokeDashoffset = 552.92 * (1 - Math.min(initRatio, 1));
+    // Load remote data
+    async function loadTodayData() {
+        if (!state.user_id) return;
+        
+        const todayStr = new Date().toISOString().split('T')[0];
+        const { data, error } = await supabase.from('checkins')
+            .select('*')
+            .eq('user_id', state.user_id)
+            .gte('created_at', todayStr + 'T00:00:00Z');
+            
+        if (data && !error) {
+            state.checkInCount = data.length;
+            state.money = data.reduce((sum, item) => sum + (item.money_amount || 0), 0);
+        }
+        updateHomeUI();
+    }
+
+    function updateHomeUI() {
+        document.getElementById('seed-money-today').textContent = state.money;
+        document.getElementById('wealth-monthly').textContent = 286 + state.money; // Mocking historic baseline
+        document.getElementById('home-ring-done').textContent = state.checkInCount;
+        
+        // Use 464.96 because the SVG properties changed from 552.92
+        const strokeMax = 464.96;
+        const ratio = state.checkInCount / state.totalSessions;
+        const el = document.getElementById('home-ring-progress');
+        if (el) {
+            el.style.strokeDashoffset = strokeMax * (1 - Math.min(ratio, 1));
+        }
+    }
 });
