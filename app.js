@@ -1,20 +1,22 @@
-/* 六时书 JS Logic - Robust Version */
+/* 六时书 JS Logic - Auth + Profile Version */
 const SUPABASE_URL = 'https://ntzbtmnzwapgxwocffkc.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50emJ0bW56d2FwZ3h3b2NmZmtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzAyNzQsImV4cCI6MjA5MTIwNjI3NH0.VrnNTDT5DcwjhnE1OqU3VCkBG31kOeT3LgNT7ZT8cF8';
 
 // State management
 window.state = { 
-    currentScreen: 'home', 
+    currentScreen: 'auth', 
     checkInCount: 0, 
     totalSessions: 4, 
     money: 0, 
     tags: new Set(), 
     user_id: null, 
     category: 'wealth', 
-    lifetimeXP: 0 
+    lifetimeXP: 0,
+    displayName: '',
+    authMode: 'login' // 'login' or 'register'
 };
 
-// Global Navigation
+// Global Navigation — must be available before DOMContentLoaded
 window.showScreen = function(id, hideNav = false) {
     const screens = document.querySelectorAll('.screen');
     const navItems = document.querySelectorAll('.nav-item');
@@ -22,16 +24,10 @@ window.showScreen = function(id, hideNav = false) {
     const btnGlobalBack = document.getElementById('btn-global-back');
     const headerMenu = document.getElementById('header-menu-icon');
 
-    console.log("Switching to screen:", id);
-    
     screens.forEach(s => s.classList.remove('active'));
     const target = document.getElementById(`screen-${id}`);
-    if(target) {
-        target.classList.add('active');
-    } else {
-        console.warn("Screen not found:", id);
-    }
-    
+    if(target) target.classList.add('active');
+
     // Active Nav styling
     navItems.forEach(n => {
         const isActive = n.dataset.target === id;
@@ -52,11 +48,13 @@ window.showScreen = function(id, hideNav = false) {
         }
     });
 
+    // 在 auth 页面隐藏底部导航
+    const isAuthScreen = (id === 'auth');
     if(bottomNav) {
-        bottomNav.style.transform = hideNav ? 'translateY(100%)' : 'translateY(0)';
+        bottomNav.style.transform = (hideNav || isAuthScreen) ? 'translateY(100%)' : 'translateY(0)';
     }
     if(btnGlobalBack) {
-        btnGlobalBack.classList.toggle('hidden', !hideNav);
+        btnGlobalBack.classList.toggle('hidden', !hideNav || isAuthScreen);
     }
     if(headerMenu) {
         headerMenu.textContent = hideNav ? '' : 'person';
@@ -68,7 +66,229 @@ window.showScreen = function(id, hideNav = false) {
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Liushishu App Initializing...");
     
-    // 1. Immediate Binding for Navigation
+    // ============ SUPABASE INIT ============
+    let supabase;
+    try {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } catch(e) {
+        console.warn("Supabase not available, running in offline mode.");
+    }
+
+    // ============ AUTH HELPERS ============
+    function showAuthError(msg) {
+        const el = document.getElementById('auth-error');
+        if(el) { el.textContent = msg; el.classList.remove('hidden'); }
+    }
+    function clearAuthError() {
+        const el = document.getElementById('auth-error');
+        if(el) el.classList.add('hidden');
+    }
+    function setAuthLoading(loading) {
+        const loginBtn = document.getElementById('btn-auth-login');
+        const regBtn = document.getElementById('btn-auth-register');
+        if(loginBtn) loginBtn.disabled = loading;
+        if(regBtn) regBtn.disabled = loading;
+        if(loading) {
+            if(loginBtn) loginBtn.style.opacity = '0.5';
+            if(regBtn) regBtn.style.opacity = '0.5';
+        } else {
+            if(loginBtn) loginBtn.style.opacity = '1';
+            if(regBtn) regBtn.style.opacity = '1';
+        }
+    }
+
+    // 切换登录/注册模式
+    function toggleAuthMode() {
+        const nameField = document.getElementById('auth-name-field');
+        const loginBtn = document.getElementById('btn-auth-login');
+        const regBtn = document.getElementById('btn-auth-register');
+        const hint = document.getElementById('auth-toggle-hint');
+        clearAuthError();
+
+        if(window.state.authMode === 'login') {
+            window.state.authMode = 'register';
+            if(nameField) nameField.classList.remove('hidden');
+            if(loginBtn) loginBtn.classList.add('hidden');
+            if(regBtn) { regBtn.classList.remove('hidden'); regBtn.textContent = '创建账号'; }
+            if(hint) hint.innerHTML = '已有账号？<span class="text-primary font-bold" id="auth-toggle-link">去登录</span>';
+        } else {
+            window.state.authMode = 'login';
+            if(nameField) nameField.classList.add('hidden');
+            if(loginBtn) { loginBtn.classList.remove('hidden'); }
+            if(regBtn) { regBtn.classList.remove('hidden'); regBtn.textContent = '注册新账号'; }
+            if(hint) hint.innerHTML = '还没有账号？<span class="text-primary font-bold" id="auth-toggle-link">去注册</span>';
+        }
+        // 重新绑定 toggle link 的点击事件
+        document.getElementById('auth-toggle-link')?.addEventListener('click', toggleAuthMode);
+    }
+
+    // 登录成功后的初始化
+    async function onAuthSuccess(user) {
+        window.state.user_id = user.id;
+        
+        // 加载或创建 profile
+        if(supabase) {
+            const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
+            if(profile) {
+                window.state.displayName = profile.display_name || user.email?.split('@')[0] || '记录者';
+            } else {
+                // 新用户，创建 profile
+                const defaultName = user.email?.split('@')[0] || '记录者';
+                await supabase.from('profiles').insert([{ id: user.id, display_name: defaultName }]);
+                window.state.displayName = defaultName;
+            }
+        }
+        
+        updateDisplayName();
+        loadTodayData();
+        window.showScreen('home');
+    }
+
+    // 更新所有显示用户名的地方
+    function updateDisplayName() {
+        const name = window.state.displayName || '记录者';
+        const greetEl = document.getElementById('greeting-text');
+        if(greetEl) greetEl.textContent = `你好，${name}`;
+        
+        const profileNameEl = document.getElementById('profile-display-name');
+        if(profileNameEl) profileNameEl.textContent = name;
+        
+        const editInput = document.getElementById('edit-display-name');
+        if(editInput) editInput.value = name;
+    }
+
+    // ============ AUTH EVENT BINDINGS ============
+    
+    // 登录
+    document.getElementById('btn-auth-login')?.addEventListener('click', async () => {
+        clearAuthError();
+        const email = document.getElementById('auth-email')?.value?.trim();
+        const password = document.getElementById('auth-password')?.value;
+        
+        if(!email || !password) { showAuthError('请填写邮箱和密码'); return; }
+        
+        setAuthLoading(true);
+        try {
+            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+            if(error) {
+                // 友好的错误提示
+                if(error.message.includes('Invalid login')) showAuthError('邮箱或密码不正确');
+                else if(error.message.includes('Email not confirmed')) showAuthError('请先到邮箱确认注册链接');
+                else showAuthError(error.message);
+                setAuthLoading(false);
+                return;
+            }
+            if(data?.user) await onAuthSuccess(data.user);
+        } catch(e) {
+            showAuthError('网络错误，请重试');
+        }
+        setAuthLoading(false);
+    });
+
+    // 注册
+    document.getElementById('btn-auth-register')?.addEventListener('click', async () => {
+        clearAuthError();
+        
+        if(window.state.authMode === 'login') {
+            // 第一次点击"注册新账号"按钮时，切换到注册模式
+            toggleAuthMode();
+            return;
+        }
+        
+        const email = document.getElementById('auth-email')?.value?.trim();
+        const password = document.getElementById('auth-password')?.value;
+        const displayName = document.getElementById('auth-display-name')?.value?.trim();
+        
+        if(!email || !password) { showAuthError('请填写邮箱和密码'); return; }
+        if(password.length < 6) { showAuthError('密码至少需要 6 位'); return; }
+        
+        setAuthLoading(true);
+        try {
+            const { data, error } = await supabase.auth.signUp({ email, password });
+            if(error) {
+                if(error.message.includes('already registered')) showAuthError('该邮箱已注册，请直接登录');
+                else showAuthError(error.message);
+                setAuthLoading(false);
+                return;
+            }
+            if(data?.user) {
+                // 注册成功后创建 profile
+                const name = displayName || email.split('@')[0];
+                await supabase.from('profiles').insert([{ id: data.user.id, display_name: name }]);
+                window.state.displayName = name;
+                
+                // 检查是否需要邮箱确认
+                if(data.session) {
+                    // 如果 Supabase 没强制邮箱确认，直接进入
+                    await onAuthSuccess(data.user);
+                } else {
+                    showAuthError('注册成功！请检查邮箱确认链接后再登录');
+                    // 切回登录模式
+                    toggleAuthMode();
+                }
+            }
+        } catch(e) {
+            showAuthError('网络错误，请重试');
+        }
+        setAuthLoading(false);
+    });
+
+    // Toggle link
+    document.getElementById('auth-toggle-link')?.addEventListener('click', toggleAuthMode);
+
+    // 退出登录
+    document.getElementById('btn-logout')?.addEventListener('click', async () => {
+        if(supabase) await supabase.auth.signOut();
+        window.state.user_id = null;
+        window.state.displayName = '';
+        window.state.checkInCount = 0;
+        window.state.money = 0;
+        window.state.lifetimeXP = 0;
+        window.state.authMode = 'login';
+        // 清理登录表单
+        const emailInput = document.getElementById('auth-email');
+        const passInput = document.getElementById('auth-password');
+        if(emailInput) emailInput.value = '';
+        if(passInput) passInput.value = '';
+        clearAuthError();
+        window.showScreen('auth');
+    });
+
+    // 保存个人资料
+    document.getElementById('btn-save-profile')?.addEventListener('click', async () => {
+        const newName = document.getElementById('edit-display-name')?.value?.trim();
+        if(!newName) return;
+        
+        window.state.displayName = newName;
+        updateDisplayName();
+        
+        if(supabase && window.state.user_id) {
+            await supabase.from('profiles').update({ display_name: newName }).eq('id', window.state.user_id);
+        }
+        
+        const feedback = document.getElementById('profile-save-feedback');
+        if(feedback) {
+            feedback.classList.remove('hidden');
+            setTimeout(() => feedback.classList.add('hidden'), 2000);
+        }
+    });
+
+    // ============ CHECK SESSION ON LOAD ============
+    // 如果用户已经登录过（session 持久化），自动跳转
+    if(supabase) {
+        (async () => {
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
+                if(session?.user) {
+                    await onAuthSuccess(session.user);
+                }
+            } catch(e) {
+                console.warn("Session check failed:", e);
+            }
+        })();
+    }
+
+    // ============ NAVIGATION ============
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -80,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnGlobalBack = document.getElementById('btn-global-back');
     if(btnGlobalBack) btnGlobalBack.addEventListener('click', () => window.showScreen('home'));
 
-    // 2. Specialized Checkin Triggers
+    // ============ CHECKIN LOGIC ============
     const triggerCheckin = (category) => {
         window.state.category = category;
         window.state.tags.clear();
@@ -102,25 +322,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('seed-wealth')?.addEventListener('click', () => triggerCheckin('wealth'));
     document.getElementById('seed-kindness')?.addEventListener('click', () => triggerCheckin('kindness'));
     document.getElementById('seed-debug')?.addEventListener('click', () => triggerCheckin('debug'));
-
-    // 3. Supabase Link
-    let supabase;
-    try {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        (async () => {
-            try {
-                const { data } = await supabase.auth.signInAnonymously();
-                if(data?.user) {
-                    window.state.user_id = data.user.id;
-                    loadTodayData();
-                }
-            } catch(authErr) {
-                console.warn("Auth failed:", authErr);
-            }
-        })();
-    } catch(e) {
-        console.warn("Supabase not available, running in offline mode.");
-    }
 
     // Timer Logic
     let timerInt;
@@ -220,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (reportContent) {
             const insights = [
                 `本周趋势：你的布施记录集中在清晨时段，说明你的慰慨习惯正在稳定形成。`,
-                `值得留意：本周有 3 次“对立情绪”的觉察记录。试试明天多留意一件让你感恩的小事，作为平衡。`,
+                `值得留意：本周有 3 次"对立情绪"的觉察记录。试试明天多留意一件让你感恩的小事，作为平衡。`,
                 `小成就：你已连续 4 天完成睡前复盘，持续记录是改变的开始。`
             ];
             reportContent.innerHTML = insights.map(i => `<div class="p-3 bg-surface-container rounded-2xl border border-outline-variant/10 text-xs leading-relaxed text-on-surface/90">${i}</div>`).join('');
@@ -235,7 +436,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if(!isNaN(freq)) {
                 window.state.totalSessions = freq;
                 updateHomeUI();
-                // Visual update of buttons
                 document.querySelectorAll('.freq-btn').forEach(b => {
                     const isTarget = b === btn;
                     if(isTarget) {
@@ -274,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-show-tutorial')?.addEventListener('click', () => window.showScreen('tutorial', true));
     document.getElementById('btn-tutorial-back')?.addEventListener('click', () => window.showScreen('home'));
 
-    // Helpers
+    // ============ HELPERS ============
     function updateHomeUI() {
         const moneyEl = document.getElementById('seed-money-today');
         if(moneyEl) moneyEl.textContent = window.state.money;
@@ -292,6 +492,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if(xp >= 700) { level = 5; title = '知行合一'; }
             badgeEl.textContent = `Lv.${level} ${title}`;
         }
+
+        const profileMoneyEl = document.getElementById('profile-money');
+        if(profileMoneyEl) profileMoneyEl.textContent = window.state.money;
         
         const doneEl = document.getElementById('home-ring-done');
         if(doneEl) doneEl.textContent = window.state.checkInCount;
