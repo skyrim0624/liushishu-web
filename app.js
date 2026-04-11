@@ -32,14 +32,14 @@ window.showScreen = function(id, hideNav = false) {
     navItems.forEach(n => {
         const isActive = n.dataset.target === id;
         if(isActive){
-            n.classList.add('bg-[#c8a24e]/10', 'rounded-2xl', 'text-[#8b6f2a]');
+            n.classList.add('bg-primary/10', 'rounded-2xl', 'text-primary');
             n.classList.remove('opacity-60', 'text-[#d0c5af]');
             const icon = n.querySelector('.material-symbols-outlined');
             if(icon) icon.style.fontVariationSettings = "'FILL' 1";
             const text = n.querySelector('span:last-child');
             if(text) text.classList.add('font-bold');
         } else {
-            n.classList.remove('bg-[#c8a24e]/10', 'rounded-2xl', 'text-[#8b6f2a]');
+            n.classList.remove('bg-primary/10', 'rounded-2xl', 'text-primary');
             n.classList.add('opacity-60', 'text-[#d0c5af]');
             const icon = n.querySelector('.material-symbols-outlined');
             if(icon) icon.style.fontVariationSettings = "'FILL' 0";

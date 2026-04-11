@@ -3,24 +3,23 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
-    <title>Liushishu - 愿望加速器</title>
+    <title>愿望加速器</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#c8a24e", "primary-container": "#d4af37", "on-primary": "#ffffff", "on-primary-container": "#554300",
-                        "secondary": "#6b8f5b", "secondary-container": "#e8f0e2", "on-secondary": "#ffffff", "on-secondary-container": "#3d4e34",
-                        "tertiary": "#6b83c4", "tertiary-container": "#e0e8ff", "on-tertiary": "#ffffff", "on-tertiary-container": "#254188",
-                        "surface": "#ffffff", "surface-dim": "#f5f3f0", "surface-bright": "#ffffff",
-                        "surface-container-lowest": "#ffffff", "surface-container-low": "#f8f6f3", "surface-container": "#f2f0ed",
-                        "surface-container-high": "#ece9e5", "surface-container-highest": "#e6e3df",
-                        "on-surface": "#1c1b1a", "on-surface-variant": "#6b6560", "outline": "#99907c", "outline-variant": "#d6cfc4"
+                        "primary": "#8b6f2a", "primary-container": "#c8a24e", "on-primary": "#ffffff", "on-primary-container": "#554300",
+                        "secondary": "#5a7a4d", "secondary-container": "#e8f0e2", "on-secondary": "#ffffff", "on-secondary-container": "#3d4e34",
+                        "tertiary": "#6b7a94", "tertiary-container": "#e0e8f4", "on-tertiary": "#ffffff", "on-tertiary-container": "#3a4860",
+                        "surface": "#faf6ef", "surface-dim": "#f2ede4", "surface-bright": "#fdfbf7",
+                        "surface-container-lowest": "#fdfbf7", "surface-container-low": "#f7f3eb", "surface-container": "#f2ede4",
+                        "surface-container-high": "#ece7dd", "surface-container-highest": "#e6e0d5",
+                        "on-surface": "#2c2418", "on-surface-variant": "#7a6f5f", "outline": "#a69a88", "outline-variant": "#d6cfc0"
                     },
-                    fontFamily: { "body": ["Huiwen", "Plus Jakarta Sans", "sans-serif"] }
+                    fontFamily: { "body": ["Huiwen", "serif"] }
                 }
             }
         }
@@ -33,143 +32,178 @@
             font-style: normal;
             font-display: swap;
         }
-        body { background-color: #f0ede8; color: #1c1b1a; min-height: 100vh; display: flex; justify-content: center; -webkit-tap-highlight-color: transparent; font-family: 'Huiwen', 'Plus Jakarta Sans', sans-serif; }
-        .app-wrapper { width: 100%; max-width: 430px; background-color: #ffffff; min-height: 100dvh; position: relative; overflow-x: hidden; box-shadow: 0 0 40px rgba(0,0,0,0.08); }
+        body {
+            background-color: #e8e0d0;
+            color: #2c2418;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Huiwen', serif;
+            font-size: 17px;
+        }
+        .app-wrapper {
+            width: 100%; max-width: 430px;
+            background-color: #faf6ef;
+            min-height: 100dvh; position: relative; overflow-x: hidden;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.08), -4px 0 20px rgba(0,0,0,0.08);
+        }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
         .screen { display: none; opacity: 0; transition: opacity 0.4s ease; min-height: 100vh; padding-bottom: 6rem;}
         .screen.active { display: block; opacity: 1; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .breath-pulse { animation: breath 4s ease-in-out infinite; }
         @keyframes breath { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+        /* Paper card styles */
+        .paper-card {
+            background: #fdfbf7;
+            border: 1px dashed #d6cfc0;
+            border-radius: 14px;
+            box-shadow: 1px 2px 6px rgba(0,0,0,0.03);
+        }
+        .paper-card-warm {
+            background: linear-gradient(160deg, #faf6ef, #f5efe3);
+            border: 1px solid #d6cfc0;
+            border-radius: 14px;
+            box-shadow: 2px 3px 10px rgba(0,0,0,0.04);
+        }
+        .paper-btn {
+            background: #8b6f2a;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            box-shadow: 1px 2px 6px rgba(139,111,42,0.2);
+            transition: transform 0.15s;
+        }
+        .paper-btn:active { transform: scale(0.97); }
     </style>
 </head>
 <body class="font-body selection:bg-primary/30">
 
 <div class="app-wrapper">
 
-    <header class="absolute top-0 w-full z-50 bg-white/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 shadow-sm transition-all border-b border-outline-variant/20">
+    <header class="absolute top-0 w-full z-50 flex justify-between items-center px-5 h-14 transition-all" style="background: #faf6ef; border-bottom: 1px dashed #d6cfc0;">
         <div class="flex items-center gap-4">
-            <button id="btn-global-back" class="text-[#f2ca50] hidden hover:opacity-80 transition hover:-translate-x-1 duration-300">
+            <button id="btn-global-back" class="text-primary hidden hover:opacity-80 transition hover:-translate-x-1 duration-300">
                 <span class="material-symbols-outlined">arrow_back_ios</span>
             </button>
-            <h1 class="text-[#8b6f2a] font-bold tracking-widest text-lg">愿望加速器</h1>
+            <h1 class="text-primary font-bold tracking-wider text-xl">愿望加速器</h1>
         </div>
-        <div class="w-8 h-8 rounded-full border border-outline-variant/30 flex items-center justify-center bg-surface-container">
-            <span class="material-symbols-outlined text-sm text-primary" id="header-menu-icon">person</span>
+        <div class="w-9 h-9 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container-low">
+            <span class="material-symbols-outlined text-base text-primary" id="header-menu-icon">person</span>
         </div>
-        <div class="absolute bottom-0 left-0 bg-gradient-to-r from-transparent via-[#c8a24e]/15 to-transparent h-[1px] w-full"></div>
     </header>
 
-    <div id="app" class="relative pt-16 h-full overflow-y-auto">
+    <div id="app" class="relative pt-14 h-full overflow-y-auto">
 
         <!-- AUTH SCREEN -->
         <div class="screen active" id="screen-auth">
             <main class="flex flex-col items-center justify-center px-8 min-h-[85vh]">
                 <div class="w-full max-w-sm space-y-8">
                     <div class="text-center space-y-3">
-                        <div class="w-16 h-16 rounded-3xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                            <span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+                        <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
                         </div>
-                        <h2 class="text-2xl font-bold text-on-surface tracking-tight">愿望加速器</h2>
-                        <p class="text-on-surface-variant text-xs">一个让行动产生结果的觉知工具</p>
+                        <h2 class="text-3xl font-bold text-on-surface">愿望加速器</h2>
+                        <p class="text-on-surface-variant text-base leading-relaxed">一个让行动产生结果的觉知工具</p>
                     </div>
 
-                    <div class="space-y-4">
+                    <div class="space-y-5">
                         <div>
-                            <label class="text-[9px] text-on-surface-variant font-bold tracking-[0.2em] uppercase mb-2 block">邮箱</label>
-                            <input type="email" id="auth-email" placeholder="your@email.com" class="w-full bg-surface-container border border-outline-variant/20 rounded-xl px-4 py-3 text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
+                            <label class="text-sm text-on-surface-variant font-bold mb-2 block">邮箱</label>
+                            <input type="email" id="auth-email" placeholder="your@email.com" class="w-full bg-white border border-outline-variant rounded-xl px-4 py-4 text-on-surface text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
                         </div>
                         <div>
-                            <label class="text-[9px] text-on-surface-variant font-bold tracking-[0.2em] uppercase mb-2 block">密码</label>
-                            <input type="password" id="auth-password" placeholder="至少 6 位" class="w-full bg-surface-container border border-outline-variant/20 rounded-xl px-4 py-3 text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
+                            <label class="text-sm text-on-surface-variant font-bold mb-2 block">密码</label>
+                            <input type="password" id="auth-password" placeholder="至少 6 位" class="w-full bg-white border border-outline-variant rounded-xl px-4 py-4 text-on-surface text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
                         </div>
                         <div id="auth-name-field" class="hidden">
-                            <label class="text-[9px] text-on-surface-variant font-bold tracking-[0.2em] uppercase mb-2 block">你的昵称</label>
-                            <input type="text" id="auth-display-name" placeholder="别人怎么称呼你？" class="w-full bg-surface-container border border-outline-variant/20 rounded-xl px-4 py-3 text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
+                            <label class="text-sm text-on-surface-variant font-bold mb-2 block">你的昵称</label>
+                            <input type="text" id="auth-display-name" placeholder="别人怎么称呼你？" class="w-full bg-white border border-outline-variant rounded-xl px-4 py-4 text-on-surface text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
                         </div>
                     </div>
 
-                    <div id="auth-error" class="hidden text-red-600 text-xs text-center p-3 bg-red-50 rounded-xl border border-red-200"></div>
+                    <div id="auth-error" class="hidden text-red-700 text-sm text-center p-3 bg-red-50 rounded-xl border border-red-200"></div>
 
                     <div class="space-y-3">
-                        <button id="btn-auth-login" class="w-full py-4 bg-gradient-to-tr from-primary to-[#d4af37] text-on-primary font-bold text-sm rounded-2xl active:scale-95 transition shadow-xl shadow-primary/20">登录</button>
-                        <button id="btn-auth-register" class="w-full py-4 bg-surface-container text-on-surface font-bold text-sm rounded-2xl border border-outline-variant/20 active:scale-95 transition">注册新账号</button>
+                        <button id="btn-auth-login" class="paper-btn w-full py-4 text-lg">登录</button>
+                        <button id="btn-auth-register" class="w-full py-4 bg-white text-on-surface font-bold text-lg rounded-xl border border-outline-variant active:scale-95 transition">注册新账号</button>
                     </div>
 
-                    <p id="auth-toggle-hint" class="text-center text-on-surface-variant text-[10px] cursor-pointer hover:text-primary transition">还没有账号？<span class="text-primary font-bold" id="auth-toggle-link">去注册</span></p>
+                    <p id="auth-toggle-hint" class="text-center text-on-surface-variant text-sm cursor-pointer hover:text-primary transition">还没有账号？<span class="text-primary font-bold" id="auth-toggle-link">去注册</span></p>
                 </div>
             </main>
         </div>
 
         <!-- HOME SCREEN -->
         <div class="screen" id="screen-home">
-            <main class="pt-6 px-6 max-w-2xl mx-auto space-y-6 pb-24">
+            <main class="pt-6 px-5 max-w-2xl mx-auto space-y-5 pb-24">
                 <section class="flex justify-between items-end">
-                    <div class="space-y-1">
-                        <h2 class="text-2xl font-bold tracking-tight text-on-surface" id="greeting-text">你好，记录者</h2>
+                    <div>
+                        <h2 class="text-2xl font-bold text-on-surface" id="greeting-text">你好，记录者</h2>
                     </div>
-                    <div class="bg-surface-container-high px-4 py-2 rounded-full flex items-center gap-2 border border-outline-variant/10">
-                        <span class="material-symbols-outlined text-orange-400 text-sm" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-                        <span class="text-primary font-bold text-sm tracking-widest"><span id="streak-count">3</span>天</span>
+                    <div class="bg-surface-container-high px-4 py-2 rounded-full flex items-center gap-2 border border-outline-variant">
+                        <span class="material-symbols-outlined text-orange-500 text-lg" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                        <span class="text-primary font-bold text-lg"><span id="streak-count">3</span>天</span>
                     </div>
                 </section>
                 
-                <!-- QUICK START (Unified but specific routing via JS) -->
+                <!-- QUICK START -->
                 <section class="relative group cursor-pointer" id="btn-quick-flash">
-                    <div class="absolute -inset-1 bg-gradient-to-tr from-primary/20 to-tertiary/10 rounded-[2rem] blur-xl opacity-30 group-hover:opacity-60 transition duration-1000"></div>
-                    <div class="relative bg-surface-container-low rounded-[2rem] p-6 border border-outline-variant/10 flex flex-col items-center text-center space-y-6">
-                        <div class="relative w-40 h-40 flex items-center justify-center">
+                    <div class="paper-card-warm p-6 flex flex-col items-center text-center space-y-5">
+                        <div class="relative w-36 h-36 flex items-center justify-center">
                             <svg class="w-full h-full transform -rotate-90" viewBox="0 0 160 160" fill="none">
-                                <circle class="text-surface-container-highest" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-width="4"></circle>
-                                <circle class="text-primary transition-all duration-1000 ease-out" id="home-ring-progress" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-dasharray="464.96" stroke-dashoffset="464.96" stroke-linecap="round" stroke-width="8"></circle>
+                                <circle class="text-outline-variant/30" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-width="3" stroke-dasharray="6 6"></circle>
+                                <circle class="text-primary transition-all duration-1000 ease-out" id="home-ring-progress" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-dasharray="464.96" stroke-dashoffset="464.96" stroke-linecap="round" stroke-width="6"></circle>
                             </svg>
                             <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                <span class="text-4xl font-extrabold text-on-surface tracking-tighter"><span id="home-ring-done">0</span>/<span id="home-ring-total">4</span></span>
-                                <span class="text-on-surface-variant text-[9px] uppercase tracking-[0.2em] mt-1 font-bold">每日同步</span>
+                                <span class="text-4xl font-extrabold text-on-surface"><span id="home-ring-done">0</span>/<span id="home-ring-total">4</span></span>
+                                <span class="text-on-surface-variant text-sm mt-1">每日同步</span>
                             </div>
                         </div>
-                        <p class="text-on-surface-variant text-xs font-medium">连续记录 <span class="text-primary" id="streak-days">3</span> 天</p>
-                        <button class="w-full bg-gradient-to-tr from-primary to-[#d4af37] py-4 rounded-xl text-white font-bold shadow-[0_4px_16px_rgba(200,162,78,0.25)] active:scale-95 transition-transform flex items-center justify-center gap-2">
+                        <p class="text-on-surface-variant text-base">连续记录 <span class="text-primary font-bold" id="streak-days">3</span> 天</p>
+                        <button class="paper-btn w-full py-4 text-lg flex items-center justify-center gap-2">
                             <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">edit_note</span> 开始一分钟记录
                         </button>
                     </div>
                 </section>
 
                 <section class="grid grid-cols-3 gap-3">
-                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-wealth">
-                        <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shadow-lg shadow-primary/5"><span class="material-symbols-outlined text-primary text-sm">savings</span></div>
-                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-money-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">财富种子</p></div>
+                    <div class="paper-card p-4 flex flex-col items-center gap-3 cursor-pointer active:scale-95 transition" id="seed-wealth">
+                        <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-xl">savings</span></div>
+                        <div class="text-center"><p class="text-2xl font-bold text-on-surface" id="seed-money-today">0</p><p class="text-sm text-on-surface-variant font-bold">财富种子</p></div>
                     </div>
-                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-kindness">
-                        <div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center shadow-lg shadow-secondary/5"><span class="material-symbols-outlined text-secondary text-sm">favorite</span></div>
-                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-love-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">爱的种子</p></div>
+                    <div class="paper-card p-4 flex flex-col items-center gap-3 cursor-pointer active:scale-95 transition" id="seed-kindness">
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center"><span class="material-symbols-outlined text-secondary text-xl">favorite</span></div>
+                        <div class="text-center"><p class="text-2xl font-bold text-on-surface" id="seed-love-today">0</p><p class="text-sm text-on-surface-variant font-bold">爱的种子</p></div>
                     </div>
-                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-health">
-                        <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center shadow-lg shadow-green-500/5"><span class="material-symbols-outlined text-green-400 text-sm">spa</span></div>
-                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-health-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">健康种子</p></div>
+                    <div class="paper-card p-4 flex flex-col items-center gap-3 cursor-pointer active:scale-95 transition" id="seed-health">
+                        <div class="w-12 h-12 rounded-xl bg-green-700/10 flex items-center justify-center"><span class="material-symbols-outlined text-green-700 text-xl">spa</span></div>
+                        <div class="text-center"><p class="text-2xl font-bold text-on-surface" id="seed-health-today">0</p><p class="text-sm text-on-surface-variant font-bold">健康种子</p></div>
                     </div>
                 </section>
 
                 <section>
-                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex items-center gap-4 cursor-pointer active:scale-95 transition" id="seed-debug">
-                        <div class="w-10 h-10 rounded-xl bg-tertiary-container/10 flex items-center justify-center shadow-lg shadow-tertiary/5"><span class="material-symbols-outlined text-tertiary text-sm">self_improvement</span></div>
-                        <div><p class="text-sm font-bold text-on-surface">清理负面种子</p><p class="text-[9px] text-on-surface-variant tracking-wider">觉察并放下不再需要的念头</p></div>
+                    <div class="paper-card p-4 flex items-center gap-4 cursor-pointer active:scale-95 transition" id="seed-debug">
+                        <div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center"><span class="material-symbols-outlined text-tertiary text-xl">self_improvement</span></div>
+                        <div><p class="text-lg font-bold text-on-surface">清理负面种子</p><p class="text-sm text-on-surface-variant">觉察并放下不再需要的念头</p></div>
                     </div>
                 </section>
 
                 <!-- WEEKLY INSIGHT PREVIEW -->
-                <section class="bg-gradient-to-br from-surface-container-low to-surface-container p-5 rounded-[1.5rem] border border-outline-variant/10 space-y-4 cursor-pointer" id="btn-goto-ai">
+                <section class="paper-card-warm p-5 space-y-3 cursor-pointer" id="btn-goto-ai">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center gap-3">
                             <div class="relative">
-                                <span class="material-symbols-outlined text-primary text-sm">psychology</span>
-                                <div class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                                <span class="material-symbols-outlined text-primary text-xl">psychology</span>
+                                <div class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-400 rounded-full border-2 border-[#faf6ef]"></div>
                             </div>
-                            <h3 class="font-bold text-on-surface text-sm">智慧周报已送达</h3>
+                            <h3 class="font-bold text-on-surface text-lg">智慧周报已送达</h3>
                         </div>
-                        <span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_forward_ios</span>
+                        <span class="material-symbols-outlined text-on-surface-variant text-lg">arrow_forward_ios</span>
                     </div>
-                    <p class="text-xs text-on-surface-variant/70 leading-relaxed">"本周你的记录很稳定，持续保持..."</p>
+                    <p class="text-base text-on-surface-variant leading-relaxed">"本周你的记录很稳定，持续保持..."</p>
                 </section>
 
             </main>
@@ -177,138 +211,143 @@
 
         <!-- TIMELINE SCREEN -->
         <div class="screen" id="screen-timeline">
-            <main class="pt-8 px-6 max-w-2xl mx-auto space-y-10 pb-24">
+            <main class="pt-8 px-5 max-w-2xl mx-auto space-y-8 pb-24">
                 <section class="flex flex-col items-center gap-4">
                     <div class="flex items-center justify-between w-full max-w-[280px]">
-                        <button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
-                        <div class="text-center"><span class="text-on-surface-variant text-[10px] tracking-widest uppercase mb-1 block">时光回响</span><h2 class="text-xl font-medium tracking-tight text-on-surface">2026年4月</h2></div>
-                        <button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+                        <button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-base">chevron_left</span></button>
+                        <div class="text-center"><span class="text-on-surface-variant text-sm block mb-1">时光回响</span><h2 class="text-xl font-bold text-on-surface">2026年4月</h2></div>
+                        <button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-base">chevron_right</span></button>
                     </div>
                 </section>
                 
                 <section class="space-y-4">
-                    <div class="flex justify-between items-end mb-2"><h3 class="text-xs font-medium text-on-surface-variant uppercase tracking-wider">专注热力图</h3><span class="text-[10px] text-outline tracking-wider uppercase">共计 124 小时</span></div>
-                    <div class="bg-surface-container-low rounded-3xl p-5 shadow-sm">
+                    <div class="flex justify-between items-end mb-2"><h3 class="text-sm font-bold text-on-surface-variant">专注热力图</h3><span class="text-sm text-outline">共计 124 小时</span></div>
+                    <div class="paper-card p-5">
                         <div class="grid grid-cols-7 gap-1" id="calendar-grid"></div>
                     </div>
                 </section>
 
-                <section class="space-y-6 border-t border-outline-variant/10 pt-6">
-                    <div class="flex items-center justify-between"><h3 class="text-xs font-medium text-on-surface-variant uppercase tracking-wider">今日时间轴</h3><span class="text-[9px] text-primary tracking-widest px-2 py-0.5 bg-primary/10 rounded-md">4.8 星期三</span></div>
+                <section class="space-y-6" style="border-top: 1px dashed #d6cfc0; padding-top: 1.5rem;">
+                    <div class="flex items-center justify-between"><h3 class="text-sm font-bold text-on-surface-variant">今日时间轴</h3><span class="text-sm text-primary px-2 py-0.5 bg-primary/10 rounded-md">4.8 星期三</span></div>
                     <div class="relative space-y-0" id="timeline-detail">
-                        <div class="absolute left-[15px] top-4 bottom-4 w-[1px] bg-gradient-to-b from-primary/30 via-outline-variant/20 to-transparent"></div>
+                        <div class="absolute left-[15px] top-4 bottom-4 w-[1px]" style="border-left: 1px dashed #d6cfc0;"></div>
                         <div class="relative flex gap-4 pb-8 group">
-                            <div class="relative z-10 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:scale-110 transition-transform"><span class="material-symbols-outlined text-sm">bolt</span></div>
-                            <div class="flex-1 pt-1"><div class="flex justify-between items-start"><div><p class="text-[10px] text-outline mb-0.5">07:00</p><h4 class="text-on-surface text-sm font-medium">布施记录</h4></div><span class="text-[9px] px-1.5 py-0.5 rounded bg-primary-container/20 text-primary border border-primary/10">晨起</span></div><p class="mt-2 text-xs text-on-surface-variant leading-relaxed">内心的宁静开始显现。</p></div>
+                            <div class="relative z-10 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary"><span class="material-symbols-outlined text-base">bolt</span></div>
+                            <div class="flex-1 pt-1"><div class="flex justify-between items-start"><div><p class="text-sm text-outline mb-0.5">07:00</p><h4 class="text-on-surface text-base font-bold">财富种子</h4></div><span class="text-sm px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/10">晨起</span></div><p class="mt-2 text-base text-on-surface-variant leading-relaxed">内心的宁静开始显现。</p></div>
                         </div>
                     </div>
                 </section>
             </main>
         </div>
 
-        <!-- CHECKIN SCREEN (Unified Layout, Specific Panels) -->
+        <!-- CHECKIN SCREEN -->
         <div class="screen" id="screen-checkin">
-            <main class="pt-4 pb-12 px-6 max-w-2xl mx-auto min-h-screen">
+            <main class="pt-4 pb-12 px-5 max-w-2xl mx-auto min-h-screen">
                 <section class="flex flex-col items-center justify-center mb-8 relative cursor-pointer" id="timer-box">
                     <div class="relative w-40 h-40 flex items-center justify-center">
-                        <div class="absolute inset-0 rounded-full bg-primary/5 blur-2xl"></div>
                         <svg class="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 160 160" fill="none">
-                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-surface-container-low" stroke="currentColor" stroke-width="4"></circle>
-                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-primary transition-all duration-1000 ease-linear shadow-[0_0_10px_rgba(242,202,80,0.3)]" id="checkin-timer-ring" stroke="currentColor" stroke-width="6" stroke-dasharray="464.96" stroke-dashoffset="0" stroke-linecap="round"></circle>
+                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-outline-variant/30" stroke="currentColor" stroke-width="3" stroke-dasharray="6 6"></circle>
+                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-primary transition-all duration-1000 ease-linear" id="checkin-timer-ring" stroke="currentColor" stroke-width="6" stroke-dasharray="464.96" stroke-dashoffset="0" stroke-linecap="round"></circle>
                         </svg>
                         <div class="text-center z-10 mt-1">
-                            <span class="text-4xl font-extrabold text-primary block tracking-tighter" id="checkin-seconds">60</span>
-                            <span class="text-[9px] text-on-surface-variant font-bold tracking-[0.3em] uppercase">Charging</span>
+                            <span class="text-5xl font-extrabold text-primary block" id="checkin-seconds">60</span>
+                            <span class="text-sm text-on-surface-variant font-bold">记录中</span>
                         </div>
                     </div>
-                    <p class="mt-4 text-on-surface-variant tracking-[0.2em] text-[10px] font-bold uppercase" id="checkin-session-label">记录中...</p>
+                    <p class="mt-4 text-on-surface-variant text-base font-bold" id="checkin-session-label">记录中...</p>
                 </section>
 
                 <!-- WEALTH PANEL -->
-                <div id="panel-wealth" class="checkin-panel hidden space-y-8 animation-fade-in">
-                    <div class="bg-surface-container-low p-6 rounded-[2rem] border border-outline-variant/10 text-center space-y-4">
-                        <h3 class="text-on-surface-variant text-[10px] font-bold tracking-[0.2em] uppercase">布施记录</h3>
+                <div id="panel-wealth" class="checkin-panel hidden space-y-6 animation-fade-in">
+                    <div class="paper-card p-6 text-center space-y-4">
+                        <h3 class="text-on-surface-variant text-sm font-bold">布施记录</h3>
                         <div class="flex items-end justify-center text-primary font-bold gap-1 mb-2">
-                            <span class="text-xl pb-1">¥</span><input type="number" id="checkin-money-input" value="10" class="bg-transparent text-5xl w-24 text-center border-none focus:ring-0 p-0 outline-none tracking-tighter">
+                            <span class="text-2xl pb-1">¥</span><input type="number" id="checkin-money-input" value="10" class="bg-transparent text-5xl w-24 text-center border-none focus:ring-0 p-0 outline-none tracking-tighter">
                         </div>
                     </div>
                 </div>
 
                 <!-- KINDNESS PANEL -->
-                <div id="panel-kindness" class="checkin-panel hidden space-y-8 animation-fade-in">
-                    <div class="bg-surface-container-low p-6 rounded-[2rem] border border-outline-variant/10 space-y-4">
-                        <h3 class="text-on-surface-variant text-[10px] font-bold tracking-[0.2em] uppercase text-center">善意时刻描述</h3>
+                <div id="panel-kindness" class="checkin-panel hidden space-y-6 animation-fade-in">
+                    <div class="paper-card p-6 space-y-4">
+                        <h3 class="text-on-surface-variant text-sm font-bold text-center">善意时刻描述</h3>
                         <div class="flex flex-wrap gap-2" id="kindness-tags-grid"></div>
                     </div>
                 </div>
 
+                <!-- HEALTH PANEL -->
+                <div id="panel-health" class="checkin-panel hidden space-y-6 animation-fade-in">
+                    <div class="paper-card p-6 space-y-4">
+                        <h3 class="text-on-surface-variant text-sm font-bold text-center">健康行动</h3>
+                        <div class="flex flex-wrap gap-2" id="health-tags-grid"></div>
+                    </div>
+                </div>
+
                 <!-- DEBUG PANEL -->
-                <div id="panel-debug" class="checkin-panel hidden space-y-8 animation-fade-in">
-                    <div class="bg-surface-container-low p-6 rounded-[2rem] border border-outline-variant/10 space-y-4">
-                        <h3 class="text-on-surface-variant text-[10px] font-bold tracking-[0.2em] uppercase text-center">自我觉察</h3>
+                <div id="panel-debug" class="checkin-panel hidden space-y-6 animation-fade-in">
+                    <div class="paper-card p-6 space-y-4">
+                        <h3 class="text-on-surface-variant text-sm font-bold text-center">负面种子觉察</h3>
                         <div class="flex flex-wrap gap-2" id="debug-tags-grid"></div>
                     </div>
                 </div>
 
-                <section class="mt-8 space-y-6">
-                    <div class="group relative bg-surface-container-low rounded-2xl p-4 border border-outline-variant/10 focus-within:border-primary/50 transition-all">
-                        <textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/30 resize-none h-24 leading-relaxed text-sm outline-none" placeholder="记录此刻的起心动念..." id="checkin-note"></textarea>
+                <section class="mt-6 space-y-5">
+                    <div class="paper-card p-4">
+                        <textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/40 resize-none h-24 leading-relaxed text-base outline-none" placeholder="记录此刻的起心动念..." id="checkin-note"></textarea>
                     </div>
-                    <button id="btn-submit-checkin" class="w-full py-4 bg-gradient-to-tr from-primary to-[#d4af37] text-on-primary font-bold text-sm rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition shadow-xl shadow-primary/20">
-                        <span class="material-symbols-outlined text-lg">check</span> 完成记录
+                    <button id="btn-submit-checkin" class="paper-btn w-full py-4 text-lg flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-xl">check</span> 完成记录
                     </button>
                 </section>
             </main>
         </div>
+
         <!-- SUCCESS SCREEN -->
         <div class="screen" id="screen-success">
             <main class="flex flex-col items-center pt-24 px-6 max-w-sm mx-auto w-full text-center pb-24">
-                <div class="relative w-48 h-48 bg-surface-container-low rounded-full flex items-center justify-center mb-8">
-                    <span class="material-symbols-outlined text-6xl text-primary drop-shadow-[0_0_20px_rgba(242,202,80,0.4)]" style="font-variation-settings: 'FILL' 1;">add_task</span>
-                    <div class="absolute inset-0 border border-primary/10 rounded-full scale-125 animate-pulse"></div>
+                <div class="relative w-40 h-40 paper-card rounded-full flex items-center justify-center mb-8">
+                    <span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">add_task</span>
                 </div>
-                <h2 class="text-2xl font-bold text-on-surface tracking-tighter mb-2">同步成功</h2>
-                <p class="text-on-surface-variant text-xs mb-10 font-medium opacity-60">已记录到你的日志中</p>
+                <h2 class="text-3xl font-bold text-on-surface mb-2">同步成功</h2>
+                <p class="text-on-surface-variant text-base mb-10">已记录到你的日志中</p>
                 
-                <div class="bg-surface-container-high p-6 rounded-[2rem] border border-outline-variant/10 w-full text-left mb-8 shadow-2xl">
-                    <p class="text-[9px] text-primary font-bold tracking-[0.3em] uppercase mb-4">本次记录</p>
-                    <div class="flex justify-between items-center"><span class="text-on-surface-variant text-sm" id="success-label">完成布施记录</span><span class="text-on-surface font-bold text-lg">¥<span id="success-money">0</span></span></div>
+                <div class="paper-card-warm p-6 w-full text-left mb-8">
+                    <p class="text-sm text-primary font-bold mb-4">本次记录</p>
+                    <div class="flex justify-between items-center"><span class="text-on-surface-variant text-base" id="success-label">完成布施记录</span><span class="text-on-surface font-bold text-xl">¥<span id="success-money">0</span></span></div>
                 </div>
                 
-                <button id="btn-success-home" class="w-full py-4 rounded-2xl bg-primary text-on-primary font-bold tracking-widest text-sm active:scale-95 transition shadow-lg shadow-primary/20">返回首页</button>
+                <button id="btn-success-home" class="paper-btn w-full py-4 text-lg">返回首页</button>
             </main>
         </div>
 
         <!-- AI INSIGHT SCREEN -->
         <div class="screen" id="screen-ai-insight">
-            <main class="pt-8 px-6 max-w-2xl mx-auto space-y-8 pb-32">
-                <header class="flex flex-col items-center mb-10">
-                    <div class="w-16 h-16 rounded-3xl bg-primary/10 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-3xl text-primary">psychology</span></div>
-                    <h2 class="text-2xl font-bold text-on-surface tracking-tight">AI 周报</h2>
-                    <p class="text-on-surface-variant text-xs font-medium mt-1 tracking-widest uppercase">Weekly Review</p>
+            <main class="pt-8 px-5 max-w-2xl mx-auto space-y-8 pb-32">
+                <header class="flex flex-col items-center mb-8">
+                    <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-3xl text-primary">psychology</span></div>
+                    <h2 class="text-2xl font-bold text-on-surface">智慧周报</h2>
+                    <p class="text-on-surface-variant text-sm mt-1">Weekly Review</p>
                 </header>
 
-                <!-- Achievement Badges -->
                 <section class="space-y-4">
-                    <h3 class="text-[10px] text-on-surface-variant font-bold tracking-[0.2em] uppercase pl-1">荣耀勋章</h3>
+                    <h3 class="text-sm text-on-surface-variant font-bold pl-1">荣耀勋章</h3>
                     <div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-                        <div class="flex-shrink-0 w-24 h-32 bg-surface-container-low rounded-[1.5rem] border border-outline-variant/10 flex flex-col items-center justify-center p-3 text-center">
-                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-3"><span class="material-symbols-outlined text-primary">currency_yuan</span></div>
-                            <p class="text-[9px] text-on-surface font-bold">黄金矿工</p>
+                        <div class="flex-shrink-0 w-28 h-36 paper-card flex flex-col items-center justify-center p-3 text-center">
+                            <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-3"><span class="material-symbols-outlined text-primary text-xl">currency_yuan</span></div>
+                            <p class="text-sm text-on-surface font-bold">黄金矿工</p>
                         </div>
-                        <div class="flex-shrink-0 w-24 h-32 bg-surface-container-low rounded-[1.5rem] border border-outline-variant/10 flex flex-col items-center justify-center p-3 text-center opacity-40 grayscale">
-                            <div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center mb-3"><span class="material-symbols-outlined">favorite</span></div>
-                            <p class="text-[9px] text-on-surface-variant font-bold">爱心大使</p>
+                        <div class="flex-shrink-0 w-28 h-36 paper-card flex flex-col items-center justify-center p-3 text-center opacity-40 grayscale">
+                            <div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center mb-3"><span class="material-symbols-outlined text-xl">favorite</span></div>
+                            <p class="text-sm text-on-surface-variant font-bold">爱心大使</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- AI Report -->
-                <section class="bg-surface-container-low p-6 rounded-[2rem] border border-outline-variant/10 space-y-6">
-                    <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span><span class="text-[10px] text-primary font-bold tracking-widest">本周分析中...</span></div>
+                <section class="paper-card p-6 space-y-5">
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span><span class="text-sm text-primary font-bold">本周分析中...</span></div>
                     <div class="space-y-4" id="ai-report-content">
-                        <p class="text-sm leading-relaxed text-on-surface/90">本周你的布施记录很稳定，这与你每日清晨的坚持密切相关。</p>
-                        <p class="text-sm leading-relaxed text-on-surface/90">建议：明天试试多留意一件让你感恩的小事，记录到“善意时刻”中。</p>
+                        <p class="text-base leading-relaxed text-on-surface/90">本周你的布施记录很稳定，这与你每日清晨的坚持密切相关。</p>
+                        <p class="text-base leading-relaxed text-on-surface/90">建议：明天试试多留意一件让你感恩的小事，记录到"善意时刻"中。</p>
                     </div>
                 </section>
             </main>
@@ -316,155 +355,154 @@
 
         <!-- TUTORIAL SCREEN -->
         <div class="screen" id="screen-tutorial">
-            <main class="pt-8 px-6 max-w-2xl mx-auto space-y-12 pb-32">
+            <main class="pt-8 px-5 max-w-2xl mx-auto space-y-10 pb-32">
                 <header class="text-center space-y-2">
                     <h2 class="text-2xl font-bold text-on-surface">如何使用愿望加速器？</h2>
-                    <p class="text-on-surface-variant text-xs">用最简单的方法，种下改变的种子</p>
+                    <p class="text-on-surface-variant text-base">用最简单的方法，种下改变的种子</p>
                 </header>
 
-                <div class="space-y-10">
-                    <div class="flex gap-6">
-                        <div class="w-12 h-12 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-primary">payments</span></div>
+                <div class="space-y-8">
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 rounded-full bg-primary/10 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-xl">payments</span></div>
                         <div class="space-y-2">
-                            <h4 class="text-on-surface font-bold">财富种子的逻辑</h4>
-                            <p class="text-xs text-on-surface-variant leading-relaxed">
-                                为什么记录“布施”能种下财富？<br>
-                                因为当你主动分享、为他人买单时，你的内心其实在说<span class="text-primary font-bold">“我有富余”</span>。这种内在的丰盛感会影响你日常的判断和行动，让你更容易抓住财富机会。
+                            <h4 class="text-on-surface font-bold text-lg">财富种子的逻辑</h4>
+                            <p class="text-base text-on-surface-variant leading-relaxed">
+                                为什么记录"布施"能种下财富？<br>
+                                因为当你主动分享、为他人买单时，你的内心其实在说<span class="text-primary font-bold">"我有富余"</span>。这种内在的丰盛感会影响你日常的判断和行动，让你更容易抓住财富机会。
                             </p>
                         </div>
                     </div>
-                    <div class="flex gap-6">
-                        <div class="w-12 h-12 rounded-full bg-secondary/20 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-secondary">psychology_alt</span></div>
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 rounded-full bg-secondary/10 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-secondary text-xl">psychology_alt</span></div>
                         <div class="space-y-2">
-                            <h4 class="text-on-surface font-bold">意识 Bug 修复</h4>
-                            <p class="text-xs text-on-surface-variant leading-relaxed">
-                                记录那些“吝啬”、“嫉妒”或“愤怒”的瞬间。觉察本身就是改变的第一步——看见了，才能放下。
+                            <h4 class="text-on-surface font-bold text-lg">负面种子清理</h4>
+                            <p class="text-base text-on-surface-variant leading-relaxed">
+                                记录那些"吝啬"、"嫉妒"或"愤怒"的瞬间。觉察本身就是改变的第一步——看见了，才能放下。
                             </p>
                         </div>
                     </div>
-                    <div class="flex gap-6">
-                        <div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-tertiary">analytics</span></div>
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 rounded-full bg-tertiary/10 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-tertiary text-xl">analytics</span></div>
                         <div class="space-y-2">
-                            <h4 class="text-on-surface font-bold">AI 智慧分析</h4>
-                            <p class="text-xs text-on-surface-variant leading-relaxed">
-                                你不需要纠结进度。AI 每周会根据你的记录生成一份分析报告，告诉你目前做得最好的地方，以及下一步可以做的小调整。
+                            <h4 class="text-on-surface font-bold text-lg">智慧分析</h4>
+                            <p class="text-base text-on-surface-variant leading-relaxed">
+                                你不需要纠结进度。每周会根据你的记录生成一份分析报告，告诉你目前做得最好的地方，以及下一步可以做的小调整。
                             </p>
                         </div>
                     </div>
                 </div>
                 
-                <button class="w-full py-4 rounded-2xl bg-primary/10 text-primary font-bold text-sm border border-primary/20 active:scale-95 transition" id="btn-tutorial-back">开启我的高能人生</button>
+                <button class="paper-btn w-full py-4 text-lg" id="btn-tutorial-back">开启我的觉知旅程</button>
             </main>
         </div>
 
         <!-- BEDTIME SCREEN -->
         <div class="screen" id="screen-bedtime">
-            <main class="flex flex-col items-center justify-center px-6 min-h-[90vh] py-12">
-                <div class="w-full bg-surface-container-low backdrop-blur-xl rounded-[2rem] p-6 relative flex flex-col items-center text-center border border-outline-variant/5">
-                    <div class="mb-8 relative mt-4">
-                        <div class="w-12 h-12 rounded-full bg-secondary/10 breath-pulse flex items-center justify-center"><div class="w-6 h-6 rounded-full bg-secondary/30"></div></div>
+            <main class="flex flex-col items-center justify-center px-5 min-h-[90vh] py-12">
+                <div class="w-full paper-card-warm p-6 relative flex flex-col items-center text-center">
+                    <div class="mb-6 relative mt-4">
+                        <div class="w-14 h-14 rounded-full bg-secondary/10 breath-pulse flex items-center justify-center"><div class="w-7 h-7 rounded-full bg-secondary/30"></div></div>
                     </div>
-                    <h2 class="text-lg font-medium text-on-surface mb-6 leading-relaxed tracking-wide">用文字<br/><span class="text-primary italic">安放这一天</span></h2>
+                    <h2 class="text-xl font-bold text-on-surface mb-6 leading-relaxed">用文字<br/><span class="text-primary">安放这一天</span></h2>
                     
-                    <div class="w-full space-y-6 text-left">
-                        <div class="bg-surface-container p-4 rounded-xl">
-                            <label class="text-[9px] text-on-surface-variant font-bold tracking-[0.2em] uppercase mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-xs">volunteer_activism</span> 今日最高光（值得感恩的事）</label>
-                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface resize-none h-16 text-sm outline-none px-0" placeholder="哪些瞬间让你感到丰盛..." id="bedtime-q1"></textarea>
+                    <div class="w-full space-y-5 text-left">
+                        <div class="bg-white/60 p-4 rounded-xl border border-outline-variant/30">
+                            <label class="text-sm text-on-surface-variant font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-base">volunteer_activism</span> 今日最高光</label>
+                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-on-surface resize-none h-20 text-base outline-none px-0" placeholder="哪些瞬间让你感到丰盛..." id="bedtime-q1"></textarea>
                         </div>
-                        <div class="bg-surface-container p-4 rounded-xl">
-                            <label class="text-[9px] text-on-surface-variant font-bold tracking-[0.2em] uppercase mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-xs">tips_and_updates</span> 意识优化建议（做错的事）</label>
-                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface resize-none h-16 text-sm outline-none px-0" placeholder="哪些地方可以做得更完美..." id="bedtime-q2"></textarea>
+                        <div class="bg-white/60 p-4 rounded-xl border border-outline-variant/30">
+                            <label class="text-sm text-on-surface-variant font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-base">tips_and_updates</span> 意识优化建议</label>
+                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-on-surface resize-none h-20 text-base outline-none px-0" placeholder="哪些地方可以做得更完美..." id="bedtime-q2"></textarea>
                         </div>
-                        <div class="bg-surface-container p-4 rounded-xl">
-                            <label class="text-[9px] text-on-surface-variant font-bold tracking-[0.2em] uppercase mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-xs">rocket_launch</span> 明日的能量部署</label>
-                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/10 focus:border-primary focus:ring-0 text-on-surface resize-none h-16 text-sm outline-none px-0" placeholder="打算如何度过明天..." id="bedtime-q3"></textarea>
+                        <div class="bg-white/60 p-4 rounded-xl border border-outline-variant/30">
+                            <label class="text-sm text-on-surface-variant font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-base">rocket_launch</span> 明日计划</label>
+                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-on-surface resize-none h-20 text-base outline-none px-0" placeholder="打算如何度过明天..." id="bedtime-q3"></textarea>
                         </div>
                     </div>
                 </div>
                 
-                <div class="mt-8 w-full">
-                    <button id="btn-bedtime-done" class="w-full bg-gradient-to-tr from-primary to-primary-container text-on-primary py-4 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition shadow-[0_10px_20px_rgba(242,202,80,0.15)]"><span class="material-symbols-outlined text-lg">bedtime</span>保存并入睡</button>
+                <div class="mt-6 w-full">
+                    <button id="btn-bedtime-done" class="paper-btn w-full py-4 text-lg flex items-center justify-center gap-2"><span class="material-symbols-outlined text-xl">bedtime</span>保存并入睡</button>
                 </div>
             </main>
         </div>
 
         <!-- PROFILE SCREEN -->
         <div class="screen" id="screen-profile">
-            <main class="pt-6 px-6 max-w-2xl mx-auto space-y-8 pb-32">
-                <section class="flex items-center space-x-4 bg-surface-container-low p-5 rounded-[2rem] border border-outline-variant/5">
-                    <div class="w-16 h-16 rounded-[1.2rem] bg-surface-container-high flex items-center justify-center border border-outline-variant/10">
-                        <span class="material-symbols-outlined text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+            <main class="pt-6 px-5 max-w-2xl mx-auto space-y-6 pb-32">
+                <section class="flex items-center space-x-4 paper-card-warm p-5">
+                    <div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center border border-outline-variant">
+                        <span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
                     </div>
                     <div class="flex-1">
                         <h2 class="text-xl font-bold text-on-surface" id="profile-display-name">加载中...</h2>
-                        <p id="profile-level-badge" class="text-on-surface-variant text-[9px] mt-1 bg-surface-container px-3 py-1 rounded-full inline-block font-bold tracking-widest uppercase">Lv.1 刚刚起步</p>
+                        <p id="profile-level-badge" class="text-on-surface-variant text-sm mt-1 bg-surface-container px-3 py-1 rounded-full inline-block font-bold">Lv.1 刚刚起步</p>
                     </div>
-                    <button class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant" id="btn-show-tutorial"><span class="material-symbols-outlined text-sm">help</span></button>
+                    <button class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant" id="btn-show-tutorial"><span class="material-symbols-outlined text-base">help</span></button>
                 </section>
 
-                <!-- Edit Profile -->
-                <section class="bg-surface-container-low p-5 rounded-[2rem] border border-outline-variant/5 space-y-4">
-                    <h3 class="text-[10px] font-bold text-on-surface-variant tracking-[0.2em] uppercase pl-1">个人资料</h3>
+                <section class="paper-card p-5 space-y-4">
+                    <h3 class="text-sm font-bold text-on-surface-variant pl-1">个人资料</h3>
                     <div class="flex gap-3">
-                        <input type="text" id="edit-display-name" placeholder="修改昵称" class="flex-1 bg-surface-container border border-outline-variant/20 rounded-xl px-4 py-3 text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
-                        <button id="btn-save-profile" class="px-5 py-3 bg-primary text-on-primary font-bold text-sm rounded-xl active:scale-95 transition">保存</button>
+                        <input type="text" id="edit-display-name" placeholder="修改昵称" class="flex-1 bg-white border border-outline-variant rounded-xl px-4 py-3 text-on-surface text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
+                        <button id="btn-save-profile" class="paper-btn px-5 py-3 text-base">保存</button>
                     </div>
-                    <p id="profile-save-feedback" class="hidden text-primary text-xs text-center">已保存</p>
+                    <p id="profile-save-feedback" class="hidden text-primary text-sm text-center">已保存</p>
                 </section>
 
                 <section class="grid grid-cols-2 gap-3">
-                    <div class="bg-surface-container-low p-5 rounded-[2rem] flex flex-col justify-between h-32 border border-outline-variant/5">
-                        <span class="material-symbols-outlined text-secondary text-[18px]">bolt</span>
-                        <div><div class="text-2xl font-bold text-on-surface tracking-tighter" id="profile-xp">54</div><div class="text-[9px] text-on-surface-variant uppercase tracking-[0.2em] font-bold mt-1">累计能量 (XP)</div></div>
+                    <div class="paper-card p-5 flex flex-col justify-between h-32">
+                        <span class="material-symbols-outlined text-secondary text-xl">bolt</span>
+                        <div><div class="text-2xl font-bold text-on-surface" id="profile-xp">54</div><div class="text-sm text-on-surface-variant font-bold mt-1">累计能量 (XP)</div></div>
                     </div>
-                    <div class="bg-surface-container-low p-5 rounded-[2rem] flex flex-col justify-between h-32 border border-outline-variant/5">
-                        <span class="material-symbols-outlined text-primary text-[18px]">currency_yuan</span>
-                        <div><div class="text-2xl font-bold text-on-surface tracking-tighter" id="profile-money">286</div><div class="text-[9px] text-on-surface-variant uppercase tracking-[0.2em] font-bold mt-1">布施累计</div></div>
+                    <div class="paper-card p-5 flex flex-col justify-between h-32">
+                        <span class="material-symbols-outlined text-primary text-xl">currency_yuan</span>
+                        <div><div class="text-2xl font-bold text-on-surface" id="profile-money">286</div><div class="text-sm text-on-surface-variant font-bold mt-1">布施累计</div></div>
                     </div>
                 </section>
 
                 <section class="space-y-4">
-                    <h3 class="text-[10px] font-bold text-on-surface-variant tracking-[0.2em] uppercase pl-1">每日记录次数设置</h3>
+                    <h3 class="text-sm font-bold text-on-surface-variant pl-1">每日记录次数设置</h3>
                     <div class="flex space-x-3 overflow-x-auto pb-2 scrollbar-hide snap-x">
-                        <button class="freq-btn snap-center flex-shrink-0 w-24 bg-surface-container p-3 rounded-3xl border border-outline-variant/10 flex flex-col items-center text-center space-y-2 opacity-60 transition" data-freq="2">
-                            <span class="text-[10px] font-medium text-on-surface-variant">2次/日</span>
-                            <div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center"><span class="material-symbols-outlined text-sm">filter_2</span></div>
+                        <button class="freq-btn snap-center flex-shrink-0 w-24 paper-card p-3 flex flex-col items-center text-center space-y-2 opacity-60 transition" data-freq="2">
+                            <span class="text-sm font-medium text-on-surface-variant">2次/日</span>
+                            <div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center"><span class="material-symbols-outlined text-base">filter_2</span></div>
                         </button>
-                        <button class="freq-btn snap-center flex-shrink-0 w-24 bg-primary/10 p-3 rounded-3xl border border-primary flex flex-col items-center text-center space-y-2 shadow-lg ring-1 ring-primary ring-inset transition" data-freq="4">
-                            <span class="text-[10px] font-bold text-primary">4次/日</span>
-                            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">filter_4</span></div>
+                        <button class="freq-btn snap-center flex-shrink-0 w-24 p-3 flex flex-col items-center text-center space-y-2 transition" data-freq="4" style="background: rgba(139,111,42,0.08); border: 1px solid #8b6f2a; border-radius: 14px;">
+                            <span class="text-sm font-bold text-primary">4次/日</span>
+                            <div class="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center text-primary"><span class="material-symbols-outlined text-base">filter_4</span></div>
                         </button>
-                        <button class="flex-shrink-0 w-24 bg-surface-container-lowest p-3 rounded-3xl border border-dashed border-outline-variant/20 flex flex-col items-center text-center space-y-2 opacity-40 cursor-not-allowed">
-                            <span class="text-[10px]">6次/日</span>
-                            <div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center"><span class="material-symbols-outlined text-sm">lock</span></div>
-                            <span class="text-[8px]">进阶解锁</span>
+                        <button class="flex-shrink-0 w-24 paper-card p-3 flex flex-col items-center text-center space-y-2 opacity-40 cursor-not-allowed" style="border-style: dashed;">
+                            <span class="text-sm">6次/日</span>
+                            <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center"><span class="material-symbols-outlined text-base">lock</span></div>
+                            <span class="text-xs">进阶解锁</span>
                         </button>
                     </div>
                 </section>
 
                 <section class="space-y-3">
-                    <h3 class="text-[10px] font-bold text-on-surface-variant tracking-[0.2em] uppercase pl-1">人生愿景</h3>
+                    <h3 class="text-sm font-bold text-on-surface-variant pl-1">人生愿景</h3>
                     <div class="space-y-2">
-                        <div class="bg-surface-container-low px-5 py-4 rounded-2xl flex items-center justify-between border border-outline-variant/5">
+                        <div class="paper-card px-5 py-4 flex items-center justify-between">
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded-xl bg-secondary-container/20 flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-[16px]">work</span></div>
-                                <div class="text-sm font-medium text-on-surface">事业突破</div>
+                                <div class="w-9 h-9 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-lg">work</span></div>
+                                <div class="text-base font-bold text-on-surface">事业突破</div>
                             </div>
-                            <span class="material-symbols-outlined text-on-surface-variant text-sm">more_horiz</span>
+                            <span class="material-symbols-outlined text-on-surface-variant text-base">more_horiz</span>
                         </div>
-                        <div class="bg-surface-container-low px-5 py-4 rounded-2xl flex items-center justify-between border border-outline-variant/5">
+                        <div class="paper-card px-5 py-4 flex items-center justify-between">
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 rounded-xl bg-tertiary-container/10 flex items-center justify-center text-tertiary"><span class="material-symbols-outlined text-[16px]">favorite</span></div>
-                                <div class="text-sm font-medium text-on-surface">身体健康</div>
+                                <div class="w-9 h-9 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary"><span class="material-symbols-outlined text-lg">favorite</span></div>
+                                <div class="text-base font-bold text-on-surface">身体健康</div>
                             </div>
-                            <span class="material-symbols-outlined text-on-surface-variant text-sm">more_horiz</span>
+                            <span class="material-symbols-outlined text-on-surface-variant text-base">more_horiz</span>
                         </div>
                     </div>
                 </section>
 
                 <section class="mt-4">
-                    <button id="btn-logout" class="w-full py-4 rounded-2xl bg-red-500/10 text-red-400 font-bold text-sm border border-red-500/20 active:scale-95 transition flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined text-lg">logout</span>退出登录
+                    <button id="btn-logout" class="w-full py-4 rounded-xl bg-red-50 text-red-600 font-bold text-base border border-red-200 active:scale-95 transition flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-xl">logout</span>退出登录
                     </button>
                 </section>
             </main>
@@ -472,19 +510,19 @@
 
     </div> <!-- End #app -->
 
-    <!-- BOTTOM NAV (Absolute within app-wrapper) -->
-    <nav id="bottom-nav" class="absolute bottom-0 left-0 w-full flex justify-around items-center h-20 px-2 bg-white/95 backdrop-blur-3xl rounded-t-[1.5rem] z-50 border-t border-outline-variant/30 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] transition-transform duration-300">
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-[#8b6f2a] transition" data-target="home">
-            <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">home</span><span class="text-[9px] tracking-widest uppercase font-bold">主舱</span>
+    <!-- BOTTOM NAV -->
+    <nav id="bottom-nav" class="absolute bottom-0 left-0 w-full flex justify-around items-center h-20 px-2 z-50 transition-transform duration-300" style="background: #faf6ef; border-top: 1px dashed #d6cfc0;">
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-primary transition" data-target="home">
+            <span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">home</span><span class="text-xs font-bold">主页</span>
         </button>
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#8b6f2a] transition" data-target="timeline">
-            <span class="material-symbols-outlined text-[22px]">auto_stories</span><span class="text-[9px] tracking-widest uppercase font-bold">宝盒</span>
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition" data-target="timeline">
+            <span class="material-symbols-outlined text-[24px]">auto_stories</span><span class="text-xs font-bold">记录</span>
         </button>
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#8b6f2a] transition" data-target="bedtime">
-            <span class="material-symbols-outlined text-[22px]">nightlight</span><span class="text-[9px] tracking-widest uppercase font-bold">复盘</span>
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition" data-target="bedtime">
+            <span class="material-symbols-outlined text-[24px]">nightlight</span><span class="text-xs font-bold">复盘</span>
         </button>
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#8b6f2a] transition" data-target="profile">
-            <span class="material-symbols-outlined text-[22px]">account_circle</span><span class="text-[9px] tracking-widest uppercase font-bold">我的</span>
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition" data-target="profile">
+            <span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-xs font-bold">我的</span>
         </button>
     </nav>
 
