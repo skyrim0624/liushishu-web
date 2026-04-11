@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const panel = document.getElementById(`panel-${category}`);
         if(panel) panel.classList.remove('hidden');
         
-        const labelMap = { 'wealth': '布施记录', 'kindness': '善意时刻', 'debug': '自我觉察' };
+        const labelMap = { 'wealth': '财富种子', 'kindness': '爱的种子', 'health': '健康种子', 'debug': '清理负面种子' };
         const label = document.getElementById('checkin-session-label');
         if(label) label.textContent = labelMap[category] || '记录中...';
         
@@ -321,6 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-quick-flash')?.addEventListener('click', () => triggerCheckin('wealth'));
     document.getElementById('seed-wealth')?.addEventListener('click', () => triggerCheckin('wealth'));
     document.getElementById('seed-kindness')?.addEventListener('click', () => triggerCheckin('kindness'));
+    document.getElementById('seed-health')?.addEventListener('click', () => triggerCheckin('health'));
     document.getElementById('seed-debug')?.addEventListener('click', () => triggerCheckin('debug'));
 
     // Timer Logic
@@ -375,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const successLabel = document.getElementById('success-label');
         if(successLabel) {
-            const labelMap = { 'wealth': '完成布施记录', 'kindness': '记录善意时刻', 'debug': '完成自我觉察' };
+            const labelMap = { 'wealth': '种下财富种子', 'kindness': '种下爱的种子', 'health': '种下健康种子', 'debug': '完成负面清理' };
             successLabel.textContent = labelMap[window.state.category];
         }
         const successMoney = document.getElementById('success-money');
@@ -394,6 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const tagsMap = {
             'wealth': ['慷慨布施', '赞美他人', '买单意愿', '分享智慧', '随喜他人'],
             'kindness': ['耐心倾听', '协助同事', '陪伴家人', '认真承诺', '温柔言语'],
+            'health': ['运动锻炼', '健康饮食', '早睡早起', '冥想放松', '户外散步'],
             'debug': ['负面评判', '傲慢心', '愤怒', '拖延', '对立情绪']
         };
         const list = tagsMap[category] || [];

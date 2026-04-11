@@ -132,18 +132,39 @@
                 <section class="grid grid-cols-3 gap-3">
                     <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-wealth">
                         <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shadow-lg shadow-primary/5"><span class="material-symbols-outlined text-primary text-sm">savings</span></div>
-                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-money-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">布施记录</p></div>
+                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-money-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">财富种子</p></div>
                     </div>
                     <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-kindness">
-                        <div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center shadow-lg shadow-secondary/5"><span class="material-symbols-outlined text-secondary text-sm">auto_awesome</span></div>
-                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-love-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">善意时刻</p></div>
+                        <div class="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center shadow-lg shadow-secondary/5"><span class="material-symbols-outlined text-secondary text-sm">favorite</span></div>
+                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-love-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">爱的种子</p></div>
                     </div>
-                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-debug">
-                        <div class="w-10 h-10 rounded-xl bg-tertiary-container/10 flex items-center justify-center shadow-lg shadow-tertiary/5"><span class="material-symbols-outlined text-tertiary text-sm">bug_report</span></div>
-                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-clean-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">自我觉察</p></div>
+                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex flex-col items-center gap-2 cursor-pointer active:scale-95 transition" id="seed-health">
+                        <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center shadow-lg shadow-green-500/5"><span class="material-symbols-outlined text-green-400 text-sm">spa</span></div>
+                        <div class="text-center"><p class="text-lg font-bold text-on-surface" id="seed-health-today">0</p><p class="text-[9px] text-on-surface-variant tracking-wider font-bold">健康种子</p></div>
                     </div>
                 </section>
 
+                <section>
+                    <div class="bg-surface-container rounded-[1.5rem] p-4 border border-outline-variant/5 flex items-center gap-4 cursor-pointer active:scale-95 transition" id="seed-debug">
+                        <div class="w-10 h-10 rounded-xl bg-tertiary-container/10 flex items-center justify-center shadow-lg shadow-tertiary/5"><span class="material-symbols-outlined text-tertiary text-sm">self_improvement</span></div>
+                        <div><p class="text-sm font-bold text-on-surface">清理负面种子</p><p class="text-[9px] text-on-surface-variant tracking-wider">觉察并放下不再需要的念头</p></div>
+                    </div>
+                </section>
+
+                <!-- WEEKLY INSIGHT PREVIEW -->
+                <section class="bg-gradient-to-br from-surface-container-low to-surface-container p-5 rounded-[1.5rem] border border-outline-variant/10 space-y-4 cursor-pointer" id="btn-goto-ai">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <span class="material-symbols-outlined text-primary text-sm">psychology</span>
+                                <div class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></div>
+                            </div>
+                            <h3 class="font-bold text-on-surface text-sm">智慧周报已送达</h3>
+                        </div>
+                        <span class="material-symbols-outlined text-on-surface-variant text-sm">arrow_forward_ios</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant/70 leading-relaxed">"本周你的记录很稳定，持续保持..."</p>
+                </section>
 
             </main>
         </div>
