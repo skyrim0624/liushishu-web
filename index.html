@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="zh-CN">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
@@ -9,26 +9,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#f2ca50", "primary-container": "#d4af37", "on-primary": "#3c2f00", "on-primary-container": "#554300",
-                        "secondary": "#b9ccab", "secondary-container": "#3d4e34", "on-secondary": "#25351d", "on-secondary-container": "#abbe9d",
-                        "tertiary": "#bfcdff", "tertiary-container": "#97b0ff", "on-tertiary": "#082b72", "on-tertiary-container": "#254188",
-                        "surface": "#151311", "surface-dim": "#151311", "surface-bright": "#3b3936",
-                        "surface-container-lowest": "#100e0c", "surface-container-low": "#1d1b19", "surface-container": "#211f1d",
-                        "surface-container-high": "#2c2927", "surface-container-highest": "#373432",
-                        "on-surface": "#e7e1de", "on-surface-variant": "#d0c5af", "outline": "#99907c", "outline-variant": "#4d4635"
+                        "primary": "#c8a24e", "primary-container": "#d4af37", "on-primary": "#ffffff", "on-primary-container": "#554300",
+                        "secondary": "#6b8f5b", "secondary-container": "#e8f0e2", "on-secondary": "#ffffff", "on-secondary-container": "#3d4e34",
+                        "tertiary": "#6b83c4", "tertiary-container": "#e0e8ff", "on-tertiary": "#ffffff", "on-tertiary-container": "#254188",
+                        "surface": "#ffffff", "surface-dim": "#f5f3f0", "surface-bright": "#ffffff",
+                        "surface-container-lowest": "#ffffff", "surface-container-low": "#f8f6f3", "surface-container": "#f2f0ed",
+                        "surface-container-high": "#ece9e5", "surface-container-highest": "#e6e3df",
+                        "on-surface": "#1c1b1a", "on-surface-variant": "#6b6560", "outline": "#99907c", "outline-variant": "#d6cfc4"
                     },
-                    fontFamily: { "body": ["Plus Jakarta Sans", "sans-serif"] }
+                    fontFamily: { "body": ["Huiwen", "Plus Jakarta Sans", "sans-serif"] }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #000; color: #e7e1de; min-height: 100vh; display: flex; justify-content: center; -webkit-tap-highlight-color: transparent;}
-        .app-wrapper { width: 100%; max-width: 430px; background-color: #151311; min-height: 100dvh; position: relative; overflow-x: hidden; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+        @font-face {
+            font-family: 'Huiwen';
+            src: url('Huiwen.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        body { background-color: #f0ede8; color: #1c1b1a; min-height: 100vh; display: flex; justify-content: center; -webkit-tap-highlight-color: transparent; font-family: 'Huiwen', 'Plus Jakarta Sans', sans-serif; }
+        .app-wrapper { width: 100%; max-width: 430px; background-color: #ffffff; min-height: 100dvh; position: relative; overflow-x: hidden; box-shadow: 0 0 40px rgba(0,0,0,0.08); }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
         .screen { display: none; opacity: 0; transition: opacity 0.4s ease; min-height: 100vh; padding-bottom: 6rem;}
         .screen.active { display: block; opacity: 1; }
@@ -41,17 +47,17 @@
 
 <div class="app-wrapper">
 
-    <header class="absolute top-0 w-full z-50 bg-[#151311]/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 shadow-[0_20px_40px_rgba(21,19,17,0.4)] transition-all">
+    <header class="absolute top-0 w-full z-50 bg-white/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 shadow-sm transition-all border-b border-outline-variant/20">
         <div class="flex items-center gap-4">
             <button id="btn-global-back" class="text-[#f2ca50] hidden hover:opacity-80 transition hover:-translate-x-1 duration-300">
                 <span class="material-symbols-outlined">arrow_back_ios</span>
             </button>
-            <h1 class="text-[#f2ca50] font-bold tracking-widest text-lg">愿望加速器</h1>
+            <h1 class="text-[#8b6f2a] font-bold tracking-widest text-lg">愿望加速器</h1>
         </div>
         <div class="w-8 h-8 rounded-full border border-outline-variant/30 flex items-center justify-center bg-surface-container">
             <span class="material-symbols-outlined text-sm text-primary" id="header-menu-icon">person</span>
         </div>
-        <div class="absolute bottom-0 left-0 bg-gradient-to-r from-transparent via-[#f2ca50]/20 to-transparent h-[1px] w-full"></div>
+        <div class="absolute bottom-0 left-0 bg-gradient-to-r from-transparent via-[#c8a24e]/15 to-transparent h-[1px] w-full"></div>
     </header>
 
     <div id="app" class="relative pt-16 h-full overflow-y-auto">
@@ -83,7 +89,7 @@
                         </div>
                     </div>
 
-                    <div id="auth-error" class="hidden text-red-400 text-xs text-center p-3 bg-red-400/10 rounded-xl"></div>
+                    <div id="auth-error" class="hidden text-red-600 text-xs text-center p-3 bg-red-50 rounded-xl border border-red-200"></div>
 
                     <div class="space-y-3">
                         <button id="btn-auth-login" class="w-full py-4 bg-gradient-to-tr from-primary to-[#d4af37] text-on-primary font-bold text-sm rounded-2xl active:scale-95 transition shadow-xl shadow-primary/20">登录</button>
@@ -123,7 +129,7 @@
                             </div>
                         </div>
                         <p class="text-on-surface-variant text-xs font-medium">连续记录 <span class="text-primary" id="streak-days">3</span> 天</p>
-                        <button class="w-full bg-gradient-to-tr from-primary to-[#d4af37] py-4 rounded-xl text-on-primary font-bold shadow-[0_10px_30px_rgba(242,202,80,0.25)] active:scale-95 transition-transform flex items-center justify-center gap-2">
+                        <button class="w-full bg-gradient-to-tr from-primary to-[#d4af37] py-4 rounded-xl text-white font-bold shadow-[0_4px_16px_rgba(200,162,78,0.25)] active:scale-95 transition-transform flex items-center justify-center gap-2">
                             <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">edit_note</span> 开始一分钟记录
                         </button>
                     </div>
@@ -467,17 +473,17 @@
     </div> <!-- End #app -->
 
     <!-- BOTTOM NAV (Absolute within app-wrapper) -->
-    <nav id="bottom-nav" class="absolute bottom-0 left-0 w-full flex justify-around items-center h-20 px-2 bg-[#1d1b19]/95 backdrop-blur-3xl rounded-t-[1.5rem] z-50 border-t border-outline-variant/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)] transition-transform duration-300">
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-[#f2ca50] transition" data-target="home">
+    <nav id="bottom-nav" class="absolute bottom-0 left-0 w-full flex justify-around items-center h-20 px-2 bg-white/95 backdrop-blur-3xl rounded-t-[1.5rem] z-50 border-t border-outline-variant/30 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] transition-transform duration-300">
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-[#8b6f2a] transition" data-target="home">
             <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">home</span><span class="text-[9px] tracking-widest uppercase font-bold">主舱</span>
         </button>
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#f2ca50] transition" data-target="timeline">
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#8b6f2a] transition" data-target="timeline">
             <span class="material-symbols-outlined text-[22px]">auto_stories</span><span class="text-[9px] tracking-widest uppercase font-bold">宝盒</span>
         </button>
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#f2ca50] transition" data-target="bedtime">
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#8b6f2a] transition" data-target="bedtime">
             <span class="material-symbols-outlined text-[22px]">nightlight</span><span class="text-[9px] tracking-widest uppercase font-bold">复盘</span>
         </button>
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#f2ca50] transition" data-target="profile">
+        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-[#8b6f2a] transition" data-target="profile">
             <span class="material-symbols-outlined text-[22px]">account_circle</span><span class="text-[9px] tracking-widest uppercase font-bold">我的</span>
         </button>
     </nav>

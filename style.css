@@ -3,37 +3,37 @@
    ============================== */
 
 :root {
-  /* Color Palette — Warm, spiritual, grounded */
-  --bg-primary: #0f0f14;
-  --bg-secondary: #1a1a24;
-  --bg-card: #22222e;
-  --bg-card-hover: #2a2a38;
-  --bg-elevated: #2e2e3c;
+  /* Color Palette — Warm, light, grounded */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f6f3;
+  --bg-card: #f2f0ed;
+  --bg-card-hover: #ece9e5;
+  --bg-elevated: #e6e3df;
 
-  --text-primary: #f0ece4;
-  --text-secondary: #a8a4b8;
-  --text-muted: #6b6780;
+  --text-primary: #1c1b1a;
+  --text-secondary: #6b6560;
+  --text-muted: #99907c;
 
-  --accent-gold: #d4a853;
-  --accent-gold-soft: rgba(212, 168, 83, 0.15);
-  --accent-gold-glow: rgba(212, 168, 83, 0.3);
+  --accent-gold: #c8a24e;
+  --accent-gold-soft: rgba(200, 162, 78, 0.12);
+  --accent-gold-glow: rgba(200, 162, 78, 0.2);
 
-  --accent-green: #6bcb8b;
-  --accent-green-soft: rgba(107, 203, 139, 0.15);
+  --accent-green: #4a9a5b;
+  --accent-green-soft: rgba(74, 154, 91, 0.1);
 
-  --accent-rose: #e88b9c;
-  --accent-rose-soft: rgba(232, 139, 156, 0.15);
+  --accent-rose: #c4606e;
+  --accent-rose-soft: rgba(196, 96, 110, 0.1);
 
-  --accent-amber: #e8a84b;
-  --accent-amber-soft: rgba(232, 168, 75, 0.15);
+  --accent-amber: #b8862e;
+  --accent-amber-soft: rgba(184, 134, 46, 0.1);
 
-  --accent-purple: #9b8ec4;
-  --accent-purple-soft: rgba(155, 142, 196, 0.15);
+  --accent-purple: #7b6fa8;
+  --accent-purple-soft: rgba(123, 111, 168, 0.1);
 
-  --accent-blue: #7baaf7;
+  --accent-blue: #5b82d4;
 
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-medium: rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-medium: rgba(0, 0, 0, 0.1);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -41,11 +41,11 @@
   --radius-xl: 20px;
   --radius-full: 9999px;
 
-  --shadow-card: 0 2px 12px rgba(0,0,0,0.3);
-  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.08);
 
-  --font-sans: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-serif: 'Noto Serif SC', serif;
+  --font-sans: 'Huiwen', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Huiwen', 'Noto Serif SC', serif;
 
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -153,7 +153,7 @@ body {
   position: relative;
   margin: 20px 20px 0;
   padding: 24px;
-  background: linear-gradient(135deg, #1e1e2e 0%, #2a2540 100%);
+  background: linear-gradient(135deg, #f8f4ee 0%, #f2efe8 100%);
   border-radius: var(--radius-xl);
   border: 1px solid var(--border-medium);
   display: flex;
@@ -299,7 +299,7 @@ body {
 /* Wealth Pool */
 .wealth-pool-card {
   margin: 0 20px;
-  background: linear-gradient(135deg, #2a2520 0%, #1e1e2e 100%);
+  background: linear-gradient(135deg, #f8f4ee 0%, #f2efe8 100%);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(212, 168, 83, 0.15);
   padding: 20px;
@@ -408,15 +408,15 @@ body {
   align-items: center;
   gap: 8px;
   padding: 14px 28px;
-  background: linear-gradient(135deg, var(--accent-gold) 0%, #c89b3c 100%);
-  color: #1a1a24;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, #d4af37 100%);
+  color: #ffffff;
   font-size: 16px;
   font-weight: 700;
   font-family: var(--font-sans);
   border: none;
   border-radius: var(--radius-full);
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(212, 168, 83, 0.4);
+  box-shadow: 0 4px 16px rgba(200, 162, 78, 0.25);
   z-index: 10;
   transition: transform 0.2s, box-shadow 0.2s;
   animation: fabPulse 3s ease-in-out infinite;
@@ -427,8 +427,8 @@ body {
 }
 
 @keyframes fabPulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(212, 168, 83, 0.4); }
-  50% { box-shadow: 0 4px 30px rgba(212, 168, 83, 0.6); }
+  0%, 100% { box-shadow: 0 4px 16px rgba(200, 162, 78, 0.25); }
+  50% { box-shadow: 0 4px 24px rgba(200, 162, 78, 0.35); }
 }
 
 .fab-icon { font-size: 20px; }
@@ -444,7 +444,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 16px 20px 20px;
-  background: linear-gradient(180deg, #1e1e2e 0%, var(--bg-primary) 100%);
+  background: linear-gradient(180deg, #f8f6f3 0%, var(--bg-primary) 100%);
 }
 
 .btn-back {
@@ -562,7 +562,7 @@ body {
 .checkin-tab.active {
   background: var(--bg-elevated);
   color: var(--text-primary);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
 /* Panels */
@@ -767,14 +767,14 @@ body {
   margin: 20px auto 0;
   padding: 16px;
   background: linear-gradient(135deg, var(--accent-gold) 0%, #c89b3c 100%);
-  color: #1a1a24;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 700;
   font-family: var(--font-sans);
   border: none;
   border-radius: var(--radius-lg);
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(212, 168, 83, 0.3);
+  box-shadow: 0 4px 16px rgba(200, 162, 78, 0.25);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
