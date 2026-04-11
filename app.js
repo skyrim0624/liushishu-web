@@ -1,4 +1,4 @@
-/* 六时书 JS Logic - Auth + Profile Version */
+/* 愿望加速器 JS Logic - Auth + Profile Version */
 const SUPABASE_URL = 'https://ntzbtmnzwapgxwocffkc.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50emJ0bW56d2FwZ3h3b2NmZmtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MzAyNzQsImV4cCI6MjA5MTIwNjI3NH0.VrnNTDT5DcwjhnE1OqU3VCkBG31kOeT3LgNT7ZT8cF8';
 
