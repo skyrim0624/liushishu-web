@@ -4,535 +4,580 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
     <title>愿望加速器</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#8b6f2a", "primary-container": "#c8a24e", "on-primary": "#ffffff", "on-primary-container": "#554300",
-                        "secondary": "#5a7a4d", "secondary-container": "#e8f0e2", "on-secondary": "#ffffff", "on-secondary-container": "#3d4e34",
-                        "tertiary": "#6b7a94", "tertiary-container": "#e0e8f4", "on-tertiary": "#ffffff", "on-tertiary-container": "#3a4860",
-                        "surface": "#faf6ef", "surface-dim": "#f2ede4", "surface-bright": "#fdfbf7",
-                        "surface-container-lowest": "#fdfbf7", "surface-container-low": "#f7f3eb", "surface-container": "#f2ede4",
-                        "surface-container-high": "#ece7dd", "surface-container-highest": "#e6e0d5",
-                        "on-surface": "#2c2418", "on-surface-variant": "#7a6f5f", "outline": "#a69a88", "outline-variant": "#d6cfc0"
+                        primary: "#8b6f2a",
+                        secondary: "#5a7a4d",
+                        tertiary: "#6b7a94",
+                        surface: "#faf6ef",
+                        "surface-soft": "#f5efe3",
+                        "surface-2": "#efe7da",
+                        ink: "#2c2418",
+                        muted: "#7a6f5f",
+                        outline: "#d6cfc0"
                     },
-                    fontFamily: { "body": ["WenKai", "Kaiti SC", "STKaiti", "serif"] }
+                    fontFamily: {
+                        body: ["WenKai", "Kaiti SC", "STKaiti", "serif"]
+                    }
                 }
             }
-        }
+        };
     </script>
     <style>
         @font-face {
-            font-family: 'WenKai';
-            src: url('WenKai.ttf') format('truetype');
+            font-family: "WenKai";
+            src: url("WenKai.ttf") format("truetype");
             font-weight: normal;
             font-style: normal;
             font-display: swap;
         }
-        html {
-            font-size: 16px;
-        }
+        html { font-size: 16px; }
         body {
-            background-color: #e8e0d0;
+            background: #e8e0d0;
             color: #2c2418;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             -webkit-tap-highlight-color: transparent;
-            font-family: 'WenKai', 'Kaiti SC', 'STKaiti', serif;
-            font-size: 1rem;
+            font-family: "WenKai", "Kaiti SC", "STKaiti", serif;
         }
-        .app-wrapper {
-            width: 100%; max-width: 430px;
-            background-color: #faf6ef;
-            min-height: 100dvh; position: relative; overflow-x: hidden;
-            box-shadow: 4px 0 20px rgba(0,0,0,0.08), -4px 0 20px rgba(0,0,0,0.08);
+        .app-shell {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100dvh;
+            background: #faf6ef;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08), -4px 0 20px rgba(0, 0, 0, 0.08);
         }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-        .screen { display: none; opacity: 0; transition: opacity 0.4s ease; min-height: 100vh; padding-bottom: 6rem;}
-        .screen.active { display: block; opacity: 1; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .breath-pulse { animation: breath 4s ease-in-out infinite; }
-        @keyframes breath { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
-        /* Paper card styles */
+        .screen {
+            display: none;
+            min-height: 100dvh;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+        }
+        .screen.active {
+            display: block;
+            opacity: 1;
+        }
         .paper-card {
             background: #fdfbf7;
-            border: 1px dashed #d6cfc0;
-            border-radius: 14px;
-            box-shadow: 1px 2px 6px rgba(0,0,0,0.03);
+            border: 1px solid #e3dbc9;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(61, 47, 23, 0.05);
         }
-        .paper-card-warm {
-            background: linear-gradient(160deg, #faf6ef, #f5efe3);
-            border: 1px solid #d6cfc0;
-            border-radius: 14px;
-            box-shadow: 2px 3px 10px rgba(0,0,0,0.04);
+        .paper-card-soft {
+            background: linear-gradient(160deg, #faf6ef, #f1e8d9);
+            border: 1px solid #ddd2bd;
+            border-radius: 20px;
+            box-shadow: 0 12px 32px rgba(79, 59, 21, 0.08);
         }
         .paper-btn {
             background: #8b6f2a;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: bold;
-            box-shadow: 1px 2px 6px rgba(139,111,42,0.2);
-            transition: transform 0.15s;
+            color: #fff;
+            border-radius: 14px;
+            font-weight: 700;
+            box-shadow: 0 10px 18px rgba(139, 111, 42, 0.2);
         }
-        .paper-btn:active { transform: scale(0.97); }
+        .paper-btn:active { transform: scale(0.98); }
+        .tag-chip {
+            border-radius: 9999px;
+            border: 1px solid #d6cfc0;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.55rem 0.9rem;
+            font-size: 0.875rem;
+            line-height: 1.2rem;
+            color: #7a6f5f;
+            transition: all 0.18s ease;
+        }
+        .tag-chip.active {
+            background: rgba(139, 111, 42, 0.12);
+            border-color: #8b6f2a;
+            color: #8b6f2a;
+            font-weight: 700;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
     </style>
+    <link href="style.css" rel="stylesheet"/>
 </head>
-<body class="font-body selection:bg-primary/30">
-
-<div class="app-wrapper">
-
-    <header class="absolute top-0 w-full z-50 flex justify-between items-center px-5 h-14 transition-all" style="background: #faf6ef; border-bottom: 1px dashed #d6cfc0;">
-        <div class="flex items-center gap-4">
-            <button id="btn-global-back" class="text-primary hidden hover:opacity-80 transition hover:-translate-x-1 duration-300">
+<body class="dune-body font-body selection:bg-primary/20">
+<div class="app-shell">
+    <header class="app-header absolute top-0 left-0 z-50 flex h-14 w-full items-center justify-between border-b border-outline bg-surface px-5">
+        <div class="flex items-center gap-3">
+            <button class="hidden text-primary" id="btn-global-back">
                 <span class="material-symbols-outlined">arrow_back_ios</span>
             </button>
-            <h1 class="text-primary font-bold tracking-wider text-xl">愿望加速器</h1>
+            <div>
+                <h1 class="text-lg font-bold tracking-[0.12em] text-primary">愿望加速器</h1>
+            </div>
         </div>
-        <div class="w-9 h-9 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container-low">
-            <span class="material-symbols-outlined text-base text-primary" id="header-menu-icon">person</span>
+        <div class="flex h-9 w-9 items-center justify-center rounded-full border border-outline bg-white/80">
+            <span class="material-symbols-outlined text-primary" id="header-menu-icon">person</span>
         </div>
     </header>
 
-    <div id="app" class="relative pt-14 h-full overflow-y-auto">
-
-        <!-- AUTH SCREEN -->
+    <div class="relative h-full overflow-y-auto pt-14" id="app">
         <div class="screen active" id="screen-auth">
-            <main class="flex flex-col items-center justify-center px-8 min-h-[85vh]">
+            <main class="auth-stage flex min-h-[86vh] items-center justify-center px-8 py-8">
                 <div class="w-full max-w-sm space-y-8">
-                    <div class="text-center space-y-3">
-                        <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                            <span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+                    <div class="space-y-3 text-center">
+                        <div class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-3xl bg-primary/10">
+                            <span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings:'FILL' 1">self_improvement</span>
                         </div>
-                        <h2 class="text-3xl font-bold text-on-surface">愿望加速器</h2>
-                        <p class="text-on-surface-variant text-base leading-relaxed">一个让行动产生结果的觉知工具</p>
+                        <h2 class="text-3xl font-bold text-ink">愿望加速器</h2>
+                        <p class="text-base leading-relaxed text-muted">源于古老智慧·六时书的愿望实现工具</p>
                     </div>
 
-                    <div class="space-y-5">
+                    <div class="space-y-4">
                         <div>
-                            <label class="text-sm text-on-surface-variant font-bold mb-2 block">邮箱</label>
-                            <input type="email" id="auth-email" placeholder="your@email.com" class="w-full bg-white border border-outline-variant rounded-xl px-4 py-4 text-on-surface text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
+                            <label class="mb-2 block text-sm font-bold text-muted">邮箱</label>
+                            <input class="w-full rounded-2xl border border-outline bg-white px-4 py-4 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="auth-email" placeholder="your@email.com" type="email"/>
                         </div>
                         <div>
-                            <label class="text-sm text-on-surface-variant font-bold mb-2 block">密码</label>
-                            <input type="password" id="auth-password" placeholder="至少 6 位" class="w-full bg-white border border-outline-variant rounded-xl px-4 py-4 text-on-surface text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
+                            <label class="mb-2 block text-sm font-bold text-muted">密码</label>
+                            <input class="w-full rounded-2xl border border-outline bg-white px-4 py-4 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="auth-password" placeholder="至少 6 位" type="password"/>
                         </div>
-                        <div id="auth-name-field" class="hidden">
-                            <label class="text-sm text-on-surface-variant font-bold mb-2 block">你的昵称</label>
-                            <input type="text" id="auth-display-name" placeholder="别人怎么称呼你？" class="w-full bg-white border border-outline-variant rounded-xl px-4 py-4 text-on-surface text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
+                        <div class="hidden" id="auth-name-field">
+                            <label class="mb-2 block text-sm font-bold text-muted">你的昵称</label>
+                            <input class="w-full rounded-2xl border border-outline bg-white px-4 py-4 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="auth-display-name" placeholder="别人怎么称呼你？" type="text"/>
                         </div>
                     </div>
 
-                    <div id="auth-error" class="hidden text-red-700 text-sm text-center p-3 bg-red-50 rounded-xl border border-red-200"></div>
+                    <div class="hidden rounded-2xl border border-red-200 bg-red-50 p-3 text-center text-sm text-red-700" id="auth-error"></div>
 
                     <div class="space-y-3">
-                        <button id="btn-auth-login" class="paper-btn w-full py-4 text-lg">登录</button>
-                        <button id="btn-auth-register" class="w-full py-4 bg-white text-on-surface font-bold text-lg rounded-xl border border-outline-variant active:scale-95 transition">注册新账号</button>
+                        <button class="paper-btn w-full py-4 text-lg" id="btn-auth-login">登录</button>
+                        <button class="w-full rounded-2xl border border-outline bg-white py-4 text-lg font-bold text-ink transition active:scale-95" id="btn-auth-register">注册新账号</button>
                     </div>
 
-                    <p id="auth-toggle-hint" class="text-center text-on-surface-variant text-sm cursor-pointer hover:text-primary transition">还没有账号？<span class="text-primary font-bold" id="auth-toggle-link">去注册</span></p>
+                    <p class="cursor-pointer text-center text-sm text-muted" id="auth-toggle-hint">还没有账号？<span class="font-bold text-primary" id="auth-toggle-link">去注册</span></p>
                 </div>
             </main>
         </div>
 
-        <!-- HOME SCREEN -->
         <div class="screen" id="screen-home">
-            <main class="pt-6 px-5 max-w-2xl mx-auto space-y-5 pb-24">
-                <section class="flex justify-between items-end">
-                    <div>
-                        <h2 class="text-2xl font-bold text-on-surface" id="greeting-text">你好，记录者</h2>
+            <main class="home-stage space-y-5 px-5 pb-24 pt-6">
+                <section class="home-heading flex items-start justify-between gap-4">
+                    <div class="space-y-2">
+                        <p class="text-sm tracking-[0.12em] text-muted">六时书今日面板</p>
+                        <h2 class="text-2xl font-bold text-ink" id="greeting-text">你好，记录者</h2>
+                        <p class="max-w-[240px] text-sm leading-relaxed text-muted">源于古老智慧·六时书的愿望实现工具</p>
                     </div>
-                    <div class="bg-surface-container-high px-4 py-2 rounded-full flex items-center gap-2 border border-outline-variant">
-                        <span class="material-symbols-outlined text-orange-500 text-lg" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-                        <span class="text-primary font-bold text-lg"><span id="streak-count">3</span>天</span>
+                    <div class="rounded-full border border-outline bg-white/80 px-4 py-2 text-sm font-bold text-primary">
+                        已坚持 <span id="streak-count">0</span> 天
                     </div>
                 </section>
-                
-                <!-- QUICK START -->
-                <section class="relative group cursor-pointer" id="btn-quick-flash">
-                    <div class="paper-card-warm p-6 flex flex-col items-center text-center space-y-5">
-                        <div class="relative w-36 h-36 flex items-center justify-center">
-                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 160 160" fill="none">
-                                <circle class="text-outline-variant/30" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-width="3" stroke-dasharray="6 6"></circle>
-                                <circle class="text-primary transition-all duration-1000 ease-out" id="home-ring-progress" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-dasharray="464.96" stroke-dashoffset="464.96" stroke-linecap="round" stroke-width="6"></circle>
+
+                <section class="dune-hero paper-card-soft overflow-hidden p-5" id="btn-quick-flash">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="space-y-2">
+                            <p class="text-xs tracking-[0.18em] text-muted">TODAY / 六次提醒</p>
+                            <h3 class="text-xl font-bold text-ink">第 <span id="home-ring-done">0</span> / <span id="home-ring-total">6</span> 次记录</h3>
+                            <p class="text-sm text-muted" id="today-session-text">今天还没开始，按六时书节奏种下第一颗种子。</p>
+                        </div>
+                        <div class="relative flex h-24 w-24 items-center justify-center">
+                            <svg class="h-full w-full -rotate-90" fill="none" viewBox="0 0 160 160">
+                                <circle class="text-outline/50" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-dasharray="6 6" stroke-width="3"></circle>
+                                <circle class="text-primary transition-all duration-700" cx="80" cy="80" fill="transparent" id="home-ring-progress" r="74" stroke="currentColor" stroke-dasharray="464.96" stroke-dashoffset="464.96" stroke-linecap="round" stroke-width="7"></circle>
                             </svg>
                             <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                <span class="text-4xl font-extrabold text-on-surface"><span id="home-ring-done">0</span>/<span id="home-ring-total">4</span></span>
-                                <span class="text-on-surface-variant text-sm mt-1">每日同步</span>
+                                <span class="text-2xl font-bold text-primary" id="current-session-index">1</span>
+                                <span class="text-xs text-muted">当前轮次</span>
                             </div>
                         </div>
-                        <p class="text-on-surface-variant text-base">连续记录 <span class="text-primary font-bold" id="streak-days">3</span> 天</p>
-                        <button class="paper-btn w-full py-4 text-lg flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">edit_note</span> 开始一分钟记录
-                        </button>
                     </div>
-                </section>
 
-                <section class="grid grid-cols-3 gap-3">
-                    <div class="paper-card p-4 flex flex-col items-center gap-3 cursor-pointer active:scale-95 transition" id="seed-wealth">
-                        <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-xl">savings</span></div>
-                        <div class="text-center"><p class="text-2xl font-bold text-on-surface" id="seed-money-today">0</p><p class="text-sm text-on-surface-variant font-bold">财富种子</p></div>
-                    </div>
-                    <div class="paper-card p-4 flex flex-col items-center gap-3 cursor-pointer active:scale-95 transition" id="seed-kindness">
-                        <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center"><span class="material-symbols-outlined text-secondary text-xl">favorite</span></div>
-                        <div class="text-center"><p class="text-2xl font-bold text-on-surface" id="seed-love-today">0</p><p class="text-sm text-on-surface-variant font-bold">爱的种子</p></div>
-                    </div>
-                    <div class="paper-card p-4 flex flex-col items-center gap-3 cursor-pointer active:scale-95 transition" id="seed-health">
-                        <div class="w-12 h-12 rounded-xl bg-green-700/10 flex items-center justify-center"><span class="material-symbols-outlined text-green-700 text-xl">spa</span></div>
-                        <div class="text-center"><p class="text-2xl font-bold text-on-surface" id="seed-health-today">0</p><p class="text-sm text-on-surface-variant font-bold">健康种子</p></div>
-                    </div>
-                </section>
-
-                <section>
-                    <div class="paper-card p-4 flex items-center gap-4 cursor-pointer active:scale-95 transition" id="seed-debug">
-                        <div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center"><span class="material-symbols-outlined text-tertiary text-xl">self_improvement</span></div>
-                        <div><p class="text-lg font-bold text-on-surface">清理负面种子</p><p class="text-sm text-on-surface-variant">觉察并放下不再需要的念头</p></div>
-                    </div>
-                </section>
-
-                <!-- WEEKLY INSIGHT PREVIEW -->
-                <section class="paper-card-warm p-5 space-y-3 cursor-pointer" id="btn-goto-ai">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-3">
-                            <div class="relative">
-                                <span class="material-symbols-outlined text-primary text-xl">psychology</span>
-                                <div class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-400 rounded-full border-2 border-[#faf6ef]"></div>
+                    <div class="mt-5 grid grid-cols-[1fr_auto] gap-4 rounded-2xl bg-white/70 p-4">
+                        <div>
+                            <p class="text-xs tracking-[0.18em] text-muted">NEXT REMINDER</p>
+                            <div class="mt-1 flex items-center gap-2">
+                                <span class="text-3xl font-bold text-primary" id="next-reminder-time">07:00</span>
+                                <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary" id="next-reminder-label">起床后</span>
                             </div>
-                            <h3 class="font-bold text-on-surface text-lg">智慧周报已送达</h3>
+                            <p class="mt-2 text-sm text-muted" id="next-reminder-countdown">下一次六时书提醒将从这里开始。</p>
                         </div>
-                        <span class="material-symbols-outlined text-on-surface-variant text-lg">arrow_forward_ios</span>
-                    </div>
-                    <p class="text-base text-on-surface-variant leading-relaxed">"本周你的记录很稳定，持续保持..."</p>
-                </section>
-
-            </main>
-        </div>
-
-        <!-- TIMELINE SCREEN -->
-        <div class="screen" id="screen-timeline">
-            <main class="pt-8 px-5 max-w-2xl mx-auto space-y-8 pb-24">
-                <section class="flex flex-col items-center gap-4">
-                    <div class="flex items-center justify-between w-full max-w-[280px]">
-                        <button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-base">chevron_left</span></button>
-                        <div class="text-center"><span class="text-on-surface-variant text-sm block mb-1">时光回响</span><h2 class="text-xl font-bold text-on-surface">2026年4月</h2></div>
-                        <button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-base">chevron_right</span></button>
-                    </div>
-                </section>
-                
-                <section class="space-y-4">
-                    <div class="flex justify-between items-end mb-2"><h3 class="text-sm font-bold text-on-surface-variant">专注热力图</h3><span class="text-sm text-outline">共计 124 小时</span></div>
-                    <div class="paper-card p-5">
-                        <div class="grid grid-cols-7 gap-1" id="calendar-grid"></div>
+                        <button class="rounded-2xl border border-outline bg-surface px-4 py-3 text-sm font-bold text-primary transition active:scale-95" id="btn-home-next-record">开始本次记录</button>
                     </div>
                 </section>
 
-                <section class="space-y-6" style="border-top: 1px dashed #d6cfc0; padding-top: 1.5rem;">
-                    <div class="flex items-center justify-between"><h3 class="text-sm font-bold text-on-surface-variant">今日时间轴</h3><span class="text-sm text-primary px-2 py-0.5 bg-primary/10 rounded-md">4.8 星期三</span></div>
-                    <div class="relative space-y-0" id="timeline-detail">
-                        <div class="absolute left-[15px] top-4 bottom-4 w-[1px]" style="border-left: 1px dashed #d6cfc0;"></div>
-                        <div class="relative flex gap-4 pb-8 group">
-                            <div class="relative z-10 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary"><span class="material-symbols-outlined text-base">bolt</span></div>
-                            <div class="flex-1 pt-1"><div class="flex justify-between items-start"><div><p class="text-sm text-outline mb-0.5">07:00</p><h4 class="text-on-surface text-base font-bold">财富种子</h4></div><span class="text-sm px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/10">晨起</span></div><p class="mt-2 text-base text-on-surface-variant leading-relaxed">内心的宁静开始显现。</p></div>
+                <section class="seed-overview grid grid-cols-3 gap-3">
+                    <button class="paper-card p-4 text-left transition active:scale-95" id="seed-wealth">
+                        <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10">
+                            <span class="material-symbols-outlined text-primary">savings</span>
                         </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-
-        <!-- CHECKIN SCREEN -->
-        <div class="screen" id="screen-checkin">
-            <main class="pt-4 pb-12 px-5 max-w-2xl mx-auto min-h-screen">
-                <section class="flex flex-col items-center justify-center mb-8 relative cursor-pointer" id="timer-box">
-                    <div class="relative w-40 h-40 flex items-center justify-center">
-                        <svg class="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 160 160" fill="none">
-                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-outline-variant/30" stroke="currentColor" stroke-width="3" stroke-dasharray="6 6"></circle>
-                            <circle cx="80" cy="80" r="74" fill="transparent" class="text-primary transition-all duration-1000 ease-linear" id="checkin-timer-ring" stroke="currentColor" stroke-width="6" stroke-dasharray="464.96" stroke-dashoffset="0" stroke-linecap="round"></circle>
-                        </svg>
-                        <div class="text-center z-10 mt-1">
-                            <span class="text-5xl font-extrabold text-primary block" id="checkin-seconds">60</span>
-                            <span class="text-sm text-on-surface-variant font-bold">记录中</span>
+                        <p class="text-2xl font-bold text-ink" id="seed-wealth-count">0</p>
+                        <p class="mt-1 text-sm font-bold text-muted">财富种子</p>
+                    </button>
+                    <button class="paper-card p-4 text-left transition active:scale-95" id="seed-kindness">
+                        <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary/10">
+                            <span class="material-symbols-outlined text-secondary">favorite</span>
                         </div>
-                    </div>
-                    <p class="mt-4 text-on-surface-variant text-base font-bold" id="checkin-session-label">记录中...</p>
-                </section>
-
-                <!-- WEALTH PANEL -->
-                <div id="panel-wealth" class="checkin-panel hidden space-y-6 animation-fade-in">
-                    <div class="paper-card p-6 text-center space-y-4">
-                        <h3 class="text-on-surface-variant text-sm font-bold">布施记录</h3>
-                        <div class="flex items-end justify-center text-primary font-bold gap-1 mb-2">
-                            <span class="text-2xl pb-1">¥</span><input type="number" id="checkin-money-input" value="10" class="bg-transparent text-5xl w-24 text-center border-none focus:ring-0 p-0 outline-none tracking-tighter">
+                        <p class="text-2xl font-bold text-ink" id="seed-kindness-count">0</p>
+                        <p class="mt-1 text-sm font-bold text-muted">关系种子</p>
+                    </button>
+                    <button class="paper-card p-4 text-left transition active:scale-95" id="seed-health">
+                        <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-green-700/10">
+                            <span class="material-symbols-outlined text-green-700">spa</span>
                         </div>
-                    </div>
-                </div>
-
-                <!-- KINDNESS PANEL -->
-                <div id="panel-kindness" class="checkin-panel hidden space-y-6 animation-fade-in">
-                    <div class="paper-card p-6 space-y-4">
-                        <h3 class="text-on-surface-variant text-sm font-bold text-center">善意时刻描述</h3>
-                        <div class="flex flex-wrap gap-2" id="kindness-tags-grid"></div>
-                    </div>
-                </div>
-
-                <!-- HEALTH PANEL -->
-                <div id="panel-health" class="checkin-panel hidden space-y-6 animation-fade-in">
-                    <div class="paper-card p-6 space-y-4">
-                        <h3 class="text-on-surface-variant text-sm font-bold text-center">健康行动</h3>
-                        <div class="flex flex-wrap gap-2" id="health-tags-grid"></div>
-                    </div>
-                </div>
-
-                <!-- DEBUG PANEL -->
-                <div id="panel-debug" class="checkin-panel hidden space-y-6 animation-fade-in">
-                    <div class="paper-card p-6 space-y-4">
-                        <h3 class="text-on-surface-variant text-sm font-bold text-center">负面种子觉察</h3>
-                        <div class="flex flex-wrap gap-2" id="debug-tags-grid"></div>
-                    </div>
-                </div>
-
-                <section class="mt-6 space-y-5">
-                    <div class="paper-card p-4">
-                        <textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/40 resize-none h-24 leading-relaxed text-base outline-none" placeholder="记录此刻的起心动念..." id="checkin-note"></textarea>
-                    </div>
-                    <button id="btn-submit-checkin" class="paper-btn w-full py-4 text-lg flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined text-xl">check</span> 完成记录
+                        <p class="text-2xl font-bold text-ink" id="seed-health-count">0</p>
+                        <p class="mt-1 text-sm font-bold text-muted">健康种子</p>
                     </button>
                 </section>
+
+                <button class="introspection-row paper-card flex w-full items-start gap-4 p-4 text-left transition active:scale-95" id="seed-debug">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-tertiary/10">
+                        <span class="material-symbols-outlined text-tertiary">self_improvement</span>
+                    </div>
+                    <div>
+                        <p class="text-lg font-bold text-ink">觉察 / 清理负面种子</p>
+                        <p class="mt-1 text-sm leading-relaxed text-muted">觉知当下的念头，每一秒都在种下种子。</p>
+                    </div>
+                </button>
+
+                <section class="offering-card paper-card p-5">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <p class="text-xs tracking-[0.18em] text-muted">OFFERING POOL</p>
+                            <h3 class="mt-1 text-xl font-bold text-ink">当前供养池</h3>
+                            <p class="mt-1 text-sm leading-relaxed text-muted">每次供养完成后会进入这里，可阶段性取出并归零。</p>
+                        </div>
+                        <button class="rounded-xl border border-outline px-3 py-2 text-sm font-bold text-primary transition active:scale-95" id="btn-withdraw-pool">取出</button>
+                    </div>
+                    <div class="mt-5 flex items-end gap-2">
+                        <span class="pb-1 text-2xl text-primary">¥</span>
+                        <span class="text-4xl font-bold tracking-tight text-primary" id="home-offering-pool">0</span>
+                    </div>
+                    <p class="mt-3 hidden text-sm text-primary" id="withdraw-feedback"></p>
+                </section>
+
+                <section class="insight-preview paper-card p-5 transition active:scale-95" id="btn-goto-ai">
+                    <div class="flex items-center justify-between gap-4">
+                        <div>
+                            <p class="text-xs tracking-[0.18em] text-muted">SECONDARY</p>
+                            <h3 class="mt-1 text-lg font-bold text-ink">智慧周报</h3>
+                            <p class="mt-1 text-sm leading-relaxed text-muted">用本周记录回看哪些种子正在稳定发生作用。</p>
+                        </div>
+                        <span class="material-symbols-outlined text-muted">arrow_forward_ios</span>
+                    </div>
+                </section>
             </main>
         </div>
 
-        <!-- SUCCESS SCREEN -->
+        <div class="screen" id="screen-timeline">
+            <main class="timeline-stage space-y-6 px-5 pb-24 pt-8">
+                <section class="text-center">
+                    <p class="text-sm tracking-[0.18em] text-muted">TIME ECHO</p>
+                    <h2 class="mt-1 text-2xl font-bold text-ink" id="timeline-month-label">本月记录</h2>
+                </section>
+
+                <section class="paper-card p-5">
+                    <div class="mb-4 flex items-center justify-between">
+                        <h3 class="text-sm font-bold text-muted">六时书热力图</h3>
+                        <span class="text-sm text-muted" id="timeline-total-count">本月 0 次记录</span>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1" id="calendar-grid"></div>
+                </section>
+
+                <section class="paper-card p-5">
+                    <div class="mb-4 flex items-center justify-between">
+                        <h3 class="text-sm font-bold text-muted">最近记录</h3>
+                        <span class="text-sm text-primary" id="timeline-today-label">今天</span>
+                    </div>
+                    <div class="space-y-4" id="timeline-detail"></div>
+                </section>
+            </main>
+        </div>
+
+        <div class="screen" id="screen-checkin">
+            <main class="checkin-stage px-5 pb-20 pt-6">
+                <section class="focus-panel paper-card-soft p-5 text-center">
+                    <p class="text-sm tracking-[0.16em] text-muted" id="checkin-session-meta">本次是第 1 次记录</p>
+                    <h2 class="mt-2 text-2xl font-bold text-ink" id="checkin-session-label">财富种子</h2>
+                    <p class="mt-2 text-sm leading-relaxed text-muted" id="checkin-slot-label">此刻的种子会进入今天的六时书节奏里。</p>
+
+                    <div class="mt-6 flex items-center justify-center">
+                        <div class="relative flex h-36 w-36 items-center justify-center" id="timer-box">
+                            <svg class="absolute inset-0 h-full w-full -rotate-90" fill="none" viewBox="0 0 160 160">
+                                <circle class="text-outline/50" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-dasharray="6 6" stroke-width="3"></circle>
+                                <circle class="text-primary transition-all duration-1000 ease-linear" cx="80" cy="80" fill="transparent" id="checkin-timer-ring" r="74" stroke="currentColor" stroke-dasharray="464.96" stroke-dashoffset="0" stroke-linecap="round" stroke-width="7"></circle>
+                            </svg>
+                            <div class="relative z-10">
+                                <span class="block text-5xl font-bold text-primary" id="checkin-seconds">60</span>
+                                <span class="text-sm font-bold text-muted">安住当下</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mt-5 hidden space-y-4" id="panel-wealth">
+                    <div class="paper-card p-5">
+                        <div class="flex items-center justify-between gap-3">
+                            <div>
+                                <p class="text-sm font-bold text-muted">本次供养金额</p>
+                                <p class="mt-1 text-sm text-muted">完成供养后会进入当前供养池。</p>
+                            </div>
+                            <div class="flex items-end gap-1 text-primary">
+                                <span class="pb-1 text-xl">¥</span>
+                                <input class="w-24 border-0 bg-transparent p-0 text-right text-4xl font-bold tracking-tight text-primary outline-none focus:ring-0" id="checkin-money-input" type="number" value="10"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="paper-card p-5">
+                        <p class="mb-4 text-sm font-bold text-muted">财富种子行为</p>
+                        <div class="flex flex-wrap gap-2" id="wealth-tags-grid"></div>
+                    </div>
+                </section>
+
+                <section class="mt-5 hidden space-y-4" id="panel-kindness">
+                    <div class="paper-card p-5">
+                        <p class="mb-4 text-sm font-bold text-muted">关系种子行为</p>
+                        <div class="flex flex-wrap gap-2" id="kindness-tags-grid"></div>
+                    </div>
+                </section>
+
+                <section class="mt-5 hidden space-y-4" id="panel-health">
+                    <div class="paper-card p-5">
+                        <p class="mb-4 text-sm font-bold text-muted">健康种子行为</p>
+                        <div class="flex flex-wrap gap-2" id="health-tags-grid"></div>
+                    </div>
+                </section>
+
+                <section class="mt-5 hidden space-y-4" id="panel-debug">
+                    <div class="paper-card p-5">
+                        <p class="mb-2 text-sm font-bold text-muted">需要觉察的念头</p>
+                        <p class="mb-4 text-sm leading-relaxed text-muted">觉知当下的念头，每一秒都在种下种子。</p>
+                        <div class="flex flex-wrap gap-2" id="debug-tags-grid"></div>
+                    </div>
+                </section>
+
+                <section class="mt-5 space-y-4">
+                    <div class="paper-card p-5">
+                        <textarea class="h-28 w-full resize-none border-0 bg-transparent p-0 text-base leading-relaxed text-ink placeholder:text-muted/60 focus:ring-0" id="checkin-note" placeholder="写下此刻做了什么、看到什么、想提醒自己什么..."></textarea>
+                    </div>
+                    <button class="paper-btn w-full py-4 text-lg" id="btn-submit-checkin">完成本次六时书记录</button>
+                </section>
+            </main>
+        </div>
+
         <div class="screen" id="screen-success">
-            <main class="flex flex-col items-center pt-24 px-6 max-w-sm mx-auto w-full text-center pb-24">
-                <div class="relative w-40 h-40 paper-card rounded-full flex items-center justify-center mb-8">
-                    <span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">add_task</span>
+            <main class="success-stage flex min-h-[88vh] flex-col items-center justify-center px-6 pb-24 pt-10 text-center">
+                <div class="paper-card flex h-32 w-32 items-center justify-center rounded-full">
+                    <span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings:'FILL' 1">add_task</span>
                 </div>
-                <h2 class="text-3xl font-bold text-on-surface mb-2">同步成功</h2>
-                <p class="text-on-surface-variant text-base mb-10">已记录到你的日志中</p>
-                
-                <div class="paper-card-warm p-6 w-full text-left mb-8">
-                    <p class="text-sm text-primary font-bold mb-4">本次记录</p>
-                    <div class="flex justify-between items-center"><span class="text-on-surface-variant text-base" id="success-label">完成布施记录</span><span class="text-on-surface font-bold text-xl">¥<span id="success-money">0</span></span></div>
+                <h2 class="mt-8 text-3xl font-bold text-ink" id="success-title">记录完成</h2>
+                <p class="mt-2 text-base text-muted" id="success-summary">这一刻已经加入你的六时书轨迹。</p>
+
+                <div class="paper-card-soft mt-8 w-full max-w-sm p-5 text-left">
+                    <p class="text-sm font-bold text-primary">本次记录</p>
+                    <p class="mt-3 text-base text-ink" id="success-label">财富种子</p>
+                    <div class="mt-3 flex items-end gap-2" id="success-money-row">
+                        <span class="pb-1 text-xl text-primary">¥</span>
+                        <span class="text-3xl font-bold text-primary" id="success-money">0</span>
+                    </div>
+                    <p class="mt-3 text-sm leading-relaxed text-muted" id="success-detail"></p>
                 </div>
-                
-                <button id="btn-success-home" class="paper-btn w-full py-4 text-lg">返回首页</button>
+
+                <button class="paper-btn mt-8 w-full max-w-sm py-4 text-lg" id="btn-success-home">回到今日面板</button>
             </main>
         </div>
 
-        <!-- AI INSIGHT SCREEN -->
         <div class="screen" id="screen-ai-insight">
-            <main class="pt-8 px-5 max-w-2xl mx-auto space-y-8 pb-32">
-                <header class="flex flex-col items-center mb-8">
-                    <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-3xl text-primary">psychology</span></div>
-                    <h2 class="text-2xl font-bold text-on-surface">智慧周报</h2>
-                    <p class="text-on-surface-variant text-sm mt-1">Weekly Review</p>
-                </header>
+            <main class="insight-stage space-y-6 px-5 pb-24 pt-8">
+                <section class="text-center">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-primary/10">
+                        <span class="material-symbols-outlined text-3xl text-primary">psychology</span>
+                    </div>
+                    <h2 class="mt-4 text-2xl font-bold text-ink">智慧周报</h2>
+                    <p class="mt-1 text-sm text-muted">用一周记录看见种子如何发芽</p>
+                </section>
+
+                <section class="paper-card p-5">
+                    <div class="flex items-center gap-2">
+                        <span class="h-2 w-2 rounded-full bg-primary"></span>
+                        <span class="text-sm font-bold text-primary">本周洞察</span>
+                    </div>
+                    <div class="mt-4 space-y-3" id="ai-report-content"></div>
+                </section>
+            </main>
+        </div>
+
+        <div class="screen" id="screen-tutorial">
+            <main class="guide-stage space-y-6 px-5 pb-24 pt-8">
+                <section class="text-center">
+                    <h2 class="text-2xl font-bold text-ink">怎么使用愿望加速器？</h2>
+                    <p class="mt-2 text-base text-muted">把六时书变成每天都能完成的固定动作。</p>
+                </section>
 
                 <section class="space-y-4">
-                    <h3 class="text-sm text-on-surface-variant font-bold pl-1">荣耀勋章</h3>
-                    <div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-                        <div class="flex-shrink-0 w-28 h-36 paper-card flex flex-col items-center justify-center p-3 text-center">
-                            <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-3"><span class="material-symbols-outlined text-primary text-xl">currency_yuan</span></div>
-                            <p class="text-sm text-on-surface font-bold">黄金矿工</p>
-                        </div>
-                        <div class="flex-shrink-0 w-28 h-36 paper-card flex flex-col items-center justify-center p-3 text-center opacity-40 grayscale">
-                            <div class="w-14 h-14 rounded-full bg-surface-container-highest flex items-center justify-center mb-3"><span class="material-symbols-outlined text-xl">favorite</span></div>
-                            <p class="text-sm text-on-surface-variant font-bold">爱心大使</p>
-                        </div>
+                    <div class="paper-card p-5">
+                        <h3 class="text-lg font-bold text-ink">1. 六次记录怎么做</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-muted">每天固定六个提醒时间。到了时间，就用 1 分钟写下这一个时段你种下了什么种子。首页会显示你今天进行到第几次。</p>
+                    </div>
+                    <div class="paper-card p-5">
+                        <h3 class="text-lg font-bold text-ink">2. 四个入口分别何时用</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-muted">财富种子记录供养、分享机会、成就他人。关系种子记录陪伴、倾听、关怀。健康种子记录助人就医、减轻痛苦。觉察入口记录嫉妒、评判、拖延等需要清理的念头。</p>
+                    </div>
+                    <div class="paper-card p-5">
+                        <h3 class="text-lg font-bold text-ink">3. 睡前复盘怎么写</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-muted">睡前回想今天种下了哪些好种子，有没有需要清理的念头，明天还想继续种什么。带着感恩结束这一天。</p>
+                    </div>
+                    <div class="paper-card p-5">
+                        <h3 class="text-lg font-bold text-ink">4. 供养池和取出是什么意思</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-muted">每次财富记录中的供养金额会进入当前供养池。你可以阶段性点击“取出”，把当前池子归零重新开始，但历史累计不会被清掉。</p>
                     </div>
                 </section>
 
-                <section class="paper-card p-6 space-y-5">
-                    <div class="flex items-center gap-2"><span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span><span class="text-sm text-primary font-bold">本周分析中...</span></div>
-                    <div class="space-y-4" id="ai-report-content">
-                        <p class="text-base leading-relaxed text-on-surface/90">本周你的布施记录很稳定，这与你每日清晨的坚持密切相关。</p>
-                        <p class="text-base leading-relaxed text-on-surface/90">建议：明天试试多留意一件让你感恩的小事，记录到"善意时刻"中。</p>
-                    </div>
-                </section>
+                <button class="paper-btn w-full py-4 text-lg" id="btn-tutorial-back">回到记录</button>
             </main>
         </div>
 
-        <!-- TUTORIAL SCREEN -->
-        <div class="screen" id="screen-tutorial">
-            <main class="pt-8 px-5 max-w-2xl mx-auto space-y-10 pb-32">
-                <header class="text-center space-y-2">
-                    <h2 class="text-2xl font-bold text-on-surface">如何使用愿望加速器？</h2>
-                    <p class="text-on-surface-variant text-base">用最简单的方法，种下改变的种子</p>
-                </header>
-
-                <div class="space-y-8">
-                    <div class="flex gap-5">
-                        <div class="w-14 h-14 rounded-full bg-primary/10 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-xl">payments</span></div>
-                        <div class="space-y-2">
-                            <h4 class="text-on-surface font-bold text-lg">财富种子的逻辑</h4>
-                            <p class="text-base text-on-surface-variant leading-relaxed">
-                                为什么记录"布施"能种下财富？<br>
-                                因为当你主动分享、为他人买单时，你的内心其实在说<span class="text-primary font-bold">"我有富余"</span>。这种内在的丰盛感会影响你日常的判断和行动，让你更容易抓住财富机会。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-5">
-                        <div class="w-14 h-14 rounded-full bg-secondary/10 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-secondary text-xl">psychology_alt</span></div>
-                        <div class="space-y-2">
-                            <h4 class="text-on-surface font-bold text-lg">负面种子清理</h4>
-                            <p class="text-base text-on-surface-variant leading-relaxed">
-                                记录那些"吝啬"、"嫉妒"或"愤怒"的瞬间。觉察本身就是改变的第一步——看见了，才能放下。
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-5">
-                        <div class="w-14 h-14 rounded-full bg-tertiary/10 flex-shrink-0 flex items-center justify-center"><span class="material-symbols-outlined text-tertiary text-xl">analytics</span></div>
-                        <div class="space-y-2">
-                            <h4 class="text-on-surface font-bold text-lg">智慧分析</h4>
-                            <p class="text-base text-on-surface-variant leading-relaxed">
-                                你不需要纠结进度。每周会根据你的记录生成一份分析报告，告诉你目前做得最好的地方，以及下一步可以做的小调整。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="paper-btn w-full py-4 text-lg" id="btn-tutorial-back">开启我的觉知旅程</button>
-            </main>
-        </div>
-
-        <!-- BEDTIME SCREEN -->
         <div class="screen" id="screen-bedtime">
-            <main class="flex flex-col items-center justify-center px-5 min-h-[90vh] py-12">
-                <div class="w-full paper-card-warm p-6 relative flex flex-col items-center text-center">
-                    <div class="mb-6 relative mt-4">
-                        <div class="w-14 h-14 rounded-full bg-secondary/10 breath-pulse flex items-center justify-center"><div class="w-7 h-7 rounded-full bg-secondary/30"></div></div>
+            <main class="bedtime-stage px-5 pb-24 pt-8">
+                <section class="paper-card-soft p-5 text-center">
+                    <h2 class="text-2xl font-bold leading-relaxed text-ink">入睡前想一遍今天种下了什么好的种子，带着感恩入睡</h2>
+                </section>
+
+                <section class="mt-5 space-y-4">
+                    <div class="paper-card p-5">
+                        <label class="mb-3 flex items-center gap-2 text-sm font-bold text-muted">
+                            <span class="material-symbols-outlined text-base">volunteer_activism</span>
+                            今天种下了哪些好的种子？
+                        </label>
+                        <textarea class="h-24 w-full resize-none border-0 bg-transparent p-0 text-base leading-relaxed text-ink placeholder:text-muted/60 focus:ring-0" id="bedtime-q1" placeholder="回想今天的布施、善意、帮助、关怀..."></textarea>
                     </div>
-                    <h2 class="text-xl font-bold text-on-surface mb-6 leading-relaxed">用文字<br/><span class="text-primary">安放这一天</span></h2>
-                    
-                    <div class="w-full space-y-5 text-left">
-                        <div class="bg-white/60 p-4 rounded-xl border border-outline-variant/30">
-                            <label class="text-sm text-on-surface-variant font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-base">volunteer_activism</span> 今日最高光</label>
-                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-on-surface resize-none h-20 text-base outline-none px-0" placeholder="哪些瞬间让你感到丰盛..." id="bedtime-q1"></textarea>
-                        </div>
-                        <div class="bg-white/60 p-4 rounded-xl border border-outline-variant/30">
-                            <label class="text-sm text-on-surface-variant font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-base">tips_and_updates</span> 意识优化建议</label>
-                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-on-surface resize-none h-20 text-base outline-none px-0" placeholder="哪些地方可以做得更完美..." id="bedtime-q2"></textarea>
-                        </div>
-                        <div class="bg-white/60 p-4 rounded-xl border border-outline-variant/30">
-                            <label class="text-sm text-on-surface-variant font-bold mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-base">rocket_launch</span> 明日计划</label>
-                            <textarea class="w-full bg-transparent border-0 border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-on-surface resize-none h-20 text-base outline-none px-0" placeholder="打算如何度过明天..." id="bedtime-q3"></textarea>
-                        </div>
+                    <div class="paper-card p-5">
+                        <label class="mb-3 flex items-center gap-2 text-sm font-bold text-muted">
+                            <span class="material-symbols-outlined text-base">psychology_alt</span>
+                            今天有没有需要觉察和清理的念头？
+                        </label>
+                        <textarea class="h-24 w-full resize-none border-0 bg-transparent p-0 text-base leading-relaxed text-ink placeholder:text-muted/60 focus:ring-0" id="bedtime-q2" placeholder="比如评判、急躁、嫉妒、拖延或逃避..."></textarea>
                     </div>
-                </div>
-                
-                <div class="mt-6 w-full">
-                    <button id="btn-bedtime-done" class="paper-btn w-full py-4 text-lg flex items-center justify-center gap-2"><span class="material-symbols-outlined text-xl">bedtime</span>保存并入睡</button>
-                </div>
+                    <div class="paper-card p-5">
+                        <label class="mb-3 flex items-center gap-2 text-sm font-bold text-muted">
+                            <span class="material-symbols-outlined text-base">rocket_launch</span>
+                            明天想继续种下什么种子？
+                        </label>
+                        <textarea class="h-24 w-full resize-none border-0 bg-transparent p-0 text-base leading-relaxed text-ink placeholder:text-muted/60 focus:ring-0" id="bedtime-q3" placeholder="写下明天要持续的一个行动或提醒。"></textarea>
+                    </div>
+                </section>
+
+                <button class="paper-btn mt-5 w-full py-4 text-lg" id="btn-bedtime-done">保存并入睡</button>
             </main>
         </div>
 
-        <!-- PROFILE SCREEN -->
         <div class="screen" id="screen-profile">
-            <main class="pt-6 px-5 max-w-2xl mx-auto space-y-6 pb-32">
-                <section class="flex items-center space-x-4 paper-card-warm p-5">
-                    <div class="w-16 h-16 rounded-2xl bg-surface-container-high flex items-center justify-center border border-outline-variant">
-                        <span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+            <main class="profile-stage space-y-5 px-5 pb-24 pt-6">
+                <section class="paper-card-soft flex items-center gap-4 p-5">
+                    <div class="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/70">
+                        <span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings:'FILL' 1">person</span>
                     </div>
                     <div class="flex-1">
-                        <h2 class="text-xl font-bold text-on-surface" id="profile-display-name">加载中...</h2>
-                        <p id="profile-level-badge" class="text-on-surface-variant text-sm mt-1 bg-surface-container px-3 py-1 rounded-full inline-block font-bold">Lv.1 刚刚起步</p>
+                        <h2 class="text-xl font-bold text-ink" id="profile-display-name">记录者</h2>
+                        <p class="mt-1 text-sm font-bold text-muted" id="profile-level-badge">Lv.1 刚刚起步</p>
                     </div>
-                    <button class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant" id="btn-show-tutorial"><span class="material-symbols-outlined text-base">help</span></button>
+                    <button class="flex h-10 w-10 items-center justify-center rounded-full border border-outline bg-white/80 text-muted" id="btn-show-tutorial">
+                        <span class="material-symbols-outlined">help</span>
+                    </button>
                 </section>
 
                 <section class="paper-card p-5 space-y-4">
-                    <h3 class="text-sm font-bold text-on-surface-variant pl-1">个人资料</h3>
+                    <h3 class="text-sm font-bold text-muted">个人资料</h3>
                     <div class="flex gap-3">
-                        <input type="text" id="edit-display-name" placeholder="修改昵称" class="flex-1 bg-white border border-outline-variant rounded-xl px-4 py-3 text-on-surface text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition" />
-                        <button id="btn-save-profile" class="paper-btn px-5 py-3 text-base">保存</button>
+                        <input class="flex-1 rounded-2xl border border-outline bg-white px-4 py-3 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" id="edit-display-name" placeholder="修改昵称" type="text"/>
+                        <button class="paper-btn px-5 py-3 text-base" id="btn-save-profile">保存</button>
                     </div>
-                    <p id="profile-save-feedback" class="hidden text-primary text-sm text-center">已保存</p>
+                    <p class="hidden text-sm text-primary" id="profile-save-feedback">已保存</p>
                 </section>
 
-                <section class="grid grid-cols-2 gap-3">
-                    <div class="paper-card p-5 flex flex-col justify-between h-32">
-                        <span class="material-symbols-outlined text-secondary text-xl">bolt</span>
-                        <div><div class="text-2xl font-bold text-on-surface" id="profile-xp">54</div><div class="text-sm text-on-surface-variant font-bold mt-1">累计能量 (XP)</div></div>
+                <section class="grid grid-cols-3 gap-3">
+                    <div class="paper-card p-4">
+                        <p class="text-sm font-bold text-muted">累计能量</p>
+                        <p class="mt-3 text-2xl font-bold text-ink" id="profile-xp">0</p>
                     </div>
-                    <div class="paper-card p-5 flex flex-col justify-between h-32">
-                        <span class="material-symbols-outlined text-primary text-xl">currency_yuan</span>
-                        <div><div class="text-2xl font-bold text-on-surface" id="profile-money">286</div><div class="text-sm text-on-surface-variant font-bold mt-1">布施累计</div></div>
+                    <div class="paper-card p-4">
+                        <p class="text-sm font-bold text-muted">当前供养池</p>
+                        <p class="mt-3 text-2xl font-bold text-primary">¥<span id="profile-current-pool">0</span></p>
                     </div>
-                </section>
-
-                <section class="space-y-4">
-                    <h3 class="text-sm font-bold text-on-surface-variant pl-1">每日记录次数设置</h3>
-                    <div class="flex space-x-3 overflow-x-auto pb-2 scrollbar-hide snap-x">
-                        <button class="freq-btn snap-center flex-shrink-0 w-24 paper-card p-3 flex flex-col items-center text-center space-y-2 opacity-60 transition" data-freq="2">
-                            <span class="text-sm font-medium text-on-surface-variant">2次/日</span>
-                            <div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center"><span class="material-symbols-outlined text-base">filter_2</span></div>
-                        </button>
-                        <button class="freq-btn snap-center flex-shrink-0 w-24 p-3 flex flex-col items-center text-center space-y-2 transition" data-freq="4" style="background: rgba(139,111,42,0.08); border: 1px solid #8b6f2a; border-radius: 14px;">
-                            <span class="text-sm font-bold text-primary">4次/日</span>
-                            <div class="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center text-primary"><span class="material-symbols-outlined text-base">filter_4</span></div>
-                        </button>
-                        <button class="flex-shrink-0 w-24 paper-card p-3 flex flex-col items-center text-center space-y-2 opacity-40 cursor-not-allowed" style="border-style: dashed;">
-                            <span class="text-sm">6次/日</span>
-                            <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center"><span class="material-symbols-outlined text-base">lock</span></div>
-                            <span class="text-xs">进阶解锁</span>
-                        </button>
+                    <div class="paper-card p-4">
+                        <p class="text-sm font-bold text-muted">历史累计</p>
+                        <p class="mt-3 text-2xl font-bold text-ink">¥<span id="profile-lifetime-money">0</span></p>
                     </div>
                 </section>
 
-                <section class="space-y-3">
-                    <h3 class="text-sm font-bold text-on-surface-variant pl-1">人生愿景</h3>
-                    <div class="space-y-2">
-                        <div class="paper-card px-5 py-4 flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-9 h-9 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-lg">work</span></div>
-                                <div class="text-base font-bold text-on-surface">事业突破</div>
-                            </div>
-                            <span class="material-symbols-outlined text-on-surface-variant text-base">more_horiz</span>
+                <section class="paper-card p-5 space-y-4">
+                    <div class="flex items-start justify-between gap-3">
+                        <div>
+                            <h3 class="text-sm font-bold text-muted">六次提醒时间</h3>
+                            <p class="mt-1 text-sm leading-relaxed text-muted">网页端先保存你的六次时间，并在首页显示下一次提醒。</p>
                         </div>
-                        <div class="paper-card px-5 py-4 flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-9 h-9 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary"><span class="material-symbols-outlined text-lg">favorite</span></div>
-                                <div class="text-base font-bold text-on-surface">身体健康</div>
-                            </div>
-                            <span class="material-symbols-outlined text-on-surface-variant text-base">more_horiz</span>
+                        <button class="rounded-xl border border-outline px-3 py-2 text-sm font-bold text-primary" id="btn-enable-notifications">通知权限</button>
+                    </div>
+                    <p class="text-sm text-muted" id="notification-status">尚未申请浏览器通知权限。</p>
+                    <div class="space-y-3" id="reminder-list">
+                        <div class="flex items-center gap-3">
+                            <span class="w-16 text-sm font-bold text-muted">起床后</span>
+                            <input class="flex-1 rounded-2xl border border-outline bg-white px-4 py-3 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" data-index="0" id="reminder-time-0" type="time"/>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-16 text-sm font-bold text-muted">上午</span>
+                            <input class="flex-1 rounded-2xl border border-outline bg-white px-4 py-3 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" data-index="1" id="reminder-time-1" type="time"/>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-16 text-sm font-bold text-muted">午间</span>
+                            <input class="flex-1 rounded-2xl border border-outline bg-white px-4 py-3 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" data-index="2" id="reminder-time-2" type="time"/>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-16 text-sm font-bold text-muted">下午</span>
+                            <input class="flex-1 rounded-2xl border border-outline bg-white px-4 py-3 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" data-index="3" id="reminder-time-3" type="time"/>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-16 text-sm font-bold text-muted">傍晚</span>
+                            <input class="flex-1 rounded-2xl border border-outline bg-white px-4 py-3 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" data-index="4" id="reminder-time-4" type="time"/>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-16 text-sm font-bold text-muted">睡前</span>
+                            <input class="flex-1 rounded-2xl border border-outline bg-white px-4 py-3 text-base text-ink outline-none focus:border-primary focus:ring-1 focus:ring-primary" data-index="5" id="reminder-time-5" type="time"/>
                         </div>
                     </div>
+                    <button class="paper-btn w-full py-4 text-lg" id="btn-save-reminders">保存六次提醒</button>
+                    <p class="hidden text-sm text-primary" id="reminder-save-feedback">提醒时间已保存</p>
                 </section>
 
-                <section class="mt-4">
-                    <button id="btn-logout" class="w-full py-4 rounded-xl bg-red-50 text-red-600 font-bold text-base border border-red-200 active:scale-95 transition flex items-center justify-center gap-2">
-                        <span class="material-symbols-outlined text-xl">logout</span>退出登录
-                    </button>
-                </section>
+                <button class="w-full rounded-2xl border border-red-200 bg-red-50 py-4 text-base font-bold text-red-600" id="btn-logout">退出登录</button>
             </main>
         </div>
+    </div>
 
-    </div> <!-- End #app -->
-
-    <!-- BOTTOM NAV -->
-    <nav id="bottom-nav" class="absolute bottom-0 left-0 w-full flex justify-around items-center h-20 px-2 z-50 transition-transform duration-300" style="background: #faf6ef; border-top: 1px dashed #d6cfc0;">
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-primary transition" data-target="home">
-            <span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1;">home</span><span class="text-xs font-bold">主页</span>
+    <nav class="absolute bottom-0 left-0 z-50 flex h-20 w-full items-center justify-around border-t border-outline bg-surface px-2 transition-transform duration-300" id="bottom-nav">
+        <button class="nav-item flex flex-1 flex-col items-center justify-center gap-1 text-primary" data-target="home">
+            <span class="material-symbols-outlined text-[26px]" style="font-variation-settings:'FILL' 1">home</span>
+            <span class="text-xs font-bold">主页</span>
         </button>
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition" data-target="timeline">
-            <span class="material-symbols-outlined text-[24px]">auto_stories</span><span class="text-xs font-bold">记录</span>
+        <button class="nav-item flex flex-1 flex-col items-center justify-center gap-1 text-muted" data-target="timeline">
+            <span class="material-symbols-outlined text-[24px]">auto_stories</span>
+            <span class="text-xs font-bold">记录</span>
         </button>
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition" data-target="bedtime">
-            <span class="material-symbols-outlined text-[24px]">nightlight</span><span class="text-xs font-bold">复盘</span>
+        <button class="nav-item flex flex-1 flex-col items-center justify-center gap-1 text-muted" data-target="bedtime">
+            <span class="material-symbols-outlined text-[24px]">nightlight</span>
+            <span class="text-xs font-bold">复盘</span>
         </button>
-        <button class="nav-item flex-1 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition" data-target="profile">
-            <span class="material-symbols-outlined text-[24px]">account_circle</span><span class="text-xs font-bold">我的</span>
+        <button class="nav-item flex flex-1 flex-col items-center justify-center gap-1 text-muted" data-target="profile">
+            <span class="material-symbols-outlined text-[24px]">account_circle</span>
+            <span class="text-xs font-bold">我的</span>
         </button>
     </nav>
+</div>
 
-</div> <!-- End .app-wrapper -->
-
-    <!-- Supabase CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js" defer></script>
 </body>
 </html>
