@@ -963,6 +963,7 @@ textarea::placeholder {
     linear-gradient(180deg, rgba(248, 246, 240, 0.86), rgba(242, 238, 230, 0.94)) !important;
   border-top: 1px solid rgba(17, 20, 20, 0.16) !important;
   backdrop-filter: blur(14px);
+  transform: translateY(100%);
 }
 
 #bottom-nav::before {
@@ -980,6 +981,20 @@ textarea::placeholder {
 .nav-item {
   position: relative;
   gap: 0.2rem !important;
+}
+
+.nav-icon {
+  width: 1.55rem;
+  height: 1.55rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nav-item.text-primary .nav-icon {
+  stroke-width: 2.15;
 }
 
 .nav-item.text-primary::after {

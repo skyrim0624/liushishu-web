@@ -74,10 +74,6 @@ window.showScreen = function(id, hideNav = false) {
         const active = item.dataset.target === id;
         item.classList.toggle("text-primary", active);
         item.classList.toggle("text-muted", !active);
-        const icon = item.querySelector(".material-symbols-outlined");
-        if (icon) {
-            icon.style.fontVariationSettings = active ? "'FILL' 1" : "'FILL' 0";
-        }
     });
 
     const isAuthScreen = id === "auth";

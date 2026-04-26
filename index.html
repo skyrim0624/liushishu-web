@@ -574,19 +574,29 @@
 
     <nav class="absolute bottom-0 left-0 z-50 flex h-20 w-full items-center justify-around border-t border-outline bg-surface px-2 transition-transform duration-300" id="bottom-nav">
         <button class="nav-item flex flex-1 flex-col items-center justify-center gap-1 text-primary" data-target="home">
-            <span class="material-symbols-outlined text-[26px]" style="font-variation-settings:'FILL' 1">home</span>
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4.5 10.8 12 4.7l7.5 6.1v8.5a1 1 0 0 1-1 1H15v-5.8H9v5.8H5.5a1 1 0 0 1-1-1Z"/>
+            </svg>
             <span class="text-xs font-bold">主页</span>
         </button>
         <button class="nav-item flex flex-1 flex-col items-center justify-center gap-1 text-muted" data-target="timeline">
-            <span class="material-symbols-outlined text-[24px]">auto_stories</span>
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 5.5c2.8 0 4.8.7 7 2.2 2.2-1.5 4.2-2.2 7-2.2v12.7c-2.8 0-4.8.7-7 2.2-2.2-1.5-4.2-2.2-7-2.2Z"/>
+                <path d="M12 7.7v12.7"/>
+            </svg>
             <span class="text-xs font-bold">记录</span>
         </button>
         <button class="nav-item flex flex-1 flex-col items-center justify-center gap-1 text-muted" data-target="bedtime">
-            <span class="material-symbols-outlined text-[24px]">nightlight</span>
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15.9 3.8a7.7 7.7 0 1 0 4.3 11.9A8.4 8.4 0 0 1 8.3 3.8a7.8 7.8 0 0 1 7.6 0Z"/>
+            </svg>
             <span class="text-xs font-bold">复盘</span>
         </button>
         <button class="nav-item flex flex-1 flex-col items-center justify-center gap-1 text-muted" data-target="profile">
-            <span class="material-symbols-outlined text-[24px]">account_circle</span>
+            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 12.2a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6Z"/>
+                <path d="M4.8 20.2c1.2-3.6 3.5-5.4 7.2-5.4s6 1.8 7.2 5.4Z"/>
+            </svg>
             <span class="text-xs font-bold">我的</span>
         </button>
     </nav>
