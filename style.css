@@ -636,10 +636,11 @@ body.dune-body::after {
 
 .dune-hero {
   display: flex;
-  min-height: 27.5rem;
+  min-height: 19.6rem;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1.25rem !important;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  padding: 1rem !important;
   border-radius: 6px !important;
   border-color: rgba(17, 20, 20, 0.08) !important;
   background:
@@ -664,7 +665,7 @@ body.dune-body::after {
 }
 
 .dune-hero > div:first-child {
-  padding: 0.55rem 0.35rem 0.8rem;
+  padding: 0.35rem 0.2rem 0.45rem;
   background: linear-gradient(180deg, rgba(250, 248, 242, 0.82), rgba(250, 248, 242, 0.08));
 }
 
@@ -678,7 +679,6 @@ body.dune-body::after {
 }
 
 .paper-btn,
-#btn-home-next-record,
 #btn-withdraw-pool,
 #btn-enable-notifications {
   position: relative;
@@ -691,7 +691,6 @@ body.dune-body::after {
 }
 
 .paper-btn::before,
-#btn-home-next-record::before,
 #btn-withdraw-pool::before,
 #btn-enable-notifications::before {
   content: "";
@@ -704,7 +703,6 @@ body.dune-body::after {
 }
 
 .paper-btn > *,
-#btn-home-next-record > *,
 #btn-withdraw-pool > *,
 #btn-enable-notifications > * {
   position: relative;
@@ -833,8 +831,8 @@ textarea::placeholder {
 }
 
 .seed-overview > button {
-  min-height: 10rem;
-  padding-top: 1.05rem !important;
+  min-height: 8.6rem;
+  padding-top: 0.9rem !important;
 }
 
 .seed-overview > button .material-symbols-outlined,
@@ -1024,6 +1022,6 @@ button.rounded-xl,
   }
 
   .dune-hero {
-    min-height: 27.4rem;
+    min-height: 19.2rem;
   }
 }

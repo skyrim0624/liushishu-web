@@ -168,7 +168,7 @@
         </div>
 
         <div class="screen" id="screen-home">
-            <main class="home-stage space-y-5 px-5 pb-24 pt-6">
+            <main class="home-stage space-y-4 px-5 pb-24 pt-5">
                 <section class="home-heading flex items-start justify-between gap-4">
                     <div class="space-y-2">
                         <h2 class="text-2xl font-bold text-ink" id="greeting-text">你好，记录者</h2>
@@ -179,36 +179,39 @@
                     </div>
                 </section>
 
-                <section class="dune-hero paper-card-soft overflow-hidden p-5" id="btn-quick-flash">
-                    <div class="flex items-start justify-between gap-4">
+                <section class="dune-hero paper-card-soft overflow-hidden p-4" id="btn-quick-flash">
+                    <div class="flex items-start justify-between gap-3">
                         <div class="space-y-2">
                             <p class="text-xs tracking-[0.18em] text-muted">TODAY / 六次提醒</p>
-                            <h3 class="text-xl font-bold text-ink">第 <span id="home-ring-done">0</span> / <span id="home-ring-total">6</span> 次记录</h3>
+                            <h3 class="text-lg font-bold text-ink">第 <span id="home-ring-done">0</span> / <span id="home-ring-total">6</span> 次记录</h3>
                             <p class="text-sm text-muted" id="today-session-text">今天还没开始，按六时书节奏种下第一颗种子。</p>
                         </div>
-                        <div class="relative flex h-24 w-24 items-center justify-center">
+                        <div class="relative flex h-20 w-20 items-center justify-center">
                             <svg class="h-full w-full -rotate-90" fill="none" viewBox="0 0 160 160">
                                 <circle class="text-outline/50" cx="80" cy="80" fill="transparent" r="74" stroke="currentColor" stroke-dasharray="6 6" stroke-width="3"></circle>
                                 <circle class="text-primary transition-all duration-700" cx="80" cy="80" fill="transparent" id="home-ring-progress" r="74" stroke="currentColor" stroke-dasharray="464.96" stroke-dashoffset="464.96" stroke-linecap="round" stroke-width="7"></circle>
                             </svg>
                             <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                <span class="text-2xl font-bold text-primary" id="current-session-index">1</span>
+                                <span class="text-xl font-bold text-primary" id="current-session-index">1</span>
                                 <span class="text-xs text-muted">当前轮次</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-5 grid grid-cols-[1fr_auto] gap-4 rounded-2xl bg-white/70 p-4">
+                    <div class="mt-3 rounded-2xl bg-white/70 p-3">
                         <div class="cursor-pointer" id="next-reminder-settings" role="button" tabindex="0">
-                            <p class="text-xs tracking-[0.18em] text-muted">NEXT REMINDER</p>
-                            <div class="mt-1 flex items-center gap-2">
-                                <span class="text-3xl font-bold text-primary" id="next-reminder-time">07:00</span>
-                                <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary" id="next-reminder-label">起床后</span>
+                            <div class="flex items-end justify-between gap-3">
+                                <div>
+                                    <p class="text-xs tracking-[0.18em] text-muted">NEXT REMINDER</p>
+                                    <div class="mt-1 flex items-center gap-2">
+                                        <span class="text-3xl font-bold text-primary" id="next-reminder-time">07:00</span>
+                                        <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary" id="next-reminder-label">起床后</span>
+                                    </div>
+                                </div>
+                                <p class="pb-1 text-right text-xs font-bold text-primary">调整六次提醒</p>
                             </div>
-                            <p class="mt-2 text-sm text-muted" id="next-reminder-countdown">下一次六时书提醒将从这里开始。</p>
-                            <p class="mt-2 text-xs font-bold text-primary">点这里调整一天六次提醒时间</p>
+                            <p class="mt-1 text-xs leading-relaxed text-muted" id="next-reminder-countdown">下一次六时书提醒将从这里开始。</p>
                         </div>
-                        <button class="rounded-2xl border border-outline bg-surface px-4 py-3 text-sm font-bold text-primary transition active:scale-95" id="btn-home-next-record">开始本次记录</button>
                     </div>
                 </section>
 

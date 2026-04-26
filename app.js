@@ -970,10 +970,6 @@ document.addEventListener("DOMContentLoaded", () => {
     qs("btn-save-reminders")?.addEventListener("click", saveReminderTimes);
     qs("btn-enable-notifications")?.addEventListener("click", requestBrowserNotifications);
     qs("btn-submit-checkin")?.addEventListener("click", submitCheckin);
-    qs("btn-home-next-record")?.addEventListener("click", (event) => {
-        event.stopPropagation();
-        prepareCheckin("wealth");
-    });
     qs("next-reminder-settings")?.addEventListener("click", openReminderSettings);
     qs("next-reminder-settings")?.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
