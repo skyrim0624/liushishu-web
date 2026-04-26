@@ -318,7 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!container) return;
         const insights = [
             `本周你已经累计完成 ${window.state.timelineEntries.length} 次记录，真正有效的是你持续回来觉知这一点。`,
-            `财富种子累计历史供养 ¥${formatCurrency(window.state.lifetimeOfferingAmount)}，当前供养池还有 ¥${formatCurrency(window.state.currentOfferingPool)}。`,
+            `财富种子累计历史供养 ¥${formatCurrency(window.state.lifetimeOfferingAmount)}，种子基金还有 ¥${formatCurrency(window.state.currentOfferingPool)}。`,
             `关系、健康、觉察三条线都值得平衡推进。试着在下一轮刻意补上今天最少的一类种子。`
         ];
         container.innerHTML = insights.map((text) => `<div class="rounded-2xl border border-outline bg-white/80 p-4 text-sm leading-relaxed text-muted">${text}</div>`).join("");
@@ -333,7 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (category === "wealth") {
             if (successMoneyRow) successMoneyRow.classList.remove("hidden");
             setText("success-money", formatCurrency(entry.money_amount || 0));
-            setText("success-summary", "这一份供养已经进入你的当前供养池。");
+            setText("success-summary", "这一份供养已经进入你的种子基金。");
         } else {
             if (successMoneyRow) successMoneyRow.classList.add("hidden");
             setText("success-summary", "这一刻已经加入你的六时书轨迹。");
@@ -742,7 +742,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function withdrawOfferingPool() {
         const amount = Number(window.state.currentOfferingPool || 0);
         if (amount <= 0) {
-            flashMessage("withdraw-feedback", "当前供养池还是空的。");
+            flashMessage("withdraw-feedback", "种子基金还是空的。");
             return;
         }
         window.state.currentOfferingPool = 0;
@@ -760,7 +760,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         renderHome();
         renderProfile();
-        flashMessage("withdraw-feedback", `已取出 ¥${formatCurrency(amount)}，当前供养池重新开始。`);
+        flashMessage("withdraw-feedback", `已取出 ¥${formatCurrency(amount)} 用于行善，种子基金重新开始。`);
     }
 
     async function saveBedtimeReview() {
@@ -801,7 +801,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const permission = await Notification.requestPermission();
             if (permission === "granted") {
-                new Notification("愿望加速器", { body: "通知权限已开启，后续可承接六次提醒。" });
+                new Notification("幸福种子银行", { body: "通知权限已开启，后续可承接六次提醒。" });
             }
         } catch (error) {
             console.warn("Notification permission request failed.", error);

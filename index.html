@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
-    <title>愿望加速器</title>
+    <title>幸福种子银行</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script>
@@ -116,8 +116,9 @@
             <button class="hidden text-primary" id="btn-global-back">
                 <span class="material-symbols-outlined">arrow_back_ios</span>
             </button>
+            <span class="brand-mark brand-mark-header" aria-hidden="true"><span>种</span></span>
             <div>
-                <h1 class="text-lg font-bold tracking-[0.12em] text-primary">愿望加速器</h1>
+                <h1 class="text-lg font-bold tracking-[0.12em] text-primary">幸福种子银行</h1>
             </div>
         </div>
         <div class="flex h-9 w-9 items-center justify-center rounded-full border border-outline bg-white/80">
@@ -130,10 +131,8 @@
             <main class="auth-stage flex min-h-[86vh] items-center justify-center px-8 py-8">
                 <div class="w-full max-w-sm space-y-8">
                     <div class="space-y-3 text-center">
-                        <div class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-3xl bg-primary/10">
-                            <span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings:'FILL' 1">self_improvement</span>
-                        </div>
-                        <h2 class="text-3xl font-bold text-ink">愿望加速器</h2>
+                        <div class="brand-mark brand-mark-hero mx-auto mb-4" aria-hidden="true"><span>种</span></div>
+                        <h2 class="text-3xl font-bold text-ink">幸福种子银行</h2>
                         <p class="text-base leading-relaxed text-muted">源于古老智慧·六时书的愿望实现工具</p>
                     </div>
 
@@ -246,11 +245,11 @@
                 <section class="offering-card paper-card p-5">
                     <div class="flex items-start justify-between gap-3">
                         <div>
-                            <p class="text-xs tracking-[0.18em] text-muted">OFFERING POOL</p>
-                            <h3 class="mt-1 text-xl font-bold text-ink">当前供养池</h3>
-                            <p class="mt-1 text-sm leading-relaxed text-muted">每次供养完成后会进入这里，可阶段性取出并归零。</p>
+                            <p class="text-xs tracking-[0.18em] text-muted">SEED FUND</p>
+                            <h3 class="mt-1 text-xl font-bold text-ink">种子基金</h3>
+                            <p class="mt-1 text-sm leading-relaxed text-muted">每一次善意行动，都会在这里累积成一份力量。可阶段性取出，用于布施、助人或支持善缘。</p>
                         </div>
-                        <button class="rounded-xl border border-outline px-3 py-2 text-sm font-bold text-primary transition active:scale-95" id="btn-withdraw-pool">取出</button>
+                        <button class="whitespace-nowrap rounded-xl border border-outline px-4 py-3 text-sm font-bold text-primary transition active:scale-95" id="btn-withdraw-pool">取出行善</button>
                     </div>
                     <div class="mt-5 flex items-end gap-2">
                         <span class="pb-1 text-2xl text-primary">¥</span>
@@ -323,7 +322,7 @@
                         <div class="flex items-center justify-between gap-3">
                             <div>
                                 <p class="text-sm font-bold text-muted">本次供养金额</p>
-                                <p class="mt-1 text-sm text-muted">完成供养后会进入当前供养池。</p>
+                                <p class="mt-1 text-sm text-muted">完成供养后会进入种子基金。</p>
                             </div>
                             <div class="flex items-end gap-1 text-primary">
                                 <span class="pb-1 text-xl">¥</span>
@@ -413,7 +412,7 @@
         <div class="screen" id="screen-tutorial">
             <main class="guide-stage space-y-6 px-5 pb-24 pt-8">
                 <section class="text-center">
-                    <h2 class="text-2xl font-bold text-ink">怎么使用愿望加速器？</h2>
+                    <h2 class="text-2xl font-bold text-ink">怎么使用幸福种子银行？</h2>
                     <p class="mt-2 text-base text-muted">把六时书变成每天都能完成的固定动作。</p>
                 </section>
 
@@ -431,8 +430,8 @@
                         <p class="mt-2 text-sm leading-relaxed text-muted">睡前回想今天种下了哪些好种子，有没有需要清理的念头，明天还想继续种什么。带着感恩结束这一天。</p>
                     </div>
                     <div class="paper-card p-5">
-                        <h3 class="text-lg font-bold text-ink">4. 供养池和取出是什么意思</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-muted">每次财富记录中的供养金额会进入当前供养池。你可以阶段性点击“取出”，把当前池子归零重新开始，但历史累计不会被清掉。</p>
+                        <h3 class="text-lg font-bold text-ink">4. 种子基金和取出行善是什么意思</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-muted">每次财富记录中的供养金额会进入种子基金。你可以阶段性点击“取出行善”，把当前基金归零重新开始，用于布施、助人或支持善缘；历史累计不会被清掉。</p>
                     </div>
                 </section>
 
@@ -504,7 +503,7 @@
                         <p class="mt-3 text-2xl font-bold text-ink" id="profile-xp">0</p>
                     </div>
                     <div class="paper-card p-4">
-                        <p class="text-sm font-bold text-muted">当前供养池</p>
+                        <p class="text-sm font-bold text-muted">种子基金</p>
                         <p class="mt-3 text-2xl font-bold text-primary">¥<span id="profile-current-pool">0</span></p>
                     </div>
                     <div class="paper-card p-4">
