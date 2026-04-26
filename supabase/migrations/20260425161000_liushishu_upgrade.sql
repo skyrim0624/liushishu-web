@@ -1,3 +1,6 @@
+create extension if not exists "uuid-ossp";
+create extension if not exists pgcrypto;
+
 create table if not exists profiles (
     id uuid primary key references auth.users(id) on delete cascade,
     display_name text default '',
@@ -26,7 +29,7 @@ alter table if exists checkins
     add constraint checkins_category_check check (category in ('wealth', 'kindness', 'health', 'debug'));
 
 create table if not exists offering_pool_events (
-    id uuid primary key default uuid_generate_v4(),
+    id uuid primary key default gen_random_uuid(),
     user_id uuid references auth.users(id) not null,
     created_at timestamptz default timezone('utc'::text, now()) not null,
     amount integer not null default 0,

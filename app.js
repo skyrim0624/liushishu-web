@@ -1,5 +1,5 @@
 const SUPABASE_URL = "https://ntzbtmnzwapgxwocffkc.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJudHpidG1uendhcGd4d29jZmZrYyIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzc1NjMwMjc0LCJleHAiOjIwOTEyMDYyNzR9.VrnNTDT5DcwjhnE1OqU3VCkBG31kOeT3LgNT7ZT8cF8";
+const SUPABASE_ANON_KEY = "sb_publishable_AA3ce9gBNn7fRTyzGeOh1g_YcIF5TO_";
 
 const DAILY_TARGET = 6;
 const REMINDER_LABELS = ["起床后", "上午", "午间", "下午", "傍晚", "睡前"];
