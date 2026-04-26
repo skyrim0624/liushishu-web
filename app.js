@@ -240,6 +240,13 @@ document.addEventListener("DOMContentLoaded", () => {
         renderReminderInputs();
         updateNotificationStatus();
     };
+    const openReminderSettings = () => {
+        window.showScreen("profile");
+        requestAnimationFrame(() => {
+            const card = qs("reminder-settings-card");
+            if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    };
     const renderCalendar = () => {
         const grid = qs("calendar-grid");
         if (!grid) return;
@@ -868,8 +875,17 @@ document.addEventListener("DOMContentLoaded", () => {
     qs("btn-save-reminders")?.addEventListener("click", saveReminderTimes);
     qs("btn-enable-notifications")?.addEventListener("click", requestBrowserNotifications);
     qs("btn-submit-checkin")?.addEventListener("click", submitCheckin);
-    qs("btn-home-next-record")?.addEventListener("click", () => prepareCheckin("wealth"));
-    qs("btn-quick-flash")?.addEventListener("click", () => prepareCheckin("wealth"));
+    qs("btn-home-next-record")?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        prepareCheckin("wealth");
+    });
+    qs("next-reminder-settings")?.addEventListener("click", openReminderSettings);
+    qs("next-reminder-settings")?.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openReminderSettings();
+        }
+    });
     qs("seed-wealth")?.addEventListener("click", () => prepareCheckin("wealth"));
     qs("seed-kindness")?.addEventListener("click", () => prepareCheckin("kindness"));
     qs("seed-health")?.addEventListener("click", () => prepareCheckin("health"));

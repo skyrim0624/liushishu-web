@@ -196,13 +196,14 @@
                     </div>
 
                     <div class="mt-5 grid grid-cols-[1fr_auto] gap-4 rounded-2xl bg-white/70 p-4">
-                        <div>
+                        <div class="cursor-pointer" id="next-reminder-settings" role="button" tabindex="0">
                             <p class="text-xs tracking-[0.18em] text-muted">NEXT REMINDER</p>
                             <div class="mt-1 flex items-center gap-2">
                                 <span class="text-3xl font-bold text-primary" id="next-reminder-time">07:00</span>
                                 <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary" id="next-reminder-label">起床后</span>
                             </div>
                             <p class="mt-2 text-sm text-muted" id="next-reminder-countdown">下一次六时书提醒将从这里开始。</p>
+                            <p class="mt-2 text-xs font-bold text-primary">点这里调整一天六次提醒时间</p>
                         </div>
                         <button class="rounded-2xl border border-outline bg-surface px-4 py-3 text-sm font-bold text-primary transition active:scale-95" id="btn-home-next-record">开始本次记录</button>
                     </div>
@@ -512,13 +513,16 @@
                     </div>
                 </section>
 
-                <section class="paper-card p-5 space-y-4">
+                <section class="paper-card p-5 space-y-4" id="reminder-settings-card">
                     <div class="flex items-start justify-between gap-3">
                         <div>
                             <h3 class="text-sm font-bold text-muted">六次提醒时间</h3>
                             <p class="mt-1 text-sm leading-relaxed text-muted">网页端先保存你的六次时间，并在首页显示下一次提醒。</p>
                         </div>
                         <button class="rounded-xl border border-outline px-3 py-2 text-sm font-bold text-primary" id="btn-enable-notifications">通知权限</button>
+                    </div>
+                    <div class="rounded-xl border border-outline/50 bg-white/50 p-4 text-sm leading-relaxed text-muted">
+                        建议把六次放在一天自然转折点：起床后、上午开始、午间、下午转换、傍晚、睡前。每次间隔约 2-4 小时即可，按你方便的生活节奏来定。
                     </div>
                     <p class="text-sm text-muted" id="notification-status">尚未申请浏览器通知权限。</p>
                     <div class="space-y-3" id="reminder-list">
