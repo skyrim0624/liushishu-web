@@ -165,77 +165,27 @@ body.dune-body::after {
   font-weight: 700;
 }
 
-.brand-mark {
-  position: relative;
-  display: inline-flex;
+.brand-logo {
+  display: block;
   flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  width: 2.25rem;
-  height: 2.25rem;
-  border: 1px solid rgba(17, 20, 20, 0.18);
-  border-radius: 6px;
-  background:
-    radial-gradient(34px 28px at 78% 18%, rgba(180, 43, 34, 0.12), transparent 70%),
-    var(--ink-ui-bg) center 24% / 260% auto no-repeat;
-  box-shadow:
-    inset 0 0 0 1px rgba(250, 248, 242, 0.42),
-    0 8px 18px rgba(17, 20, 20, 0.08);
-}
-
-.brand-mark::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--grain);
-  opacity: 0.14;
+  object-fit: contain;
   mix-blend-mode: multiply;
 }
 
-.brand-mark::after {
-  content: "";
-  position: absolute;
-  right: 0.34rem;
-  bottom: 0.34rem;
-  width: 0.34rem;
-  height: 0.34rem;
-  border-radius: 999px;
-  background: var(--verm);
+.brand-logo-header {
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0.1rem;
+  border: 1px solid rgba(17, 20, 20, 0.1);
+  border-radius: 8px;
+  background: rgba(250, 248, 242, 0.72);
+  box-shadow: inset 0 -6px 14px rgba(17, 20, 20, 0.035);
 }
 
-.brand-mark > span {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 62%;
-  height: 62%;
-  border-radius: 4px;
-  background: rgba(17, 20, 20, 0.94);
-  color: var(--paper);
-  font-family: "Huiwen", "WenKai", "Kaiti SC", serif;
-  font-size: 1.1rem;
-  line-height: 1;
-  transform: rotate(-2deg);
-}
-
-.brand-mark-hero {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 10px;
-  background-size: 185% auto;
-  box-shadow:
-    inset 0 0 0 1px rgba(250, 248, 242, 0.5),
-    0 18px 34px rgba(17, 20, 20, 0.12);
-}
-
-.brand-mark-hero > span {
-  width: 58%;
-  height: 58%;
-  border-radius: 7px;
-  font-size: 2.25rem;
+.brand-logo-hero {
+  width: 7rem;
+  height: 7rem;
+  filter: drop-shadow(0 16px 18px rgba(17, 20, 20, 0.08));
 }
 
 .app-header > div:last-child,

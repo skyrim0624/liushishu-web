@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="幸福种子银行 Logo">
+  <defs>
+    <filter id="paper-grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.18"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="soft-ink" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="4" seed="8"/>
+      <feDisplacementMap in="SourceGraphic" scale="7"/>
+      <feGaussianBlur stdDeviation="0.35"/>
+    </filter>
+    <filter id="wash" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="5" seed="18"/>
+      <feDisplacementMap in="SourceGraphic" scale="12"/>
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+    <radialGradient id="paper-light" cx="50%" cy="48%" r="70%">
+      <stop offset="0%" stop-color="#faf8f2"/>
+      <stop offset="62%" stop-color="#f3f0e8"/>
+      <stop offset="100%" stop-color="#eee9df"/>
+    </radialGradient>
+    <linearGradient id="bridge-ink" x1="210" y1="690" x2="805" y2="805" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1b1d1c" stop-opacity="0.5"/>
+      <stop offset="34%" stop-color="#777a74" stop-opacity="0.36"/>
+      <stop offset="68%" stop-color="#b4b4ad" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#1b1d1c" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="leaf-ink" x1="360" y1="330" x2="690" y2="510" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3d403d"/>
+      <stop offset="42%" stop-color="#111414"/>
+      <stop offset="100%" stop-color="#666963"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1024" height="1024" fill="url(#paper-light)"/>
+  <rect width="1024" height="1024" fill="#111414" filter="url(#paper-grain)" opacity="0.16"/>
+
+  <g filter="url(#wash)">
+    <path
+      d="M210 754 C304 671 413 635 539 652 C653 667 745 718 815 795 C718 746 623 722 530 724 C411 727 306 763 210 754 Z"
+      fill="url(#bridge-ink)"
+      opacity="0.86"/>
+    <path
+      d="M432 794 C433 738 461 710 512 710 C563 710 590 739 593 794 L553 794 C552 765 539 751 513 751 C487 751 474 765 472 794 Z"
+      fill="#f6f3eb"
+      opacity="0.95"/>
+  </g>
+
+  <g filter="url(#soft-ink)">
+    <path
+      d="M489 626 C520 586 568 593 590 629 C612 667 586 704 542 711 C499 718 461 690 469 654 C471 643 477 634 489 626 Z"
+      fill="#111414"/>
+    <path
+      d="M514 691 C548 677 574 648 582 615"
+      fill="none"
+      stroke="#f8f5ed"
+      stroke-width="11"
+      stroke-linecap="round"
+      opacity="0.92"/>
+
+    <path
+      d="M538 598 C566 538 534 474 572 419"
+      fill="none"
+      stroke="#111414"
+      stroke-width="13"
+      stroke-linecap="round"/>
+    <path
+      d="M575 419 C611 345 679 318 731 288 C720 359 685 414 617 438 C600 444 585 438 575 419 Z"
+      fill="url(#leaf-ink)"/>
+    <path
+      d="M573 423 C615 399 658 360 718 294"
+      fill="none"
+      stroke="#f8f5ed"
+      stroke-width="8"
+      stroke-linecap="round"
+      opacity="0.92"/>
+
+    <path
+      d="M546 505 C494 473 439 459 397 443 C420 496 461 529 518 535 C536 537 546 524 546 505 Z"
+      fill="url(#leaf-ink)"
+      opacity="0.92"/>
+    <path
+      d="M538 509 C498 495 460 474 410 448"
+      fill="none"
+      stroke="#f8f5ed"
+      stroke-width="7"
+      stroke-linecap="round"
+      opacity="0.9"/>
+  </g>
+</svg>
