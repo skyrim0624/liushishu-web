@@ -50,6 +50,7 @@ window.state = {
     category: "wealth",
     lifetimeXP: 0,
     displayName: "",
+    avatarUrl: "",
     authMode: "login",
     currentSessionIndex: 1,
     streakDays: 0,
@@ -63,6 +64,7 @@ window.showScreen = function(id, hideNav = false) {
     const bottomNav = document.getElementById("bottom-nav");
     const btnGlobalBack = document.getElementById("btn-global-back");
     const headerMenu = document.getElementById("header-menu-icon");
+    const headerAvatar = document.getElementById("header-avatar-button");
     const target = document.getElementById(`screen-${id}`);
 
     screens.forEach((screen) => screen.classList.remove("active"));
@@ -82,6 +84,7 @@ window.showScreen = function(id, hideNav = false) {
     if (bottomNav) bottomNav.style.transform = (hideNav || isAuthScreen) ? "translateY(100%)" : "translateY(0)";
     if (btnGlobalBack) btnGlobalBack.classList.toggle("hidden", !hideNav || isAuthScreen);
     if (headerMenu) headerMenu.textContent = hideNav ? "" : "person";
+    if (headerAvatar) headerAvatar.classList.toggle("hidden", hideNav || isAuthScreen);
 
     window.state.currentScreen = id;
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -179,22 +182,64 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     const storeLocalProfile = () => {
         localStorage.setItem(localProfileKey("displayName"), window.state.displayName || "");
+        localStorage.setItem(localProfileKey("avatarUrl"), window.state.avatarUrl || "");
         localStorage.setItem(localProfileKey("reminderTimes"), JSON.stringify(window.state.reminderTimes));
         localStorage.setItem(localProfileKey("currentOfferingPool"), String(window.state.currentOfferingPool || 0));
     };
     const loadLocalProfile = () => {
         const localName = localStorage.getItem(localProfileKey("displayName"));
+        const localAvatarUrl = localStorage.getItem(localProfileKey("avatarUrl"));
         const localTimes = parseJsonArray(localStorage.getItem(localProfileKey("reminderTimes")));
         const localPool = parseInt(localStorage.getItem(localProfileKey("currentOfferingPool")) || "0", 10);
         if (localName) window.state.displayName = localName;
+        if (localAvatarUrl) window.state.avatarUrl = localAvatarUrl;
         window.state.reminderTimes = normalizeReminderTimes(localTimes || window.state.reminderTimes);
         window.state.currentOfferingPool = Number.isNaN(localPool) ? 0 : localPool;
+    };
+    const avatarInitial = () => {
+        const source = window.state.displayName || window.state.user_email || "记";
+        return source.trim().slice(0, 1).toUpperCase() || "记";
+    };
+    const updateAvatarDisplay = () => {
+        const avatarUrl = window.state.avatarUrl || "";
+        [
+            { img: qs("header-avatar-img"), fallback: qs("header-avatar-fallback") },
+            { img: qs("profile-avatar-img"), fallback: qs("profile-avatar-fallback") }
+        ].forEach(({ img, fallback }) => {
+            if (fallback) fallback.textContent = avatarInitial();
+            if (!img) return;
+            img.classList.toggle("hidden", !avatarUrl);
+            if (avatarUrl) img.src = avatarUrl;
+            if (fallback) fallback.classList.toggle("hidden", Boolean(avatarUrl));
+        });
     };
     const updateDisplayName = () => {
         const name = window.state.displayName || "记录者";
         setText("greeting-text", `你好，${name}`);
         setText("profile-display-name", name);
         if (qs("edit-display-name")) qs("edit-display-name").value = name;
+        updateAvatarDisplay();
+    };
+    const isMissingAvatarColumn = (error) => {
+        const message = `${error?.message || ""} ${error?.details || ""}`;
+        return /avatar_url|schema cache|column/i.test(message) && /not|missing|could not find|does not exist/i.test(message);
+    };
+    const profilePayload = () => ({
+        id: window.state.user_id,
+        display_name: window.state.displayName || "记录者",
+        avatar_url: window.state.avatarUrl || "",
+        reminder_times: window.state.reminderTimes,
+        current_offering_pool: window.state.currentOfferingPool || 0
+    });
+    const upsertProfile = async () => {
+        if (!supabase || !window.state.user_id) return;
+        const payload = profilePayload();
+        const { error } = await supabase.from("profiles").upsert([payload], { onConflict: "id" });
+        if (!error) return;
+        if (!isMissingAvatarColumn(error)) throw error;
+        const { avatar_url, ...fallbackPayload } = payload;
+        const fallback = await supabase.from("profiles").upsert([fallbackPayload], { onConflict: "id" });
+        if (fallback.error) throw fallback.error;
     };
     const updateLevelBadge = () => {
         const xp = window.state.lifetimeXP;
@@ -236,6 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setText("profile-xp", String(window.state.lifetimeXP));
         setText("profile-current-pool", formatCurrency(window.state.currentOfferingPool));
         setText("profile-lifetime-money", formatCurrency(window.state.lifetimeOfferingAmount));
+        updateAvatarDisplay();
         updateLevelBadge();
         renderReminderInputs();
         updateNotificationStatus();
@@ -398,12 +444,14 @@ document.addEventListener("DOMContentLoaded", () => {
         window.state.timelineEntries = [];
         window.state.lifetimeXP = 0;
         window.state.displayName = "";
+        window.state.avatarUrl = "";
         window.state.user_id = null;
         window.state.user_email = "";
         window.state.currentSessionIndex = 1;
         window.state.reminderTimes = [...DEFAULT_REMINDER_TIMES];
         window.state.authMode = "login";
         updateDisplayName();
+        updateAvatarDisplay();
         renderHome();
         renderProfile();
         renderTimeline();
@@ -417,26 +465,31 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         try {
-            const { data, error } = await supabase
+            let { data, error } = await supabase
                 .from("profiles")
-                .select("display_name, reminder_times, current_offering_pool")
+                .select("display_name, avatar_url, reminder_times, current_offering_pool")
                 .eq("id", window.state.user_id)
                 .maybeSingle();
 
+            if (error && isMissingAvatarColumn(error)) {
+                const fallback = await supabase
+                    .from("profiles")
+                    .select("display_name, reminder_times, current_offering_pool")
+                    .eq("id", window.state.user_id)
+                    .maybeSingle();
+                data = fallback.data;
+                error = fallback.error;
+            }
             if (error) throw error;
 
             if (data) {
                 window.state.displayName = data.display_name || window.state.displayName || window.state.user_email.split("@")[0] || "记录者";
+                window.state.avatarUrl = data.avatar_url || window.state.avatarUrl || "";
                 window.state.reminderTimes = normalizeReminderTimes(data.reminder_times);
                 window.state.currentOfferingPool = Number(data.current_offering_pool || 0);
             } else {
                 window.state.displayName = window.state.displayName || window.state.user_email.split("@")[0] || "记录者";
-                await supabase.from("profiles").upsert([{
-                    id: window.state.user_id,
-                    display_name: window.state.displayName,
-                    reminder_times: window.state.reminderTimes,
-                    current_offering_pool: 0
-                }], { onConflict: "id" });
+                await upsertProfile();
             }
         } catch (error) {
             console.warn("Profile load failed, using local fallback.", error);
@@ -576,6 +629,60 @@ document.addEventListener("DOMContentLoaded", () => {
         window.showScreen("home");
     }
 
+    function resizeAvatarFile(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onerror = () => reject(new Error("头像读取失败"));
+            reader.onload = () => {
+                const image = new Image();
+                image.onerror = () => reject(new Error("头像格式无法识别"));
+                image.onload = () => {
+                    const size = 360;
+                    const canvas = document.createElement("canvas");
+                    canvas.width = size;
+                    canvas.height = size;
+                    const ctx = canvas.getContext("2d");
+                    if (!ctx) {
+                        reject(new Error("当前浏览器无法处理头像"));
+                        return;
+                    }
+                    const sourceSize = Math.min(image.width, image.height);
+                    const sourceX = (image.width - sourceSize) / 2;
+                    const sourceY = (image.height - sourceSize) / 2;
+                    ctx.fillStyle = "#f8f5ee";
+                    ctx.fillRect(0, 0, size, size);
+                    ctx.drawImage(image, sourceX, sourceY, sourceSize, sourceSize, 0, 0, size, size);
+                    resolve(canvas.toDataURL("image/jpeg", 0.82));
+                };
+                image.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    async function handleAvatarUpload(event) {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        if (!file.type.startsWith("image/")) {
+            flashMessage("profile-save-feedback", "请选择图片作为头像");
+            return;
+        }
+        try {
+            window.state.avatarUrl = await resizeAvatarFile(file);
+            updateAvatarDisplay();
+            storeLocalProfile();
+            if (supabase && window.state.user_id) {
+                await upsertProfile();
+            }
+            flashMessage("profile-save-feedback", "头像已保存");
+        } catch (error) {
+            console.warn("Avatar upload failed.", error);
+            flashMessage("profile-save-feedback", error.message || "头像保存失败");
+        } finally {
+            event.target.value = "";
+        }
+    }
+
     async function saveProfileName() {
         const newName = qs("edit-display-name")?.value?.trim();
         if (!newName) return;
@@ -584,12 +691,7 @@ document.addEventListener("DOMContentLoaded", () => {
         storeLocalProfile();
         if (supabase && window.state.user_id) {
             try {
-                await supabase.from("profiles").upsert([{
-                    id: window.state.user_id,
-                    display_name: newName,
-                    reminder_times: window.state.reminderTimes,
-                    current_offering_pool: window.state.currentOfferingPool
-                }], { onConflict: "id" });
+                await upsertProfile();
             } catch (error) {
                 console.warn("Profile name save failed.", error);
             }
@@ -602,12 +704,7 @@ document.addEventListener("DOMContentLoaded", () => {
         storeLocalProfile();
         if (supabase && window.state.user_id) {
             try {
-                await supabase.from("profiles").upsert([{
-                    id: window.state.user_id,
-                    display_name: window.state.displayName || "记录者",
-                    reminder_times: window.state.reminderTimes,
-                    current_offering_pool: window.state.currentOfferingPool
-                }], { onConflict: "id" });
+                await upsertProfile();
             } catch (error) {
                 console.warn("Reminder save failed.", error);
             }
@@ -679,12 +776,7 @@ document.addEventListener("DOMContentLoaded", () => {
         storeLocalProfile();
         if (!supabase || !window.state.user_id) return;
         try {
-            await supabase.from("profiles").upsert([{
-                id: window.state.user_id,
-                display_name: window.state.displayName || "记录者",
-                reminder_times: window.state.reminderTimes,
-                current_offering_pool: window.state.currentOfferingPool
-            }], { onConflict: "id" });
+            await upsertProfile();
         } catch (error) {
             console.warn("Saving offering pool failed.", error);
         }
@@ -871,6 +963,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     qs("auth-toggle-link")?.addEventListener("click", toggleAuthMode);
+    qs("header-avatar-button")?.addEventListener("click", () => window.showScreen("profile"));
+    qs("btn-avatar-upload")?.addEventListener("click", () => qs("avatar-file-input")?.click());
+    qs("avatar-file-input")?.addEventListener("change", handleAvatarUpload);
     qs("btn-save-profile")?.addEventListener("click", saveProfileName);
     qs("btn-save-reminders")?.addEventListener("click", saveReminderTimes);
     qs("btn-enable-notifications")?.addEventListener("click", requestBrowserNotifications);

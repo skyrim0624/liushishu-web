@@ -122,9 +122,12 @@
                 <h1 class="text-lg font-bold tracking-[0.12em] text-primary">幸福种子银行</h1>
             </div>
         </div>
-        <div class="flex h-9 w-9 items-center justify-center rounded-full border border-outline bg-white/80">
-            <span class="material-symbols-outlined text-primary" id="header-menu-icon">person</span>
-        </div>
+        <button class="header-avatar-button hidden" id="header-avatar-button" aria-label="进入我的页面">
+            <span class="avatar-frame avatar-frame-header">
+                <img alt="" class="avatar-img hidden" id="header-avatar-img"/>
+                <span class="avatar-fallback" id="header-avatar-fallback">记</span>
+            </span>
+        </button>
     </header>
 
     <div class="relative h-full overflow-y-auto pt-14" id="app">
@@ -476,13 +479,19 @@
 
         <div class="screen" id="screen-profile">
             <main class="profile-stage space-y-5 px-5 pb-24 pt-6">
-                <section class="paper-card-soft flex items-center gap-4 p-5">
-                    <div class="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/70">
-                        <span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings:'FILL' 1">person</span>
-                    </div>
+                <section class="profile-identity paper-card-soft flex items-center gap-4 p-5">
+                    <button class="profile-avatar-button" id="btn-avatar-upload" type="button" aria-label="更换头像">
+                        <span class="avatar-frame avatar-frame-profile">
+                            <img alt="" class="avatar-img hidden" id="profile-avatar-img"/>
+                            <span class="avatar-fallback" id="profile-avatar-fallback">记</span>
+                        </span>
+                        <span class="avatar-edit-pill">换头像</span>
+                    </button>
+                    <input accept="image/*" class="hidden" id="avatar-file-input" type="file"/>
                     <div class="flex-1">
                         <h2 class="text-xl font-bold text-ink" id="profile-display-name">记录者</h2>
                         <p class="mt-1 text-sm font-bold text-muted" id="profile-level-badge">Lv.1 刚刚起步</p>
+                        <p class="mt-2 text-xs text-muted">头像、昵称和六次提醒会同步到你的账户。</p>
                     </div>
                     <button class="flex h-10 w-10 items-center justify-center rounded-full border border-outline bg-white/80 text-muted" id="btn-show-tutorial">
                         <span class="material-symbols-outlined">help</span>
