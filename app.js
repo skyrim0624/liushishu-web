@@ -30,8 +30,8 @@ const TAGS_MAP = {
         "供养医者", "布施食物", "放生护命", "发愿健康", "回向众生", "减轻痛苦"
     ],
     debug: [
-        "嫉妒比较", "愤怒对立", "拖延逃避", "评判别人", "觉得自己不够", "急躁失控",
-        "只想索取", "习惯抱怨", "不愿承担", "嘴上答应心里抗拒"
+        "嫉妒比较", "怨恨不平", "焦虑不安", "自我否定", "指责他人", "抱怨关系",
+        "控制欲强", "拖延逃避", "推卸责任", "匮乏意识", "索取心重", "过度消费"
     ]
 };
 
@@ -55,7 +55,8 @@ window.state = {
     currentSessionIndex: 1,
     streakDays: 0,
     successEntry: null,
-    currentSlotIndex: 0
+    currentSlotIndex: 0,
+    selectedTimelineDateKey: ""
 };
 
 window.showScreen = function(id, hideNav = false) {
@@ -116,6 +117,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
     const formatCurrency = (amount) => Number(amount || 0).toLocaleString("zh-CN");
+    const padDatePart = (value) => String(value).padStart(2, "0");
+    const toDateKey = (date) => `${date.getFullYear()}-${padDatePart(date.getMonth() + 1)}-${padDatePart(date.getDate())}`;
+    const formatTimelineDateLabel = (date) => date.toLocaleDateString("zh-CN", { month: "numeric", day: "numeric", weekday: "short" });
+    const getSelectedTimelineDate = () => {
+        const today = new Date();
+        if (!window.state.selectedTimelineDateKey) {
+            window.state.selectedTimelineDateKey = toDateKey(today);
+            return today;
+        }
+        const [year, month, day] = window.state.selectedTimelineDateKey.split("-").map((item) => parseInt(item, 10));
+        if (!year || !month || !day) {
+            window.state.selectedTimelineDateKey = toDateKey(today);
+            return today;
+        }
+        return new Date(year, month - 1, day);
+    };
+    const isSameMonth = (date, target) => date.getFullYear() === target.getFullYear() && date.getMonth() === target.getMonth();
+    const entriesForDate = (entries, targetDate) => entries.filter((entry) => toDateKey(new Date(entry.created_at || Date.now())) === toDateKey(targetDate));
     const setText = (id, value) => {
         const el = qs(id);
         if (el) el.textContent = value;
@@ -295,23 +314,35 @@ document.addEventListener("DOMContentLoaded", () => {
         const today = new Date();
         const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
         const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+        const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const selectedDate = getSelectedTimelineDate();
+        const selectedKey = toDateKey(selectedDate);
         const countByDay = {};
-        window.state.timelineEntries.forEach((entry) => {
+        const monthEntries = window.state.timelineEntries.filter((entry) => {
+            const date = new Date(entry.created_at || Date.now());
+            return isSameMonth(date, today);
+        });
+        monthEntries.forEach((entry) => {
             const date = new Date(entry.created_at || Date.now());
             const day = date.getDate();
             countByDay[day] = (countByDay[day] || 0) + 1;
         });
 
         setText("timeline-month-label", `${today.getFullYear()} 年 ${today.getMonth() + 1} 月记录`);
-        setText("timeline-total-count", `本月 ${window.state.timelineEntries.length} 次记录`);
+        setText("timeline-total-count", `本月 ${monthEntries.length} 次记录`);
         grid.innerHTML = "";
         for (let i = 0; i < monthStart.getDay(); i += 1) {
             const blank = document.createElement("div");
-            blank.className = "aspect-square rounded-xl bg-transparent";
+            blank.className = "calendar-cell calendar-blank aspect-square rounded-xl bg-transparent";
             grid.appendChild(blank);
         }
         for (let day = 1; day <= daysInMonth; day += 1) {
             const level = Math.min(countByDay[day] || 0, 4);
+            const cellDate = new Date(today.getFullYear(), today.getMonth(), day);
+            const cellKey = toDateKey(cellDate);
+            const isSelected = cellKey === selectedKey;
+            const isToday = cellKey === toDateKey(today);
+            const isFuture = cellDate > todayStart;
             const tones = [
                 "bg-surface",
                 "bg-primary/10",
@@ -319,22 +350,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 "bg-primary/40",
                 "bg-primary text-white"
             ];
-            const cell = document.createElement("div");
-            cell.className = `flex aspect-square items-center justify-center rounded-xl text-sm ${tones[level]}`;
+            const cell = document.createElement("button");
+            cell.type = "button";
+            cell.className = [
+                "calendar-cell",
+                "flex aspect-square items-center justify-center rounded-xl text-sm transition",
+                tones[level],
+                isSelected ? "is-selected" : "",
+                isToday ? "is-today" : "",
+                isFuture ? "is-future" : ""
+            ].filter(Boolean).join(" ");
+            cell.disabled = isFuture;
+            cell.setAttribute("aria-label", `${today.getMonth() + 1} 月 ${day} 日${countByDay[day] ? `，${countByDay[day]} 次记录` : "，暂无记录"}`);
+            cell.setAttribute("aria-pressed", String(isSelected));
             cell.textContent = String(day);
+            if (!isFuture) {
+                cell.addEventListener("click", () => {
+                    window.state.selectedTimelineDateKey = cellKey;
+                    renderTimeline();
+                });
+            }
             grid.appendChild(cell);
         }
     };
     const renderTimeline = () => {
         const container = qs("timeline-detail");
         if (!container) return;
+        const selectedDate = getSelectedTimelineDate();
+        const selectedEntries = entriesForDate(window.state.timelineEntries, selectedDate);
         renderCalendar();
-        setText("timeline-today-label", new Date().toLocaleDateString("zh-CN", { month: "numeric", day: "numeric", weekday: "short" }));
-        if (!window.state.timelineEntries.length) {
-            container.innerHTML = `<div class="rounded-2xl border border-outline bg-white/70 p-4 text-sm leading-relaxed text-muted">还没有记录，从首页开始第一轮六时书吧。</div>`;
+        setText("timeline-today-label", formatTimelineDateLabel(selectedDate));
+        if (!selectedEntries.length) {
+            container.innerHTML = `<div class="rounded-2xl border border-outline bg-white/70 p-4 text-sm leading-relaxed text-muted">这一天还没有记录。可以回到首页开始一次六时书，或点选其他有颜色的日期查看记录。</div>`;
             return;
         }
-        const items = window.state.timelineEntries.slice(0, 8).map((entry) => {
+        const items = selectedEntries.map((entry) => {
             const date = new Date(entry.created_at || Date.now());
             const time = date.toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit", hour12: false });
             const label = CATEGORY_LABELS[normalizeCategory(entry.category)] || "记录";
@@ -446,6 +496,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.state.currentSessionIndex = 1;
         window.state.reminderTimes = [...DEFAULT_REMINDER_TIMES];
         window.state.authMode = "login";
+        window.state.selectedTimelineDateKey = "";
         updateDisplayName();
         updateAvatarDisplay();
         renderHome();
