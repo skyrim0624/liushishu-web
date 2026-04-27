@@ -3723,3 +3723,203 @@ textarea {
   padding: 0.45rem 0.5rem !important;
   font-size: 0.82rem !important;
 }
+
+#app:has(#screen-auth.active) + #bottom-nav {
+  transform: translateY(100%) !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+/* NOTE: 移动端排版修复：窄屏里藤蔓占据两侧，横向 flex 会把文字挤成竖排。 */
+#app:not(:has(#screen-home.active)) {
+  padding-top: 0 !important;
+}
+
+#screen-timeline .timeline-stage,
+#screen-bedtime .bedtime-stage,
+#screen-profile .profile-stage {
+  padding-top: 1.1rem !important;
+}
+
+#screen-home .offering-card {
+  padding: 1.08rem 1.18rem 1.18rem !important;
+}
+
+#screen-home .offering-card > .flex {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 0.85rem !important;
+  row-gap: 0.62rem !important;
+  align-items: start !important;
+}
+
+#screen-home .offering-card > .flex > div {
+  display: contents;
+}
+
+#screen-home .offering-card > .flex > div > p:first-child {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0 !important;
+  white-space: nowrap;
+}
+
+#screen-home .offering-card > .flex > div > h3 {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 0.18rem !important;
+  font-size: 1.38rem !important;
+  line-height: 1.18 !important;
+}
+
+#screen-home .offering-card > .flex > div > p:last-child {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  max-width: none !important;
+  margin-top: 0.28rem !important;
+  font-size: 0.96rem !important;
+  line-height: 1.72 !important;
+  letter-spacing: 0 !important;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+#screen-home #btn-withdraw-pool {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: auto !important;
+  min-width: 5.1rem !important;
+  padding: 0.65rem 0.78rem !important;
+  font-size: 0.9rem !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+}
+
+#screen-home .offering-card > .mt-5 {
+  margin-top: 1rem !important;
+}
+
+#screen-home .seed-overview > button p:last-child {
+  max-width: 100%;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  font-size: 0.92rem !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+}
+
+.profile-identity {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: 5.05rem minmax(0, 1fr);
+  gap: 0.9rem !important;
+  align-items: center !important;
+  padding: 1.08rem 3.45rem 1.08rem 1.08rem !important;
+}
+
+.profile-identity .profile-avatar-button {
+  width: 5.05rem;
+  min-width: 0;
+}
+
+.profile-identity .avatar-frame-profile {
+  width: 4.55rem;
+  height: 4.55rem;
+}
+
+.profile-identity > .flex-1 {
+  min-width: 0;
+}
+
+#profile-display-name,
+#profile-level-badge,
+.profile-identity > .flex-1 p {
+  writing-mode: horizontal-tb !important;
+  white-space: normal !important;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+#profile-display-name {
+  font-size: 1.28rem !important;
+  line-height: 1.18 !important;
+}
+
+#profile-level-badge {
+  font-size: 0.9rem !important;
+  line-height: 1.35 !important;
+}
+
+.profile-identity > .flex-1 p:last-child {
+  font-size: 0.78rem !important;
+  line-height: 1.55 !important;
+}
+
+#btn-show-tutorial {
+  position: absolute !important;
+  top: 1rem;
+  right: 1rem;
+  width: 2.65rem !important;
+  min-width: 2.65rem !important;
+  height: 2.65rem !important;
+  min-height: 2.65rem !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 480px) {
+  .auth-stage,
+  .home-stage,
+  .timeline-stage,
+  .checkin-stage,
+  .success-stage,
+  .insight-stage,
+  .guide-stage,
+  .bedtime-stage,
+  .profile-stage {
+    padding-left: 3.62rem !important;
+    padding-right: 3.62rem !important;
+  }
+
+  #bottom-nav {
+    left: 3.62rem !important;
+    right: 3.62rem !important;
+  }
+
+  #screen-home #seed-wealth,
+  #screen-home #seed-kindness,
+  #screen-home #seed-health {
+    padding-left: 0.22rem !important;
+    padding-right: 0.22rem !important;
+  }
+
+  #screen-home .seed-overview {
+    column-gap: 0.55rem !important;
+  }
+
+  #screen-home .seed-overview > button p:last-child {
+    font-size: 0.88rem !important;
+  }
+
+  #screen-home #btn-withdraw-pool {
+    min-width: 4.85rem !important;
+    padding-left: 0.62rem !important;
+    padding-right: 0.62rem !important;
+  }
+
+  .profile-identity {
+    grid-template-columns: 4.72rem minmax(0, 1fr);
+    gap: 0.78rem !important;
+    padding-left: 0.92rem !important;
+    padding-right: 3.18rem !important;
+  }
+
+  .profile-identity .profile-avatar-button {
+    width: 4.72rem;
+  }
+
+  .profile-identity .avatar-frame-profile {
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+}

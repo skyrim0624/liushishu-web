@@ -60,6 +60,11 @@ window.state = {
 };
 
 window.showScreen = function(id, hideNav = false) {
+    if (id !== "auth" && !window.state.user_id) {
+        id = "auth";
+        hideNav = true;
+    }
+
     const screens = document.querySelectorAll(".screen");
     const navItems = document.querySelectorAll(".nav-item");
     const bottomNav = document.getElementById("bottom-nav");
@@ -78,7 +83,13 @@ window.showScreen = function(id, hideNav = false) {
     });
 
     const isAuthScreen = id === "auth";
-    if (bottomNav) bottomNav.style.transform = (hideNav || isAuthScreen) ? "translateY(100%)" : "translateY(0)";
+    const shouldHideNav = hideNav || isAuthScreen;
+    if (bottomNav) {
+        bottomNav.style.transform = shouldHideNav ? "translateY(100%)" : "translateY(0)";
+        bottomNav.style.pointerEvents = shouldHideNav ? "none" : "";
+        bottomNav.style.opacity = shouldHideNav ? "0" : "";
+        bottomNav.setAttribute("aria-hidden", shouldHideNav ? "true" : "false");
+    }
     if (btnGlobalBack) btnGlobalBack.classList.toggle("hidden", !hideNav || isAuthScreen);
     if (headerMenu) headerMenu.textContent = hideNav ? "" : "person";
     if (headerAvatar) headerAvatar.classList.toggle("hidden", hideNav || isAuthScreen);
@@ -1073,6 +1084,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".nav-item").forEach((button) => {
         button.addEventListener("click", () => {
+            if (!window.state.user_id) {
+                window.showScreen("auth");
+                return;
+            }
             const target = button.dataset.target;
             window.showScreen(target);
         });
@@ -1091,6 +1106,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     renderProfile();
                     renderTimeline();
                     renderWeeklyInsights();
+                    window.showScreen("auth");
                 }
             } catch (error) {
                 console.warn("Session restore failed.", error);
@@ -1100,6 +1116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderProfile();
                 renderTimeline();
                 renderWeeklyInsights();
+                window.showScreen("auth");
             }
         })();
     } else {
@@ -1109,5 +1126,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderProfile();
         renderTimeline();
         renderWeeklyInsights();
+        window.showScreen("auth");
     }
 });
