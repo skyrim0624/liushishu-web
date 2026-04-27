@@ -84,7 +84,11 @@ window.showScreen = function(id, hideNav = false) {
     if (headerAvatar) headerAvatar.classList.toggle("hidden", hideNav || isAuthScreen);
 
     window.state.currentScreen = id;
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const app = document.getElementById("app");
+    if (app) {
+        app.scrollTo({ top: 0, behavior: "auto" });
+    }
+    window.scrollTo({ top: 0, behavior: "auto" });
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -230,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     const updateDisplayName = () => {
         const name = window.state.displayName || "记录者";
-        setText("greeting-text", `你好，${name}`);
+        setText("greeting-text", "每日种子园");
         setText("profile-display-name", name);
         if (qs("edit-display-name")) qs("edit-display-name").value = name;
         updateAvatarDisplay();
@@ -1022,6 +1026,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
             openReminderSettings();
+        }
+    });
+    qs("home-recorded-primary")?.addEventListener("click", () => prepareCheckin("wealth"));
+    qs("home-recorded-primary")?.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            prepareCheckin("wealth");
         }
     });
     qs("seed-wealth")?.addEventListener("click", () => prepareCheckin("wealth"));

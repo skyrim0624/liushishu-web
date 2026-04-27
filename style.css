@@ -1070,7 +1070,7 @@ button.rounded-xl,
   }
 }
 
-/* NOTE: Generated mockup recreation v3. Purposefully mirrors the approved preview while keeping the real app functional. */
+/* NOTE: 复刻已确认的预览稿，同时保留真实应用功能。 */
 :root {
   --paper: #fff6df;
   --paper-deep: #e9d39e;
@@ -1717,4 +1717,2009 @@ button.rounded-xl,
   .home-heading > div:first-child { margin-left: 2.9rem; max-width: 16.2rem; }
   .dune-hero { min-height: 20.8rem; }
   .dune-hero > div:first-child .relative { right: 2.15rem; top: 5.45rem; width: 7.9rem !important; height: 7.9rem !important; }
+}
+
+/* NOTE: 针对种子花园方向强化文字层级，这一段只处理排版强弱。 */
+:root {
+  --ui-text-strong: #1f3027;
+  --ui-text-body: #3f3a2d;
+  --ui-text-muted-strong: #5d5a49;
+  --ui-number: #7a3b2b;
+}
+
+body.dune-body {
+  color: var(--ui-text-body);
+}
+
+.app-header h1 {
+  color: var(--ui-text-strong) !important;
+  font-size: clamp(1.72rem, 1.5rem + 0.8vw, 2rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.82), 0 2px 10px rgba(255,246,223,0.52);
+}
+
+#greeting-text {
+  color: var(--ui-text-strong) !important;
+  font-size: clamp(2.35rem, 2rem + 1.2vw, 2.88rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.78), 0 8px 24px rgba(255,246,223,0.38);
+}
+
+.home-heading p,
+.dune-hero p,
+.paper-card p,
+.paper-card-soft p,
+.profile-stage p,
+.timeline-stage p,
+.checkin-stage p,
+.bedtime-stage p,
+.guide-stage p,
+.insight-stage p {
+  color: var(--ui-text-body) !important;
+  font-weight: 600;
+}
+
+.text-muted,
+.home-stage .text-muted,
+.profile-stage .text-muted,
+.checkin-stage .text-muted,
+.timeline-stage .text-muted,
+.guide-stage .text-muted,
+.bedtime-stage .text-muted,
+.insight-stage .text-muted {
+  color: var(--ui-text-muted-strong) !important;
+}
+
+.paper-card h3,
+.paper-card-soft h3,
+#screen-home h3,
+#screen-timeline h2,
+#screen-checkin h2,
+#screen-success h2,
+#screen-ai-insight h2,
+#screen-tutorial h2,
+#screen-bedtime h2,
+#screen-profile h2,
+#profile-display-name {
+  color: var(--ui-text-strong) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.dune-hero h3 {
+  font-size: 1.42rem !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.dune-hero .text-xs.tracking-\[0\.18em\] {
+  color: var(--ui-text-strong) !important;
+  font-size: 0.95rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+}
+
+#today-session-text,
+#next-reminder-countdown {
+  color: var(--ui-text-body) !important;
+  font-size: 0.98rem !important;
+  line-height: 1.65 !important;
+}
+
+#home-ring-done,
+#home-ring-total,
+#current-session-index,
+#checkin-seconds,
+#next-reminder-time,
+#home-offering-pool,
+#profile-current-pool,
+#profile-lifetime-money,
+#success-money,
+#seed-wealth-count,
+#seed-kindness-count,
+#seed-health-count,
+#profile-xp {
+  color: var(--ui-number) !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.78);
+}
+
+#current-session-index {
+  font-size: 1.75rem !important;
+}
+
+#next-reminder-time {
+  font-size: 2.1rem !important;
+}
+
+.seed-overview > button p:first-of-type {
+  font-size: 2.35rem !important;
+  line-height: 1 !important;
+}
+
+.seed-overview > button p:last-child,
+#seed-debug p:first-child,
+.offering-card h3,
+.insight-preview h3 {
+  color: var(--ui-text-strong) !important;
+  font-size: 1.2rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#seed-debug p:last-child,
+.offering-card p,
+.insight-preview p {
+  font-size: 0.98rem !important;
+  line-height: 1.65 !important;
+}
+
+.paper-btn,
+#btn-withdraw-pool,
+#btn-enable-notifications,
+#btn-submit-checkin,
+#btn-success-home,
+#btn-tutorial-back,
+#btn-bedtime-done,
+#btn-save-reminders,
+#btn-save-profile {
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.12);
+}
+
+.tag-chip {
+  color: var(--ui-text-body) !important;
+  font-weight: 700 !important;
+}
+
+.tag-chip.active {
+  color: var(--ui-paper) !important;
+}
+
+.nav-item span:last-child {
+  color: currentColor !important;
+  font-size: 0.86rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+}
+
+input,
+textarea {
+  color: var(--ui-text-strong) !important;
+  font-weight: 650 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(63,58,45,0.58) !important;
+  font-weight: 600 !important;
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.62rem !important;
+  }
+
+  #greeting-text {
+    font-size: 2.26rem !important;
+  }
+
+  .dune-hero h3 {
+    font-size: 1.34rem !important;
+  }
+}
+
+/* NOTE: 最终参考图风格层：羊皮纸、藤蔓边框、鼠尾草绿色按钮。 */
+:root {
+  --botanical-paper: #f3f0e6;
+  --botanical-paper-deep: #e7dfcf;
+  --botanical-panel: rgba(250, 248, 239, 0.82);
+  --botanical-panel-solid: #f9f7ef;
+  --botanical-ink: #302e27;
+  --botanical-muted: #6f6b5e;
+  --botanical-sage: #89927d;
+  --botanical-sage-dark: #626b5c;
+  --botanical-stem: #7c876f;
+  --botanical-gold: #a59672;
+  --botanical-line: rgba(118, 113, 91, 0.45);
+  --botanical-shadow: 0 4px 10px rgba(66, 58, 42, 0.12);
+  --botanical-inner: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+html {
+  background: #ddd6c7;
+}
+
+body.dune-body {
+  background:
+    radial-gradient(780px 520px at 50% 0%, rgba(255, 252, 242, 0.88), transparent 68%),
+    linear-gradient(180deg, #d9d1c0 0%, #cfc5b3 100%) !important;
+  color: var(--botanical-ink) !important;
+}
+
+body.dune-body::before {
+  background: var(--grain) !important;
+  opacity: 0.08 !important;
+  mix-blend-mode: multiply;
+}
+
+body.dune-body::after {
+  display: none !important;
+}
+
+.app-shell {
+  max-width: 430px;
+  height: 100dvh;
+  min-height: 100dvh;
+  overflow: hidden;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(180deg, rgba(247, 244, 234, 0.94), rgba(241, 236, 224, 0.96)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 220px 220px !important;
+  box-shadow: 0 18px 48px rgba(53, 45, 34, 0.22) !important;
+}
+
+.app-shell::before {
+  inset: 0.35rem 0.42rem calc(4.95rem + env(safe-area-inset-bottom, 0px));
+  z-index: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: url("assets/botanical-baroque-frame.svg") center top / 100% 100% no-repeat !important;
+  opacity: 0.92 !important;
+  mix-blend-mode: multiply;
+}
+
+.app-shell::after {
+  inset: 0;
+  z-index: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(90deg, rgba(98, 107, 92, 0.08), transparent 7%, transparent 93%, rgba(98, 107, 92, 0.08)),
+    var(--grain) !important;
+  opacity: 0.11 !important;
+  mix-blend-mode: multiply;
+}
+
+#app {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow-y: auto !important;
+  padding-top: 4.4rem !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.screen {
+  padding-bottom: calc(6.25rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.app-header {
+  height: 4.1rem !important;
+  padding: 0 2.25rem !important;
+  border: 0 !important;
+  background: linear-gradient(180deg, rgba(246, 243, 234, 0.86), rgba(246, 243, 234, 0)) !important;
+  backdrop-filter: none !important;
+}
+
+.app-header::after {
+  display: none !important;
+}
+
+.brand-logo-header {
+  width: 1.55rem !important;
+  height: 1.55rem !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.74;
+}
+
+.app-header h1 {
+  color: var(--botanical-muted) !important;
+  font-size: 0.92rem !important;
+  letter-spacing: 0.18em !important;
+  text-shadow: none !important;
+}
+
+.auth-stage,
+.home-stage,
+.timeline-stage,
+.checkin-stage,
+.success-stage,
+.insight-stage,
+.guide-stage,
+.bedtime-stage,
+.profile-stage {
+  position: relative;
+  z-index: 1;
+  padding-left: clamp(2.35rem, 8vw, 3rem) !important;
+  padding-right: clamp(2.35rem, 8vw, 3rem) !important;
+}
+
+.auth-stage {
+  min-height: calc(100dvh - 9.2rem) !important;
+  align-items: start !important;
+  padding-top: 1.4rem !important;
+}
+
+.auth-stage > div {
+  max-width: 20rem !important;
+  padding-top: 0.35rem;
+}
+
+.brand-logo-hero {
+  display: none !important;
+}
+
+#screen-auth h2 {
+  display: inline-block;
+  position: relative;
+  margin-top: 0.2rem;
+  padding: 0.38rem 1.6rem 0.42rem;
+  border: 1px solid rgba(149, 139, 112, 0.54);
+  border-radius: 6px;
+  background: linear-gradient(180deg, #dfd4bf, #d6c8ae) !important;
+  color: var(--botanical-ink) !important;
+  font-size: 1.45rem !important;
+  letter-spacing: 0.08em !important;
+  box-shadow: var(--botanical-inner), 0 2px 0 rgba(91, 82, 60, 0.08);
+}
+
+#screen-auth h2::before,
+#screen-auth h2::after {
+  content: "";
+  position: absolute;
+  top: 0.42rem;
+  width: 1.1rem;
+  height: 1.02rem;
+  border: 1px solid rgba(149, 139, 112, 0.5);
+  background: #d0c1a8;
+}
+
+#screen-auth h2::before {
+  left: -1rem;
+  transform: skewY(-14deg);
+}
+
+#screen-auth h2::after {
+  right: -1rem;
+  transform: skewY(14deg);
+}
+
+#screen-auth .space-y-3.text-center p {
+  margin: 2.7rem auto 0 !important;
+  color: var(--botanical-ink) !important;
+  font-size: 0.98rem !important;
+  line-height: 1.8 !important;
+}
+
+#screen-auth .space-y-4 {
+  position: relative;
+}
+
+#screen-auth .space-y-4::before,
+#screen-auth .space-y-4::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin: 0.6rem 0 1.05rem;
+  background: linear-gradient(90deg, transparent, rgba(108, 101, 78, 0.62), transparent);
+}
+
+#screen-auth .space-y-4::after {
+  margin: 1.05rem 0 0.25rem;
+}
+
+.home-stage {
+  padding-top: 0.2rem !important;
+}
+
+.home-heading {
+  display: block !important;
+  min-height: 7.1rem;
+  padding-top: 0.1rem;
+  text-align: center;
+}
+
+.home-heading > div:first-child {
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+#greeting-text {
+  color: var(--botanical-ink) !important;
+  font-size: clamp(2.05rem, 1.82rem + 0.95vw, 2.45rem) !important;
+  line-height: 1.16 !important;
+  letter-spacing: 0.08em !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.78) !important;
+}
+
+#greeting-text::after,
+.app-header h1::after,
+#profile-display-name::after {
+  display: none !important;
+}
+
+.home-heading p {
+  width: 100%;
+  max-width: 17.5rem !important;
+  margin: 1.55rem auto 0 !important;
+  color: var(--botanical-ink) !important;
+  font-size: 0.96rem !important;
+  font-weight: 700 !important;
+  text-align: left;
+}
+
+.home-heading > div:last-child {
+  position: absolute !important;
+  top: 4.52rem !important;
+  right: 3.05rem !important;
+  padding: 0.25rem 0.62rem !important;
+  border: 1px solid rgba(126, 136, 111, 0.26) !important;
+  border-radius: 999px !important;
+  background: rgba(250, 248, 239, 0.82) !important;
+  color: var(--botanical-muted) !important;
+  box-shadow: 0 2px 4px rgba(66, 58, 42, 0.06) !important;
+  font-size: 0.78rem !important;
+}
+
+.paper-card,
+.paper-card-soft,
+.home-stage .paper-card,
+.home-stage .paper-card-soft,
+.timeline-stage .paper-card,
+.timeline-stage .paper-card-soft,
+.checkin-stage .paper-card,
+.checkin-stage .paper-card-soft,
+.guide-stage .paper-card,
+.guide-stage .paper-card-soft,
+.bedtime-stage .paper-card,
+.bedtime-stage .paper-card-soft,
+.profile-stage .paper-card,
+.profile-stage .paper-card-soft,
+.success-stage .paper-card,
+.success-stage .paper-card-soft,
+.insight-stage .paper-card,
+.insight-stage .paper-card-soft,
+#timeline-detail > div,
+#ai-report-content > div {
+  overflow: hidden;
+  border: 1px solid var(--botanical-line) !important;
+  border-radius: 8px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 246, 0.82), rgba(246, 242, 231, 0.74)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 220px 220px !important;
+  box-shadow: var(--botanical-shadow), var(--botanical-inner) !important;
+  backdrop-filter: none !important;
+}
+
+.paper-card::before,
+.paper-card-soft::before,
+.paper-card::after,
+.paper-card-soft::after {
+  display: none !important;
+}
+
+.paper-card > *,
+.paper-card-soft > * {
+  position: relative;
+  z-index: 1;
+}
+
+.dune-hero {
+  display: block !important;
+  min-height: 11.9rem !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  border-color: rgba(126, 136, 111, 0.3) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 246, 0.82), rgba(246, 242, 231, 0.72)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 220px 220px !important;
+  box-shadow: var(--botanical-shadow), var(--botanical-inner) !important;
+}
+
+.dune-hero > div:first-child {
+  width: 100% !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.dune-hero > div:first-child .relative {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  width: 4.8rem !important;
+  height: 4.8rem !important;
+  flex: 0 0 4.8rem;
+}
+
+.dune-hero .text-xs.tracking-\[0\.18em\] {
+  display: block !important;
+  width: auto !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--botanical-muted) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  transform: none !important;
+}
+
+.dune-hero h3 {
+  color: var(--botanical-ink) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#today-session-text {
+  color: var(--botanical-muted) !important;
+  font-size: 0.87rem !important;
+  line-height: 1.65 !important;
+}
+
+.dune-hero > div:last-child {
+  width: 100% !important;
+  margin-top: 0.8rem !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(126, 136, 111, 0.24) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0.78rem 0 0 !important;
+}
+
+#next-reminder-time {
+  color: var(--botanical-sage-dark) !important;
+  font-size: 1.85rem !important;
+  line-height: 1 !important;
+}
+
+#next-reminder-label {
+  background: rgba(137, 146, 125, 0.16) !important;
+  color: var(--botanical-sage-dark) !important;
+}
+
+#next-reminder-countdown {
+  color: var(--botanical-muted) !important;
+  font-size: 0.78rem !important;
+}
+
+#home-ring-progress,
+#checkin-timer-ring {
+  color: var(--botanical-sage) !important;
+  filter: none !important;
+}
+
+#timer-box {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.seed-overview {
+  gap: 0.72rem !important;
+}
+
+.seed-overview > button {
+  min-height: 7.95rem !important;
+  padding: 1rem 0.54rem 0.86rem !important;
+  border-radius: 28px !important;
+  text-align: center !important;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 246, 0.94), rgba(244, 241, 231, 0.9)),
+    var(--ui-paper-texture) !important;
+  box-shadow: 0 5px 10px rgba(70, 63, 45, 0.14), var(--botanical-inner) !important;
+}
+
+.seed-overview > button .h-11,
+.introspection-row .h-12,
+.profile-stage .h-16,
+.insight-stage .h-16,
+#screen-success .h-32 {
+  width: 2.7rem !important;
+  height: 2.7rem !important;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid rgba(126, 136, 111, 0.28) !important;
+  border-radius: 999px !important;
+  background: rgba(250, 248, 239, 0.72) !important;
+  box-shadow: none !important;
+}
+
+.seed-overview > button .material-symbols-outlined,
+.introspection-row .material-symbols-outlined,
+.profile-stage .material-symbols-outlined,
+.insight-stage .material-symbols-outlined,
+#screen-success .material-symbols-outlined {
+  color: var(--botanical-sage-dark) !important;
+}
+
+.seed-overview > button p:first-of-type {
+  color: var(--botanical-gold) !important;
+  font-size: 1.72rem !important;
+}
+
+.seed-overview > button p:last-child {
+  color: var(--botanical-ink) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
+
+.introspection-row {
+  align-items: center !important;
+  border-radius: 8px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 246, 0.86), rgba(246, 242, 231, 0.78)),
+    var(--ui-paper-texture) !important;
+}
+
+.introspection-row .h-12 {
+  margin: 0 !important;
+}
+
+.offering-card,
+.insight-preview {
+  border-radius: 8px !important;
+}
+
+.paper-btn,
+#btn-auth-login,
+#btn-submit-checkin,
+#btn-success-home,
+#btn-tutorial-back,
+#btn-bedtime-done,
+#btn-save-reminders,
+#btn-save-profile {
+  min-height: 2.85rem;
+  border: 1px solid rgba(95, 105, 86, 0.38) !important;
+  border-radius: 5px !important;
+  background: var(--botanical-sage) !important;
+  color: #fffdf5 !important;
+  box-shadow: 0 2px 0 rgba(78, 84, 69, 0.22), var(--botanical-inner) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  text-shadow: none !important;
+}
+
+.paper-btn::before,
+#btn-withdraw-pool::before,
+#btn-enable-notifications::before {
+  display: none !important;
+}
+
+#btn-auth-register,
+#btn-withdraw-pool,
+#btn-enable-notifications,
+#btn-show-tutorial,
+#btn-logout {
+  border: 1px solid rgba(149, 139, 112, 0.44) !important;
+  border-radius: 5px !important;
+  background: #b4a384 !important;
+  color: #fffdf5 !important;
+  box-shadow: 0 2px 0 rgba(91, 82, 60, 0.2), var(--botanical-inner) !important;
+}
+
+button,
+input,
+textarea {
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+button:active {
+  transform: translateY(1px) scale(0.995);
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(137, 146, 125, 0.2) !important;
+}
+
+input,
+textarea {
+  border: 1px solid var(--botanical-line) !important;
+  border-radius: 7px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 247, 0.88), rgba(247, 243, 232, 0.78)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 220px 220px !important;
+  color: var(--botanical-ink) !important;
+  box-shadow: var(--botanical-inner) !important;
+  font-weight: 500 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(111, 107, 94, 0.64) !important;
+  font-weight: 500 !important;
+}
+
+.text-ink,
+.text-primary,
+.text-secondary,
+.text-tertiary,
+.text-green-700,
+.paper-card h2,
+.paper-card h3,
+.paper-card-soft h2,
+.paper-card-soft h3,
+.paper-card span,
+.paper-card-soft span {
+  color: var(--botanical-ink) !important;
+}
+
+.text-muted,
+.home-stage .text-muted,
+.profile-stage .text-muted,
+.checkin-stage .text-muted,
+.timeline-stage .text-muted,
+.guide-stage .text-muted,
+.bedtime-stage .text-muted,
+.insight-stage .text-muted,
+.paper-card p,
+.paper-card-soft p {
+  color: var(--botanical-muted) !important;
+}
+
+#home-ring-done,
+#home-ring-total,
+#current-session-index,
+#checkin-seconds,
+#home-offering-pool,
+#profile-current-pool,
+#profile-lifetime-money,
+#success-money,
+#profile-xp {
+  color: var(--botanical-sage-dark) !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+.tag-chip {
+  border: 1px solid rgba(126, 136, 111, 0.32) !important;
+  border-radius: 999px !important;
+  background: rgba(250, 248, 239, 0.82) !important;
+  color: var(--botanical-ink) !important;
+  box-shadow: 0 2px 4px rgba(66, 58, 42, 0.08) !important;
+  font-weight: 600 !important;
+}
+
+.tag-chip.active {
+  border-color: rgba(98, 107, 92, 0.52) !important;
+  background: var(--botanical-sage) !important;
+  color: #fffdf5 !important;
+}
+
+#calendar-grid > .calendar-cell {
+  border: 1px solid rgba(126, 136, 111, 0.28) !important;
+  border-radius: 7px !important;
+  background: rgba(250, 248, 239, 0.7) !important;
+  color: var(--botanical-ink) !important;
+  box-shadow: none !important;
+}
+
+#calendar-grid > .calendar-cell.bg-primary\/10,
+#calendar-grid > .calendar-cell.bg-primary\/25,
+#calendar-grid > .calendar-cell.bg-primary\/40 {
+  background: rgba(137, 146, 125, 0.24) !important;
+}
+
+#calendar-grid > .calendar-cell.bg-primary,
+#calendar-grid > .calendar-cell.is-selected {
+  background: var(--botanical-sage) !important;
+  color: #fffdf5 !important;
+}
+
+#calendar-grid > .calendar-cell.is-today {
+  outline: 1px solid rgba(165, 150, 114, 0.72);
+  outline-offset: 2px;
+}
+
+#calendar-grid > .calendar-blank {
+  border-color: transparent !important;
+  background: transparent !important;
+}
+
+#timeline-detail > div,
+#ai-report-content > div {
+  border-radius: 8px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 246, 0.78), rgba(246, 242, 231, 0.7)),
+    var(--ui-paper-texture) !important;
+}
+
+.profile-identity {
+  align-items: center !important;
+}
+
+.avatar-frame {
+  border-color: rgba(126, 136, 111, 0.36) !important;
+  background: rgba(250, 248, 239, 0.84) !important;
+}
+
+.avatar-edit-pill {
+  background: var(--botanical-sage) !important;
+  color: #fffdf5 !important;
+}
+
+#auth-error {
+  border-color: rgba(132, 74, 58, 0.25) !important;
+  background: rgba(252, 238, 231, 0.82) !important;
+  color: #884a3a !important;
+}
+
+#profile-save-feedback,
+#reminder-save-feedback,
+#withdraw-feedback,
+#auth-toggle-link,
+#notification-status {
+  color: var(--botanical-sage-dark) !important;
+}
+
+#bottom-nav {
+  height: calc(4.9rem + env(safe-area-inset-bottom, 0px)) !important;
+  padding: 0 1.75rem env(safe-area-inset-bottom, 0px) !important;
+  border: 0 !important;
+  border-top: 1px solid rgba(126, 136, 111, 0.28) !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(180deg, rgba(246, 242, 231, 0.88), rgba(238, 232, 218, 0.96)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 220px 220px !important;
+  box-shadow: 0 -5px 14px rgba(66, 58, 42, 0.08) !important;
+  backdrop-filter: blur(10px);
+}
+
+#bottom-nav::before {
+  top: -0.52rem;
+  left: 1.7rem;
+  right: 1.7rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(126, 136, 111, 0.5), transparent) !important;
+  opacity: 1 !important;
+}
+
+.nav-item {
+  gap: 0.16rem !important;
+  color: var(--botanical-muted) !important;
+}
+
+.nav-item.text-primary,
+.nav-item.text-muted {
+  color: var(--botanical-muted) !important;
+}
+
+.nav-item.text-primary {
+  color: var(--botanical-sage-dark) !important;
+}
+
+.nav-item.text-primary::after {
+  display: none !important;
+}
+
+.nav-icon {
+  width: 1.35rem !important;
+  height: 1.35rem !important;
+  stroke-width: 1.45 !important;
+}
+
+.nav-item span:last-child {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+
+.nav-item.text-primary .nav-icon {
+  color: var(--botanical-sage-dark) !important;
+  filter: none !important;
+}
+
+.material-symbols-outlined {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: currentColor;
+  font-size: 0 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+  text-indent: 0 !important;
+}
+
+.material-symbols-outlined::before {
+  content: "";
+  display: block;
+  width: 1.08rem;
+  height: 1.08rem;
+  border: 1.45px solid currentColor;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 58%, currentColor 0 0.1rem, transparent 0.12rem),
+    linear-gradient(90deg, transparent 47%, currentColor 48% 52%, transparent 53%);
+  opacity: 0.82;
+}
+
+#btn-global-back .material-symbols-outlined::before,
+.insight-preview .material-symbols-outlined::before {
+  width: 0.62rem;
+  height: 0.62rem;
+  border: 0;
+  border-top: 1.7px solid currentColor;
+  border-right: 1.7px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  opacity: 0.78;
+}
+
+#btn-global-back .material-symbols-outlined::before {
+  transform: rotate(-135deg);
+}
+
+.insight-preview .material-symbols-outlined::before {
+  transform: rotate(45deg);
+}
+
+#btn-show-tutorial .material-symbols-outlined::before {
+  content: "?";
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--botanical-sage-dark);
+  font-family: "Huiwen", "WenKai", "Kaiti SC", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.bedtime-stage label .material-symbols-outlined::before {
+  width: 0.82rem;
+  height: 0.82rem;
+}
+
+.rounded-2xl,
+.rounded-3xl,
+button.rounded-2xl,
+button.rounded-xl {
+  border-radius: 8px !important;
+}
+
+.rounded-full {
+  border-radius: 999px !important;
+}
+
+@media (max-width: 480px) {
+  .app-shell::before {
+    inset: 0.25rem 0.26rem calc(4.7rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .app-header {
+    height: 3.95rem !important;
+    padding: 0 2.1rem !important;
+  }
+
+  #app {
+    padding-top: 4.15rem !important;
+  }
+
+  .auth-stage,
+  .home-stage,
+  .timeline-stage,
+  .checkin-stage,
+  .success-stage,
+  .insight-stage,
+  .guide-stage,
+  .bedtime-stage,
+  .profile-stage {
+    padding-left: 2.45rem !important;
+    padding-right: 2.45rem !important;
+  }
+
+  #greeting-text {
+    font-size: 2.05rem !important;
+  }
+
+  .home-heading > div:last-child {
+    right: 2.65rem !important;
+  }
+
+  .dune-hero {
+    min-height: 12.2rem !important;
+  }
+
+  .seed-overview > button {
+    min-height: 7.75rem !important;
+    padding-left: 0.42rem !important;
+    padding-right: 0.42rem !important;
+  }
+
+  #bottom-nav {
+    height: calc(4.72rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* NOTE: 根据用户提供的高分辨率参考图继续提高还原度。 */
+:root {
+  --ref-paper: #f4f1e8;
+  --ref-paper-soft: #fbfaf5;
+  --ref-ink: #3f3621;
+  --ref-muted: #786f58;
+  --ref-line: rgba(138, 128, 95, 0.42);
+  --ref-sage: #8c9887;
+  --ref-tan: #b9a98d;
+  --ref-shadow: 0 8px 18px rgba(76, 68, 48, 0.16);
+}
+
+body.dune-body {
+  background: #d8d1c2 !important;
+}
+
+.app-shell {
+  height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(520px 420px at 50% 4%, rgba(255, 255, 250, 0.82), transparent 72%),
+    linear-gradient(180deg, rgba(248, 246, 238, 0.98), rgba(239, 234, 222, 0.98)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, auto, 180px 180px !important;
+}
+
+.app-shell::before,
+.app-shell::after {
+  display: block !important;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 24.5%;
+  pointer-events: none;
+  opacity: 0.98 !important;
+  mix-blend-mode: multiply;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.app-shell::before {
+  left: 0;
+  right: auto;
+  background: url("assets/stitch-derived/garden-frame-left.png") left top / 100% 100% no-repeat !important;
+}
+
+.app-shell::after {
+  left: auto;
+  right: 0;
+  background: url("assets/stitch-derived/garden-frame-right.png") right top / 100% 100% no-repeat !important;
+}
+
+.app-header {
+  height: 2.2rem !important;
+  background: transparent !important;
+}
+
+.brand-logo-header,
+.app-header h1,
+#header-avatar-button {
+  display: none !important;
+}
+
+#app {
+  height: 100%;
+  overflow-y: auto !important;
+  padding-top: 3.45rem !important;
+}
+
+.auth-stage,
+.home-stage,
+.timeline-stage,
+.checkin-stage,
+.success-stage,
+.insight-stage,
+.guide-stage,
+.bedtime-stage,
+.profile-stage {
+  padding-left: clamp(4.2rem, 17vw, 4.8rem) !important;
+  padding-right: clamp(4.2rem, 17vw, 4.8rem) !important;
+}
+
+.home-stage {
+  padding-top: 1.35rem !important;
+}
+
+.home-heading {
+  min-height: 10.9rem !important;
+  padding-top: 0 !important;
+}
+
+#greeting-text {
+  color: var(--ref-ink) !important;
+  font-size: 2.45rem !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0.06em !important;
+  white-space: nowrap;
+}
+
+.home-heading p {
+  margin-top: 3.9rem !important;
+  color: var(--ref-ink) !important;
+  font-size: 1.5rem !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  text-align: left !important;
+}
+
+.home-heading > div:last-child {
+  display: none !important;
+}
+
+.recorded-garden,
+.dune-hero {
+  display: grid !important;
+  gap: 0.85rem !important;
+  min-height: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.recorded-seed-card {
+  min-height: 4.08rem;
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.25rem;
+  border: 1px solid rgba(149, 141, 112, 0.34);
+  border-radius: 0.82rem;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.98), rgba(248, 245, 237, 0.95)),
+    var(--ui-paper-texture);
+  background-size: auto, 180px 180px;
+  box-shadow: 0 8px 16px rgba(74, 66, 47, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.recorded-seed-card p {
+  color: var(--ref-ink) !important;
+  font-size: 1.18rem !important;
+  line-height: 1.45 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+}
+
+.seed-overview {
+  position: relative;
+  margin-top: 5.35rem !important;
+  gap: 0.82rem !important;
+}
+
+.seed-overview::before {
+  content: "新生种子";
+  position: absolute;
+  left: 0.28rem;
+  top: -3.25rem;
+  color: var(--ref-ink);
+  font-family: "Huiwen", "WenKai", "Kaiti SC", serif;
+  font-size: 1.62rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.seed-overview > button {
+  min-height: 8.95rem !important;
+  padding: 1.2rem 0.5rem 1.02rem !important;
+  border: 1px solid rgba(147, 139, 109, 0.5) !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 248, 0.98), rgba(247, 244, 234, 0.96)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 180px 180px !important;
+  box-shadow: 0 8px 14px rgba(74, 66, 47, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+.seed-overview > button::before {
+  content: "";
+  position: absolute;
+  inset: 0.28rem;
+  display: block !important;
+  border: 1px solid rgba(147, 139, 109, 0.34);
+  border-radius: inherit;
+  background: transparent;
+  pointer-events: none;
+}
+
+.seed-overview > button::after {
+  display: none !important;
+}
+
+.seed-overview > button .h-11 {
+  width: 3rem !important;
+  height: 3rem !important;
+  margin-bottom: 0.86rem !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.seed-line-icon {
+  width: 2.72rem;
+  height: 2.72rem;
+  fill: none;
+  stroke: var(--ref-ink);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.seed-overview > button p:first-of-type {
+  display: none !important;
+}
+
+.seed-overview > button p:last-child {
+  color: var(--ref-ink) !important;
+  font-size: 1.03rem !important;
+  line-height: 1.18 !important;
+  font-weight: 700 !important;
+  white-space: nowrap;
+}
+
+.offering-card {
+  margin-top: 13.2rem !important;
+}
+
+.insight-preview {
+  margin-top: 1rem !important;
+}
+
+#bottom-nav {
+  left: 4.5rem !important;
+  right: 4.5rem !important;
+  bottom: 1.35rem !important;
+  width: auto !important;
+  height: 4.08rem !important;
+  padding: 0 0.35rem !important;
+  border: 1px solid rgba(149, 141, 112, 0.35) !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.97), rgba(246, 242, 232, 0.94)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 180px 180px !important;
+  box-shadow: 0 9px 18px rgba(74, 66, 47, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+#bottom-nav::before {
+  display: none !important;
+}
+
+.nav-icon {
+  width: 1.55rem !important;
+  height: 1.55rem !important;
+  color: currentColor;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.65 !important;
+}
+
+.nav-item {
+  color: #8a8170 !important;
+  gap: 0.08rem !important;
+}
+
+.nav-item.text-primary {
+  color: #3f3621 !important;
+}
+
+.nav-item span:last-child {
+  color: currentColor !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+}
+
+.paper-card,
+.paper-card-soft,
+#timeline-detail > div,
+#ai-report-content > div {
+  border-color: rgba(149, 141, 112, 0.34) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.88), rgba(246, 242, 232, 0.78)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 180px 180px !important;
+}
+
+.paper-btn,
+#btn-auth-login,
+#btn-submit-checkin,
+#btn-success-home,
+#btn-tutorial-back,
+#btn-bedtime-done,
+#btn-save-reminders,
+#btn-save-profile {
+  background: var(--ref-sage) !important;
+}
+
+#btn-auth-register,
+#btn-withdraw-pool,
+#btn-enable-notifications,
+#btn-show-tutorial,
+#btn-logout {
+  background: var(--ref-tan) !important;
+}
+
+@media (max-width: 480px) {
+  .auth-stage,
+  .home-stage,
+  .timeline-stage,
+  .checkin-stage,
+  .success-stage,
+  .insight-stage,
+  .guide-stage,
+  .bedtime-stage,
+  .profile-stage {
+    padding-left: 4.05rem !important;
+    padding-right: 4.05rem !important;
+  }
+
+  #greeting-text {
+    font-size: 2.36rem !important;
+  }
+
+  .recorded-seed-card {
+    min-height: 4rem;
+    padding-left: 1.12rem;
+    padding-right: 1.12rem;
+  }
+
+  .recorded-seed-card p {
+    font-size: 1.08rem !important;
+  }
+
+  .seed-overview > button {
+    min-height: 8.75rem !important;
+  }
+
+  #bottom-nav {
+    left: 4.05rem !important;
+    right: 4.05rem !important;
+  }
+}
+
+/* NOTE: 将早期不透明边框切图改为透明植物覆盖层，保持纸纹连续。 */
+.app-shell {
+  background:
+    radial-gradient(620px 520px at 50% 0%, rgba(255, 255, 250, 0.92), rgba(255, 255, 250, 0.35) 58%, transparent 74%),
+    linear-gradient(180deg, rgba(246, 243, 234, 0.98), rgba(239, 234, 222, 0.98)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, auto, 160px 160px !important;
+}
+
+.app-shell::before {
+  width: 26%;
+  background: url("assets/stitch-derived/garden-left-overlay.png") left top / 100% 100% no-repeat !important;
+}
+
+.app-shell::after {
+  width: 26%;
+  background: url("assets/stitch-derived/garden-right-overlay.png") right top / 100% 100% no-repeat !important;
+}
+
+.auth-stage,
+.home-stage,
+.timeline-stage,
+.checkin-stage,
+.guide-stage,
+.bedtime-stage,
+.profile-stage,
+.success-stage,
+.insight-stage {
+  background: transparent !important;
+}
+
+.home-stage::before,
+.timeline-stage::before,
+.profile-stage::before,
+.checkin-stage::before,
+.guide-stage::before,
+.bedtime-stage::before,
+.home-stage::after,
+.timeline-stage::after,
+.checkin-stage::after,
+.guide-stage::after,
+.bedtime-stage::after,
+.profile-stage::after,
+.success-stage::after,
+.auth-stage::after,
+.insight-stage::after {
+  display: none !important;
+}
+
+.dune-hero > div:first-child,
+.dune-hero > div:last-child,
+.recorded-garden > div:first-child,
+.recorded-garden > div:last-child {
+  width: 100% !important;
+  margin: 0 !important;
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.98), rgba(248, 245, 237, 0.95)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 180px 180px !important;
+}
+
+.recorded-garden {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+#screen-checkin .focus-panel {
+  margin-top: 0.35rem !important;
+  padding-top: 6.25rem !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#screen-checkin .focus-panel::before {
+  content: "播种新思";
+  display: block !important;
+  position: absolute;
+  top: 0.35rem;
+  left: 50%;
+  min-width: 12rem;
+  padding: 0.45rem 1.25rem 0.5rem;
+  border: 1px solid rgba(149, 139, 112, 0.54);
+  border-radius: 999px 999px 18px 18px / 52px 52px 18px 18px;
+  background: linear-gradient(180deg, rgba(224, 216, 199, 0.94), rgba(205, 194, 172, 0.9));
+  color: var(--ref-ink);
+  font-family: "Huiwen", "WenKai", "Kaiti SC", serif;
+  font-size: 1.48rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  text-align: center;
+  transform: translateX(-50%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+#screen-checkin .focus-panel::after {
+  content: "";
+  display: block !important;
+  position: absolute;
+  left: 1.4rem;
+  right: 1.4rem;
+  top: 9.1rem;
+  height: 11rem;
+  border-top: 3px double rgba(149, 139, 112, 0.62);
+  border-bottom: 3px double rgba(149, 139, 112, 0.62);
+  pointer-events: none;
+}
+
+#checkin-session-meta,
+#checkin-slot-label {
+  display: none !important;
+}
+
+#checkin-session-label {
+  color: var(--ref-ink) !important;
+  font-size: 1.08rem !important;
+  line-height: 1.4 !important;
+}
+
+#screen-checkin #timer-box {
+  width: 8.2rem !important;
+  height: 8.2rem !important;
+  margin-top: 2rem;
+  opacity: 0.84;
+}
+
+#screen-checkin .mt-5.space-y-4 .paper-card {
+  min-height: 13rem;
+}
+
+#checkin-note {
+  min-height: 11rem !important;
+  padding-top: 1.2rem !important;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .auth-stage,
+  .home-stage,
+  .timeline-stage,
+  .checkin-stage,
+  .success-stage,
+  .insight-stage,
+  .guide-stage,
+  .bedtime-stage,
+  .profile-stage {
+    padding-left: 4.55rem !important;
+    padding-right: 4.55rem !important;
+  }
+
+  #bottom-nav {
+    left: 4.55rem !important;
+    right: 4.55rem !important;
+  }
+}
+
+/* NOTE: 首页进一步贴近用户提供的植物巴洛克参考图。 */
+#screen-home .home-heading {
+  min-height: 7.9rem !important;
+}
+
+#screen-home .home-heading p {
+  margin-top: 3.2rem !important;
+}
+
+#screen-home .recorded-garden {
+  gap: 0.6rem !important;
+}
+
+#screen-home .recorded-seed-card,
+#screen-home .recorded-garden > div:first-child,
+#screen-home .recorded-garden > div:last-child {
+  min-height: 3.32rem !important;
+  padding: 0.48rem 1.14rem !important;
+  border-radius: 0.72rem !important;
+}
+
+#screen-home .recorded-seed-card p {
+  font-size: 1.08rem !important;
+  line-height: 1.34 !important;
+}
+
+#screen-home .seed-overview {
+  margin-top: 3.55rem !important;
+}
+
+#screen-home .seed-overview::before {
+  top: -2.35rem !important;
+  font-size: 1.5rem !important;
+}
+
+#screen-home #seed-wealth,
+#screen-home #seed-kindness,
+#screen-home #seed-health {
+  min-height: 8.05rem !important;
+  border-color: rgba(147, 139, 109, 0.46) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.98), rgba(247, 244, 234, 0.96)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 180px 180px !important;
+}
+
+#screen-home .seed-overview > button .h-11 {
+  margin-bottom: 0.66rem !important;
+}
+
+#screen-home .seed-line-icon {
+  width: 2.52rem;
+  height: 2.52rem;
+  stroke: var(--ref-ink);
+}
+
+#screen-home .seed-overview > button p:last-child {
+  font-size: 1rem !important;
+}
+
+#screen-home #seed-debug {
+  margin-top: 22rem !important;
+}
+
+#screen-home .offering-card {
+  margin-top: 1rem !important;
+}
+
+#app {
+  scrollbar-width: none;
+}
+
+#app::-webkit-scrollbar {
+  display: none;
+}
+
+/* NOTE: 植物边框必须属于可滚动内容，而不是固定在外层手机壳上。 */
+.app-shell::before,
+.app-shell::after {
+  display: none !important;
+}
+
+#app {
+  position: relative;
+}
+
+#app::before,
+#app::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  z-index: 0;
+  width: 26%;
+  height: calc(100dvh - 1.35rem);
+  pointer-events: none;
+  opacity: 0.98;
+  mix-blend-mode: multiply;
+}
+
+#app::before {
+  left: 0;
+  background: url("assets/stitch-derived/garden-left-overlay.png") left top / 100% 100% no-repeat;
+}
+
+#app::after {
+  right: 0;
+  background: url("assets/stitch-derived/garden-right-overlay.png") right top / 100% 100% no-repeat;
+}
+
+.screen {
+  position: relative;
+  z-index: 1;
+}
+
+#bottom-nav {
+  position: absolute !important;
+  z-index: 50;
+}
+
+@media (max-width: 480px) {
+  #screen-home .home-heading {
+    min-height: 7.75rem !important;
+  }
+
+  #screen-home .recorded-seed-card,
+  #screen-home .recorded-garden > div:first-child,
+  #screen-home .recorded-garden > div:last-child {
+    min-height: 3.28rem !important;
+  }
+
+  #screen-home .seed-overview {
+    margin-top: 3.45rem !important;
+  }
+}
+
+/* NOTE: 首页按参考图重新定版，优先保证第一屏比例、完整顶栏和边框尺度。 */
+.app-shell {
+  --garden-frame-height: min(179.167vw, 770.4px);
+  --garden-top-height: min(39.323vw, 169.1px);
+  --garden-side-width: min(16.667vw, 71.7px);
+}
+
+#app::before,
+#app::after {
+  top: 0 !important;
+  width: var(--garden-side-width) !important;
+  height: var(--garden-frame-height) !important;
+  background-size: 100% 100% !important;
+}
+
+#screen-home {
+  position: relative;
+  isolation: isolate;
+}
+
+#screen-home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: var(--garden-top-height);
+  background:
+    url("assets/stitch-derived/garden-top.png") center top / 100% 100% no-repeat,
+    linear-gradient(180deg, rgba(246, 243, 234, 0.98), rgba(246, 243, 234, 0.92));
+  pointer-events: none;
+}
+
+#screen-home > * {
+  position: relative;
+  z-index: 1;
+}
+
+#app:has(#screen-home.active) {
+  padding-top: 0 !important;
+}
+
+#app:has(#screen-home.active) + #bottom-nav {
+  transform: translateY(0) !important;
+}
+
+#screen-home .home-stage {
+  padding-top: calc(var(--garden-top-height) + 1.45rem) !important;
+}
+
+#screen-home .home-stage > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.95rem !important;
+}
+
+#screen-home #greeting-text {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+#screen-home .home-heading {
+  min-height: auto !important;
+  margin: 0 !important;
+}
+
+#screen-home .home-heading p {
+  margin: 0 !important;
+  max-width: none !important;
+  color: var(--ref-ink) !important;
+  font-size: 1.46rem !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+}
+
+#screen-home .recorded-garden {
+  gap: 0.72rem !important;
+}
+
+#screen-home .recorded-seed-card,
+#screen-home .recorded-garden > div:first-child,
+#screen-home .recorded-garden > div:last-child {
+  min-height: 3.98rem !important;
+  padding: 0.72rem 1.25rem !important;
+  border-radius: 0.76rem !important;
+}
+
+#screen-home .recorded-seed-card p {
+  font-size: 1.18rem !important;
+  line-height: 1.38 !important;
+}
+
+#screen-home .home-stage > .seed-overview {
+  margin-top: 7.85rem !important;
+  column-gap: 0.84rem !important;
+  row-gap: 0.55rem !important;
+}
+
+#screen-home .seed-overview::before {
+  position: relative !important;
+  top: auto !important;
+  left: 0.18rem !important;
+  grid-column: 1 / -1;
+  display: block;
+  margin: 0 0 0.2rem !important;
+  font-size: 1.58rem !important;
+  line-height: 1.08 !important;
+}
+
+#screen-home #seed-wealth,
+#screen-home #seed-kindness,
+#screen-home #seed-health {
+  min-height: 8.75rem !important;
+  padding-top: 1.12rem !important;
+  padding-bottom: 0.92rem !important;
+}
+
+#screen-home .seed-overview > button .h-11 {
+  margin-bottom: 0.82rem !important;
+}
+
+#screen-home .seed-line-icon {
+  width: 2.7rem;
+  height: 2.7rem;
+}
+
+#screen-home .seed-overview > button p:last-child {
+  font-size: 1.02rem !important;
+}
+
+@media (max-width: 480px) {
+  #screen-home .home-stage {
+    padding-top: calc(var(--garden-top-height) + 1.35rem) !important;
+  }
+
+  #screen-home .home-heading p {
+    font-size: 1.38rem !important;
+  }
+
+  #screen-home .recorded-seed-card,
+  #screen-home .recorded-garden > div:first-child,
+  #screen-home .recorded-garden > div:last-child {
+    min-height: 3.82rem !important;
+    padding-left: 1.08rem !important;
+    padding-right: 1.08rem !important;
+  }
+
+  #screen-home .recorded-seed-card p {
+    font-size: 1.08rem !important;
+  }
+
+  #screen-home .home-stage > .seed-overview {
+    margin-top: 7.65rem !important;
+  }
+}
+
+/* NOTE: 修复花园页空白和内容层级，藤蔓由 screen 背景承载，不再撑高滚动区。 */
+#screen-home .home-stage > #seed-debug {
+  margin-top: 1rem !important;
+}
+
+#screen-home .home-stage > .offering-card,
+#screen-home .home-stage > .insight-preview {
+  margin-top: 1rem !important;
+}
+
+.screen {
+  z-index: 1 !important;
+}
+
+#screen-home::before {
+  z-index: 6 !important;
+}
+
+#screen-home > * {
+  z-index: 7 !important;
+}
+
+#bottom-nav {
+  z-index: 50 !important;
+}
+
+/* NOTE: 最终纸面化修正：藤蔓不再撑高滚动区，UI 改成更轻的纸上墨线。 */
+#app::before,
+#app::after {
+  display: none !important;
+}
+
+.screen.active {
+  background-image:
+    url("assets/stitch-derived/garden-left-overlay.png"),
+    url("assets/stitch-derived/garden-right-overlay.png") !important;
+  background-position: left top, right top !important;
+  background-size: var(--garden-side-width) var(--garden-frame-height), var(--garden-side-width) var(--garden-frame-height) !important;
+  background-repeat: repeat-y, repeat-y !important;
+}
+
+#screen-home.active {
+  background-image:
+    url("assets/stitch-derived/garden-left-overlay.png"),
+    url("assets/stitch-derived/garden-right-overlay.png") !important;
+}
+
+.paper-card,
+.paper-card-soft,
+.recorded-seed-card,
+#timeline-detail > div,
+#ai-report-content > div,
+#reminder-list input[type="time"],
+input,
+textarea {
+  border-color: rgba(116, 108, 82, 0.24) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.58), rgba(247, 244, 235, 0.48)),
+    var(--ui-paper-texture) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.62),
+    0 7px 18px rgba(74, 66, 47, 0.055) !important;
+  backdrop-filter: none !important;
+}
+
+.seed-overview > button,
+#screen-home #seed-wealth,
+#screen-home #seed-kindness,
+#screen-home #seed-health {
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.62), rgba(247, 244, 235, 0.52)),
+    var(--ui-paper-texture) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.68),
+    0 8px 16px rgba(74, 66, 47, 0.075) !important;
+}
+
+.paper-btn,
+#btn-auth-login,
+#btn-submit-checkin,
+#btn-success-home,
+#btn-tutorial-back,
+#btn-bedtime-done,
+#btn-save-reminders,
+#btn-save-profile,
+#btn-auth-register,
+#btn-withdraw-pool,
+#btn-enable-notifications,
+#btn-show-tutorial,
+#btn-logout {
+  border: 1px solid rgba(106, 113, 93, 0.32) !important;
+  background:
+    linear-gradient(180deg, rgba(145, 157, 137, 0.9), rgba(129, 142, 123, 0.86)),
+    var(--ui-paper-texture) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.36),
+    0 2px 5px rgba(68, 61, 44, 0.12) !important;
+}
+
+#btn-auth-register,
+#btn-withdraw-pool,
+#btn-enable-notifications,
+#btn-show-tutorial,
+#btn-logout {
+  background:
+    linear-gradient(180deg, rgba(188, 176, 148, 0.9), rgba(172, 160, 133, 0.86)),
+    var(--ui-paper-texture) !important;
+}
+
+.profile-stage .paper-card:nth-of-type(2) .flex.gap-3 {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 4.75rem;
+  align-items: stretch;
+  gap: 0.85rem !important;
+}
+
+#edit-display-name {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 4.35rem;
+  border-radius: 0.72rem !important;
+  font-size: 1.05rem !important;
+}
+
+#btn-save-profile {
+  width: 4.75rem;
+  min-width: 4.75rem;
+  height: 4.35rem;
+  padding: 0 !important;
+  border-radius: 0.62rem !important;
+  writing-mode: horizontal-tb !important;
+  white-space: normal !important;
+  line-height: 1.15 !important;
+}
+
+#btn-enable-notifications,
+#btn-show-tutorial {
+  position: relative;
+  z-index: 12 !important;
+  pointer-events: auto !important;
+  writing-mode: horizontal-tb !important;
+  white-space: normal !important;
+  min-width: 3.5rem;
+  min-height: 3.5rem;
+  line-height: 1.1 !important;
+}
+
+#screen-home .recorded-seed-card,
+#screen-home .recorded-garden > div:first-child,
+#screen-home .recorded-garden > div:last-child {
+  border-color: rgba(116, 108, 82, 0.2) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.42), rgba(247, 244, 235, 0.34)),
+    var(--ui-paper-texture) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.58),
+    0 5px 12px rgba(74, 66, 47, 0.045) !important;
+}
+
+#screen-home .recorded-seed-card:active {
+  transform: translateY(1px);
+}
+
+#reminder-settings-card > .flex:first-child {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start !important;
+}
+
+#btn-enable-notifications {
+  width: 4.65rem;
+  min-width: 4.65rem;
+  height: auto;
+  min-height: 3.4rem;
+  padding: 0.45rem 0.5rem !important;
+  font-size: 0.82rem !important;
 }
