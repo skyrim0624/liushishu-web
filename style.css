@@ -3923,3 +3923,337 @@ textarea {
     height: 4.2rem;
   }
 }
+
+/* NOTE: 保留植物纸面视觉，但把首页信息结构回到早期水墨版布局。 */
+#screen-home .home-stage {
+  padding-top: calc(var(--garden-top-height) + 0.95rem) !important;
+}
+
+#screen-home .home-stage > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem !important;
+}
+
+#screen-home .home-heading {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 0.95rem !important;
+  min-height: auto !important;
+  padding-top: 0 !important;
+  text-align: left !important;
+}
+
+#screen-home .home-heading > div:first-child {
+  min-width: 0;
+  max-width: 12.6rem !important;
+}
+
+#screen-home #greeting-text {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  color: var(--ref-ink) !important;
+  font-size: 1.72rem !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0.04em !important;
+  white-space: normal !important;
+}
+
+#screen-home .home-heading p {
+  margin: 0 !important;
+  max-width: none !important;
+  text-align: left !important;
+}
+
+#screen-home .home-heading p:first-child {
+  color: var(--ref-muted) !important;
+  font-size: 0.72rem !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+}
+
+#screen-home .home-heading p:last-child {
+  color: var(--ref-muted) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.62 !important;
+  font-weight: 600 !important;
+}
+
+#screen-home .home-heading > div:last-child {
+  display: block !important;
+  position: static !important;
+  flex: 0 0 auto;
+  margin-top: 0.3rem !important;
+  padding: 0.52rem 0.78rem !important;
+  border: 1px solid rgba(149, 141, 112, 0.3) !important;
+  border-radius: 0.7rem !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.62), rgba(247, 244, 235, 0.46)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 180px 180px !important;
+  color: var(--ref-ink) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.62), 0 6px 14px rgba(74, 66, 47, 0.05) !important;
+  font-size: 0.86rem !important;
+  line-height: 1.35 !important;
+  white-space: normal !important;
+}
+
+#screen-home .home-echo-card {
+  display: block !important;
+  min-height: auto !important;
+  padding: 0.92rem !important;
+  border: 1px solid rgba(116, 108, 82, 0.24) !important;
+  border-radius: 0.62rem !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.58), rgba(247, 244, 235, 0.48)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 180px 180px !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.62), 0 7px 18px rgba(74, 66, 47, 0.055) !important;
+}
+
+#screen-home .home-echo-card::before,
+#screen-home .home-echo-card::after {
+  display: none !important;
+}
+
+#screen-home .home-echo-summary {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 4.38rem;
+  gap: 0.68rem !important;
+  align-items: start !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+#screen-home .home-echo-summary h3 {
+  color: var(--ref-ink) !important;
+  font-size: 1.12rem !important;
+  line-height: 1.34 !important;
+  letter-spacing: 0.02em !important;
+}
+
+#screen-home .home-echo-summary .text-xs,
+#screen-home .home-next-reminder .text-xs {
+  color: var(--ref-muted) !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+}
+
+#screen-home #today-session-text {
+  color: var(--ref-muted) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.48 !important;
+}
+
+#screen-home .home-progress-dial {
+  width: 4.38rem !important;
+  height: 4.38rem !important;
+}
+
+#screen-home .home-next-reminder {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  margin-top: 0.78rem !important;
+  padding: 0.72rem 0.78rem !important;
+  border: 1px solid rgba(116, 108, 82, 0.2) !important;
+  border-radius: 0.58rem !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 249, 0.5), rgba(247, 244, 235, 0.38)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, 180px 180px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.52) !important;
+}
+
+#screen-home #next-reminder-time {
+  color: var(--ref-ink) !important;
+  font-size: 1.76rem !important;
+  line-height: 1 !important;
+}
+
+#screen-home #next-reminder-label {
+  background: rgba(168, 82, 104, 0.12) !important;
+  color: #9d4f73 !important;
+}
+
+#screen-home #next-reminder-countdown {
+  color: var(--ref-muted) !important;
+  font-size: 0.78rem !important;
+  line-height: 1.38 !important;
+}
+
+#screen-home #next-reminder-settings {
+  min-width: 4.65rem !important;
+  max-width: 5rem;
+  padding: 0.52rem 0.5rem !important;
+  border: 0 !important;
+  border-radius: 0.55rem !important;
+  background: transparent !important;
+  color: var(--ref-ink) !important;
+  box-shadow: none !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  line-height: 1.22 !important;
+  white-space: normal !important;
+}
+
+#screen-home .seed-overview {
+  margin-top: 1rem !important;
+  gap: 0.86rem !important;
+}
+
+#screen-home .seed-overview::before {
+  display: none !important;
+  content: none !important;
+}
+
+#screen-home #seed-wealth,
+#screen-home #seed-kindness,
+#screen-home #seed-health {
+  min-height: 9.85rem !important;
+  padding: 1.02rem 0.82rem 0.9rem !important;
+  border-radius: 0.6rem !important;
+  text-align: left !important;
+}
+
+#screen-home .seed-overview > button::before {
+  display: none !important;
+}
+
+#screen-home .seed-overview > button .h-11 {
+  width: 2.9rem !important;
+  height: 2.9rem !important;
+  margin: 0 0 1rem !important;
+  border: 1px solid rgba(126, 136, 111, 0.24) !important;
+  border-radius: 0.7rem !important;
+  background: rgba(255, 254, 249, 0.46) !important;
+}
+
+#screen-home .seed-line-icon {
+  width: 2.15rem !important;
+  height: 2.15rem !important;
+}
+
+#screen-home .seed-overview > button p:first-of-type {
+  display: block !important;
+  color: var(--ref-ink) !important;
+  font-size: 2.58rem !important;
+  line-height: 1 !important;
+  font-weight: 500 !important;
+}
+
+#screen-home .seed-overview > button p:last-child {
+  margin-top: 0.58rem !important;
+  color: var(--ref-muted) !important;
+  font-size: 0.94rem !important;
+  line-height: 1.25 !important;
+  font-weight: 700 !important;
+  white-space: normal !important;
+  text-align: left !important;
+}
+
+#screen-home .home-stage > #seed-debug,
+#screen-home .home-stage > .offering-card,
+#screen-home .home-stage > .insight-preview {
+  margin-top: 1rem !important;
+}
+
+@media (max-width: 480px) {
+  #screen-home .home-stage {
+    padding-top: calc(var(--garden-top-height) + 0.78rem) !important;
+  }
+
+  #screen-home .home-heading {
+    gap: 0.7rem !important;
+  }
+
+  #screen-home .home-heading > div:first-child {
+    max-width: 11.3rem !important;
+  }
+
+  #screen-home #greeting-text {
+    font-size: 1.52rem !important;
+  }
+
+  #screen-home .home-heading p:last-child {
+    font-size: 0.84rem !important;
+  }
+
+  #screen-home .home-heading > div:last-child {
+    padding: 0.46rem 0.62rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  #screen-home .home-echo-card {
+    padding: 0.78rem !important;
+  }
+
+  #screen-home .home-echo-summary {
+    grid-template-columns: minmax(0, 1fr) 4rem;
+    gap: 0.52rem !important;
+  }
+
+  #screen-home .home-progress-dial {
+    width: 4rem !important;
+    height: 4rem !important;
+  }
+
+  #screen-home .home-next-reminder {
+    grid-template-columns: minmax(0, 1fr) 4.35rem !important;
+    gap: 0.52rem !important;
+    padding: 0.68rem 0.68rem !important;
+  }
+
+  #screen-home #next-reminder-time {
+    font-size: 1.58rem !important;
+  }
+
+  #screen-home #next-reminder-settings {
+    min-width: 0 !important;
+    max-width: 4.35rem;
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+    font-size: 0.74rem !important;
+  }
+
+  #screen-home .seed-overview {
+    gap: 0.62rem !important;
+  }
+
+  #screen-home #seed-wealth,
+  #screen-home #seed-kindness,
+  #screen-home #seed-health {
+    min-height: 9.3rem !important;
+    padding-left: 0.6rem !important;
+    padding-right: 0.55rem !important;
+  }
+
+  #screen-home .seed-overview > button .h-11 {
+    width: 2.55rem !important;
+    height: 2.55rem !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  #screen-home .seed-line-icon {
+    width: 1.92rem !important;
+    height: 1.92rem !important;
+  }
+
+  #screen-home .seed-overview > button p:first-of-type {
+    font-size: 2.2rem !important;
+  }
+
+  #screen-home .seed-overview > button p:last-child {
+    font-size: 0.82rem !important;
+  }
+}
+
+/* NOTE: 首页顶部标题在参考图里略偏上，这里只下移藤蔓标题层，不压缩下方布局。 */
+#screen-home::before {
+  top: 0.62rem !important;
+}

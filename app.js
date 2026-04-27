@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     const updateDisplayName = () => {
         const name = window.state.displayName || "记录者";
-        setText("greeting-text", "每日种子园");
+        setText("greeting-text", `你好，${name}`);
         setText("profile-display-name", name);
         if (qs("edit-display-name")) qs("edit-display-name").value = name;
         updateAvatarDisplay();
