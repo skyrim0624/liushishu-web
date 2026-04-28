@@ -4257,3 +4257,658 @@ textarea {
 #screen-home::before {
   top: 0.62rem !important;
 }
+
+/* NOTE: 金色种子光感层：保留植物纸面结构，只把整体气质调成暖金发光。 */
+:root {
+  --gold-ink: #3f2d10;
+  --gold-muted: #7d642f;
+  --gold-deep: #9a620c;
+  --gold-core: #d99a1d;
+  --gold-bright: #ffd768;
+  --gold-pale: #fff1b8;
+  --gold-paper: #fff8df;
+  --gold-line: rgba(183, 127, 27, 0.42);
+  --gold-line-soft: rgba(225, 176, 72, 0.28);
+  --gold-glow: rgba(255, 196, 61, 0.44);
+}
+
+body.dune-body {
+  background:
+    radial-gradient(640px 520px at 54% -4%, rgba(255, 230, 126, 0.55), transparent 68%),
+    radial-gradient(540px 460px at 50% 68%, rgba(226, 151, 20, 0.2), transparent 74%),
+    linear-gradient(180deg, #d9ba6c 0%, #c49a41 48%, #b38125 100%) !important;
+}
+
+body.dune-body::before {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 234, 154, 0.46) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 76% 24%, rgba(255, 220, 95, 0.34) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 52% 70%, rgba(255, 244, 186, 0.32) 0 1px, transparent 1.8px),
+    var(--grain) !important;
+  background-size: 92px 140px, 130px 170px, 86px 126px, 190px 190px !important;
+  opacity: 0.28 !important;
+  mix-blend-mode: screen;
+}
+
+.app-shell {
+  background:
+    radial-gradient(220px 360px at 58% 0%, rgba(255, 235, 137, 0.58), transparent 76%),
+    radial-gradient(420px 260px at 50% 38%, rgba(255, 202, 72, 0.16), transparent 72%),
+    linear-gradient(180deg, rgba(255, 249, 226, 0.98), rgba(245, 228, 176, 0.97) 56%, rgba(231, 197, 121, 0.96)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, auto, auto, 160px 160px !important;
+  box-shadow:
+    0 18px 48px rgba(105, 70, 12, 0.3),
+    0 0 58px rgba(255, 214, 104, 0.22) !important;
+}
+
+.screen.active {
+  background-color: transparent !important;
+  filter: saturate(1.05);
+}
+
+.screen.active::after {
+  content: "";
+  display: block !important;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(101deg, transparent 0 34%, rgba(255, 231, 133, 0.2) 41%, transparent 56% 100%),
+    radial-gradient(180px 360px at 57% 4%, rgba(255, 228, 100, 0.22), transparent 72%),
+    radial-gradient(circle at 26% 28%, rgba(255, 220, 91, 0.2) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 42%, rgba(255, 240, 175, 0.22) 0 1px, transparent 2.2px);
+  background-size: auto, auto, 86px 116px, 124px 160px;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.screen.active > * {
+  position: relative;
+  z-index: 1;
+}
+
+.screen.active:not(#screen-home) {
+  background-image:
+    linear-gradient(180deg, rgba(255, 244, 192, 0.08), rgba(222, 159, 38, 0.12)),
+    url("assets/stitch-derived/garden-left-overlay.png"),
+    url("assets/stitch-derived/garden-right-overlay.png") !important;
+  background-position: center top, left top, right top !important;
+  background-size: 100% 100%, var(--garden-side-width) var(--garden-frame-height), var(--garden-side-width) var(--garden-frame-height) !important;
+  background-repeat: repeat-y, repeat-y, repeat-y !important;
+}
+
+#screen-home.active {
+  background-image:
+    linear-gradient(180deg, rgba(255, 244, 192, 0.08), rgba(222, 159, 38, 0.12)),
+    url("assets/stitch-derived/garden-left-overlay.png"),
+    url("assets/stitch-derived/garden-right-overlay.png") !important;
+  background-position: center top, left top, right top !important;
+  background-size: 100% 100%, var(--garden-side-width) var(--garden-frame-height), var(--garden-side-width) var(--garden-frame-height) !important;
+  background-repeat: repeat-y, repeat-y, repeat-y !important;
+}
+
+#screen-home::before {
+  filter: sepia(0.36) saturate(1.38) hue-rotate(350deg) brightness(1.05);
+}
+
+.paper-card,
+.paper-card-soft,
+.recorded-seed-card,
+#timeline-detail > div,
+#ai-report-content > div,
+#reminder-list input[type="time"],
+input,
+textarea {
+  border-color: var(--gold-line-soft) !important;
+  background:
+    radial-gradient(120px 80px at 82% 10%, rgba(255, 220, 105, 0.18), transparent 72%),
+    linear-gradient(180deg, rgba(255, 253, 240, 0.7), rgba(255, 241, 198, 0.54)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, auto, 180px 180px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 247, 0.76),
+    0 8px 20px rgba(128, 83, 10, 0.08),
+    0 0 20px rgba(255, 208, 82, 0.08) !important;
+}
+
+.text-ink,
+.text-primary,
+.text-secondary,
+.text-tertiary,
+.text-green-700,
+.paper-card h2,
+.paper-card h3,
+.paper-card-soft h2,
+.paper-card-soft h3,
+.paper-card span,
+.paper-card-soft span,
+#screen-home #greeting-text,
+#screen-home .home-echo-summary h3 {
+  color: var(--gold-ink) !important;
+}
+
+.text-muted,
+.home-stage .text-muted,
+.profile-stage .text-muted,
+.checkin-stage .text-muted,
+.timeline-stage .text-muted,
+.guide-stage .text-muted,
+.bedtime-stage .text-muted,
+.insight-stage .text-muted,
+.paper-card p,
+.paper-card-soft p,
+#screen-home #today-session-text,
+#screen-home #next-reminder-countdown,
+#screen-home .home-heading p:last-child {
+  color: var(--gold-muted) !important;
+}
+
+#screen-home .home-heading > div:last-child,
+#screen-home .home-next-reminder,
+#screen-home .home-echo-card {
+  border-color: var(--gold-line) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 247, 0.78),
+    0 8px 22px rgba(134, 85, 8, 0.1),
+    0 0 28px rgba(255, 209, 78, 0.12) !important;
+}
+
+#screen-home #home-ring-progress,
+#checkin-timer-ring {
+  color: var(--gold-core) !important;
+  filter: drop-shadow(0 0 7px rgba(255, 208, 64, 0.36)) !important;
+}
+
+#screen-home #current-session-index,
+#checkin-seconds,
+#home-ring-done,
+#home-ring-total,
+#home-offering-pool,
+#profile-current-pool,
+#profile-lifetime-money,
+#success-money,
+#profile-xp {
+  color: var(--gold-deep) !important;
+}
+
+#screen-home #next-reminder-time {
+  color: var(--gold-ink) !important;
+  text-shadow: 0 0 16px rgba(255, 209, 78, 0.16);
+}
+
+#screen-home #next-reminder-label {
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255, 238, 160, 0.78), rgba(225, 174, 66, 0.34)) !important;
+  color: #8a4a10 !important;
+}
+
+#screen-home #next-reminder-settings {
+  color: var(--gold-ink) !important;
+}
+
+#screen-home #seed-wealth,
+#screen-home #seed-kindness,
+#screen-home #seed-health,
+.seed-overview > button {
+  border-color: var(--gold-line) !important;
+  background:
+    radial-gradient(90px 88px at 50% 10%, rgba(255, 226, 111, 0.22), transparent 72%),
+    linear-gradient(180deg, rgba(255, 253, 240, 0.72), rgba(255, 239, 190, 0.56)),
+    var(--ui-paper-texture) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 247, 0.78),
+    0 9px 20px rgba(129, 83, 9, 0.12),
+    0 0 22px rgba(255, 205, 70, 0.1) !important;
+}
+
+#screen-home .seed-overview > button .h-11 {
+  border-color: rgba(208, 158, 47, 0.36) !important;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(255, 235, 146, 0.62), rgba(255, 250, 230, 0.36)) !important;
+}
+
+#screen-home .seed-line-icon {
+  stroke: var(--gold-ink) !important;
+  filter: drop-shadow(0 0 5px rgba(255, 214, 86, 0.22));
+}
+
+#screen-home .seed-overview > button p:first-of-type {
+  color: var(--gold-ink) !important;
+  text-shadow: 0 0 18px rgba(255, 211, 80, 0.14);
+}
+
+#screen-home .seed-overview > button p:last-child {
+  color: var(--gold-muted) !important;
+}
+
+.paper-btn,
+#btn-auth-login,
+#btn-submit-checkin,
+#btn-success-home,
+#btn-tutorial-back,
+#btn-bedtime-done,
+#btn-save-reminders,
+#btn-save-profile,
+#btn-auth-register,
+#btn-withdraw-pool,
+#btn-enable-notifications,
+#btn-show-tutorial,
+#btn-logout {
+  border-color: rgba(166, 110, 17, 0.46) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 218, 108, 0.96), rgba(184, 121, 24, 0.94)),
+    var(--ui-paper-texture) !important;
+  color: #fff8da !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 247, 195, 0.62),
+    0 3px 8px rgba(116, 70, 6, 0.2),
+    0 0 20px rgba(255, 199, 59, 0.18) !important;
+}
+
+.tag-chip {
+  border-color: rgba(201, 148, 38, 0.38) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 232, 0.76), rgba(255, 237, 186, 0.52)) !important;
+  color: var(--gold-ink) !important;
+}
+
+.tag-chip.active {
+  border-color: rgba(159, 94, 10, 0.54) !important;
+  background:
+    linear-gradient(180deg, rgba(244, 190, 73, 0.94), rgba(171, 103, 15, 0.9)) !important;
+  color: #fff8da !important;
+}
+
+#bottom-nav {
+  border-color: rgba(193, 143, 39, 0.44) !important;
+  background:
+    radial-gradient(180px 50px at 50% 0%, rgba(255, 231, 138, 0.48), transparent 74%),
+    linear-gradient(180deg, rgba(255, 252, 237, 0.95), rgba(248, 225, 169, 0.92)),
+    var(--ui-paper-texture) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 247, 0.8),
+    0 -5px 16px rgba(112, 76, 13, 0.13),
+    0 0 28px rgba(255, 208, 76, 0.14) !important;
+}
+
+.nav-item {
+  color: #8a7139 !important;
+}
+
+.nav-item.text-primary {
+  color: var(--gold-ink) !important;
+}
+
+#screen-home .home-stage::before {
+  content: "";
+  display: block !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  height: calc(var(--garden-top-height) + 4.2rem);
+  pointer-events: none;
+  background:
+    radial-gradient(190px 220px at 54% 8%, rgba(255, 224, 95, 0.38), transparent 74%),
+    linear-gradient(180deg, rgba(255, 213, 72, 0.2), rgba(255, 230, 135, 0.12) 46%, transparent 100%);
+  mix-blend-mode: multiply;
+}
+
+#screen-home .home-stage > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* NOTE: 侧边藤蔓改为独立金色层，避免只有首页顶部吃到金色滤镜。 */
+.screen.active,
+.screen.active:not(#screen-home),
+#screen-home.active {
+  background-image:
+    linear-gradient(180deg, rgba(255, 244, 192, 0.08), rgba(222, 159, 38, 0.12)) !important;
+  background-position: center top !important;
+  background-size: 100% 100% !important;
+  background-repeat: repeat-y !important;
+}
+
+.screen.active > main {
+  position: relative;
+  isolation: isolate;
+}
+
+.screen.active > main::before,
+.screen.active > main::after {
+  content: "";
+  display: block !important;
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  z-index: 0;
+  width: var(--garden-side-width);
+  height: 100%;
+  min-height: 100dvh;
+  pointer-events: none;
+  opacity: 0.98;
+  mix-blend-mode: multiply;
+  filter:
+    sepia(0.9)
+    saturate(2.25)
+    hue-rotate(345deg)
+    brightness(1.16)
+    contrast(0.96)
+    drop-shadow(0 0 7px rgba(255, 203, 70, 0.18));
+}
+
+.screen.active > main::before {
+  left: 0;
+  right: auto !important;
+  background: url("assets/stitch-derived/garden-left-overlay.png") left top / 100% var(--garden-frame-height) repeat-y;
+}
+
+.screen.active > main::after {
+  left: auto !important;
+  right: 0;
+  background: url("assets/stitch-derived/garden-right-overlay.png") right top / 100% var(--garden-frame-height) repeat-y;
+}
+
+.screen.active > main > * {
+  position: relative;
+  z-index: 1;
+}
+
+#screen-home.active > main::before,
+#screen-home.active > main::after {
+  top: calc(-1 * var(--garden-top-height) - 0.95rem);
+  height: calc(100% + var(--garden-top-height) + 0.95rem);
+}
+
+@media (max-width: 480px) {
+  .screen.active > main::before {
+    left: 0;
+  }
+
+  .screen.active > main::after {
+    right: 0;
+  }
+
+  #screen-home.active > main::before,
+  #screen-home.active > main::after {
+    top: calc(-1 * var(--garden-top-height) - 0.78rem);
+    height: calc(100% + var(--garden-top-height) + 0.78rem);
+  }
+}
+
+/* NOTE: 金色植物书页最终皮肤。只改视觉调性，不改变布局、按钮位置和交互。 */
+:root {
+  --folio-paper: #fbf8ec;
+  --folio-paper-deep: #f1e8cf;
+  --folio-paper-soft: #fffdf5;
+  --folio-ink: #4b3518;
+  --folio-ink-strong: #2f2414;
+  --folio-muted: #8b7653;
+  --folio-line: rgba(156, 128, 76, 0.32);
+  --folio-line-soft: rgba(182, 151, 94, 0.22);
+  --folio-gold: #c79534;
+  --folio-gold-deep: #9b6a1d;
+  --folio-gold-pale: #f4ddb0;
+  --folio-shadow: 0 8px 18px rgba(92, 68, 26, 0.075);
+}
+
+body.dune-body {
+  background:
+    radial-gradient(620px 520px at 50% -6%, rgba(244, 215, 137, 0.34), transparent 66%),
+    radial-gradient(560px 460px at 50% 106%, rgba(210, 166, 82, 0.18), transparent 70%),
+    linear-gradient(180deg, #f8f3e4 0%, #f4ead2 100%) !important;
+  color: var(--folio-ink-strong) !important;
+}
+
+body.dune-body::before {
+  background: var(--grain) !important;
+  opacity: 0.1 !important;
+  mix-blend-mode: multiply;
+}
+
+body.dune-body::after {
+  display: none !important;
+}
+
+.app-shell {
+  background:
+    radial-gradient(260px 300px at 55% 0%, rgba(246, 221, 150, 0.2), transparent 74%),
+    linear-gradient(180deg, rgba(255, 253, 246, 0.98), rgba(248, 241, 222, 0.96)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, auto, 170px 170px !important;
+  border-color: rgba(151, 126, 78, 0.18) !important;
+  box-shadow:
+    0 18px 42px rgba(83, 62, 24, 0.14),
+    0 0 0 1px rgba(255, 255, 248, 0.42) inset !important;
+}
+
+.screen.active,
+.screen.active:not(#screen-home),
+#screen-home.active {
+  background-image:
+    radial-gradient(300px 380px at 50% 4%, rgba(246, 218, 137, 0.18), transparent 74%),
+    linear-gradient(180deg, rgba(255, 253, 244, 0.48), rgba(247, 239, 216, 0.34)) !important;
+  background-position: center top !important;
+  background-size: 100% 100% !important;
+  background-repeat: repeat-y !important;
+}
+
+.screen.active::after {
+  opacity: 0.16 !important;
+  background:
+    radial-gradient(circle at 26% 24%, rgba(205, 154, 58, 0.14) 0 1px, transparent 2px),
+    radial-gradient(circle at 76% 48%, rgba(236, 202, 124, 0.12) 0 1px, transparent 2px) !important;
+  background-size: 118px 160px, 150px 190px !important;
+  mix-blend-mode: multiply !important;
+}
+
+#screen-home::before {
+  filter:
+    sepia(0.28)
+    saturate(1.1)
+    hue-rotate(350deg)
+    brightness(1.03)
+    contrast(0.98) !important;
+  background:
+    url("assets/stitch-derived/garden-top.png") center top / 100% 100% no-repeat,
+    linear-gradient(180deg, rgba(255, 253, 246, 0.98), rgba(255, 253, 246, 0.9)) !important;
+}
+
+#screen-home .home-stage::before {
+  background:
+    radial-gradient(210px 210px at 54% 4%, rgba(238, 199, 104, 0.14), transparent 78%),
+    linear-gradient(180deg, rgba(249, 233, 181, 0.06), transparent 100%) !important;
+  mix-blend-mode: multiply;
+}
+
+.screen.active > main::before,
+.screen.active > main::after {
+  opacity: 0.86 !important;
+  mix-blend-mode: multiply !important;
+  filter:
+    sepia(0.5)
+    saturate(1.32)
+    hue-rotate(350deg)
+    brightness(1.08)
+    contrast(0.94)
+    drop-shadow(0 0 4px rgba(210, 156, 45, 0.08)) !important;
+}
+
+.paper-card,
+.paper-card-soft,
+.recorded-seed-card,
+#timeline-detail > div,
+#ai-report-content > div,
+#reminder-list input[type="time"],
+input,
+textarea {
+  border-color: var(--folio-line) !important;
+  background:
+    radial-gradient(120px 90px at 86% 10%, rgba(236, 205, 133, 0.08), transparent 72%),
+    linear-gradient(180deg, rgba(255, 254, 248, 0.72), rgba(250, 245, 231, 0.64)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, auto, 170px 170px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 250, 0.72),
+    var(--folio-shadow) !important;
+  color: var(--folio-ink-strong) !important;
+}
+
+.paper-card-soft {
+  background:
+    radial-gradient(150px 100px at 50% 0%, rgba(236, 205, 133, 0.11), transparent 74%),
+    linear-gradient(180deg, rgba(255, 253, 246, 0.76), rgba(248, 243, 227, 0.66)),
+    var(--ui-paper-texture) !important;
+}
+
+#screen-home #seed-wealth,
+#screen-home #seed-kindness,
+#screen-home #seed-health,
+.seed-overview > button {
+  border-color: rgba(177, 145, 84, 0.36) !important;
+  background:
+    radial-gradient(92px 86px at 50% 12%, rgba(239, 209, 135, 0.18), transparent 72%),
+    linear-gradient(180deg, rgba(255, 253, 244, 0.74), rgba(249, 242, 222, 0.64)),
+    var(--ui-paper-texture) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 250, 0.76),
+    0 9px 18px rgba(94, 70, 26, 0.08) !important;
+}
+
+#screen-home .seed-overview > button .h-11,
+.avatar-frame,
+.brand-logo,
+.calendar-cell {
+  border-color: var(--folio-line-soft) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 254, 248, 0.64), rgba(248, 241, 222, 0.52)),
+    var(--ui-paper-texture) !important;
+}
+
+.text-ink,
+.text-primary,
+.text-secondary,
+.text-tertiary,
+.text-green-700,
+.paper-card h2,
+.paper-card h3,
+.paper-card-soft h2,
+.paper-card-soft h3,
+.paper-card span,
+.paper-card-soft span,
+#screen-home .home-heading p,
+#screen-home #greeting-text,
+#screen-home .home-echo-summary h3,
+#screen-home .seed-overview > button p:first-of-type,
+#profile-display-name,
+#success-title {
+  color: var(--folio-ink-strong) !important;
+}
+
+.text-muted,
+.home-stage .text-muted,
+.profile-stage .text-muted,
+.checkin-stage .text-muted,
+.timeline-stage .text-muted,
+.guide-stage .text-muted,
+.bedtime-stage .text-muted,
+.insight-stage .text-muted,
+.paper-card p,
+.paper-card-soft p,
+#screen-home #today-session-text,
+#screen-home #next-reminder-countdown,
+#screen-home .home-heading p:last-child {
+  color: var(--folio-muted) !important;
+}
+
+#screen-home #home-ring-progress,
+#checkin-timer-ring,
+#screen-home .seed-line-icon,
+.nav-icon {
+  color: var(--folio-gold-deep) !important;
+  stroke: var(--folio-ink) !important;
+  filter: drop-shadow(0 0 3px rgba(211, 164, 65, 0.12)) !important;
+}
+
+#screen-home #current-session-index,
+#checkin-seconds,
+#home-ring-done,
+#home-ring-total,
+#home-offering-pool,
+#profile-current-pool,
+#profile-lifetime-money,
+#success-money,
+#profile-xp,
+#screen-home #next-reminder-time {
+  color: var(--folio-gold-deep) !important;
+}
+
+#screen-home #next-reminder-label,
+.tag-chip {
+  border-color: rgba(181, 145, 76, 0.28) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 251, 238, 0.8), rgba(244, 225, 184, 0.5)),
+    var(--ui-paper-texture) !important;
+  color: var(--folio-ink) !important;
+}
+
+.tag-chip.active,
+#calendar-grid > .calendar-cell.is-selected,
+#calendar-grid > .calendar-cell.bg-primary {
+  border-color: rgba(143, 99, 28, 0.44) !important;
+  background:
+    linear-gradient(180deg, rgba(207, 163, 75, 0.8), rgba(160, 113, 35, 0.72)),
+    var(--ui-paper-texture) !important;
+  color: var(--folio-paper-soft) !important;
+}
+
+.paper-btn,
+#btn-auth-login,
+#btn-submit-checkin,
+#btn-success-home,
+#btn-tutorial-back,
+#btn-bedtime-done,
+#btn-save-reminders,
+#btn-save-profile,
+#btn-auth-register,
+#btn-withdraw-pool,
+#btn-enable-notifications,
+#btn-show-tutorial,
+#btn-logout {
+  border-color: rgba(134, 101, 43, 0.42) !important;
+  background:
+    linear-gradient(180deg, rgba(222, 187, 113, 0.92), rgba(170, 124, 45, 0.88)),
+    var(--ui-paper-texture) !important;
+  color: var(--folio-paper-soft) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 205, 0.56),
+    0 4px 9px rgba(94, 65, 18, 0.16) !important;
+}
+
+#bottom-nav {
+  border-color: rgba(174, 139, 78, 0.36) !important;
+  background:
+    radial-gradient(180px 48px at 50% 0%, rgba(239, 210, 145, 0.3), transparent 76%),
+    linear-gradient(180deg, rgba(255, 253, 246, 0.94), rgba(248, 241, 222, 0.9)),
+    var(--ui-paper-texture) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 250, 0.78),
+    0 -5px 16px rgba(92, 68, 26, 0.1) !important;
+}
+
+.nav-item {
+  color: #776d5c !important;
+}
+
+.nav-item.text-primary {
+  color: var(--folio-gold-deep) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(139, 118, 83, 0.58) !important;
+}
