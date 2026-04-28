@@ -4618,6 +4618,208 @@ textarea {
   z-index: 1;
 }
 
+/* NOTE: 顶部横向 Stitch 藤蔓和侧边藤蔓分工，避免首页顶区叠得太满。 */
+#screen-home.active > main::before,
+#screen-home.active > main::after {
+  top: calc(var(--garden-top-height) - 0.15rem) !important;
+  bottom: 0 !important;
+  height: auto !important;
+  min-height: calc(100dvh - var(--garden-top-height)) !important;
+  background: url("assets/stitch-derived/garden-side-left-gold.png") left top / var(--stitch-vine-width) var(--stitch-vine-height) repeat-y !important;
+}
+
+#screen-home.active > main::before {
+  left: 0 !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+#screen-home.active > main::after {
+  left: auto !important;
+  right: 0 !important;
+  transform: scaleX(-1) !important;
+}
+
+#screen-home::before {
+  opacity: 0.68 !important;
+  filter:
+    sepia(0.62)
+    saturate(1.12)
+    hue-rotate(352deg)
+    brightness(1.13)
+    contrast(0.9) !important;
+}
+
+#btn-global-back:not(.hidden) {
+  display: inline-flex !important;
+  position: absolute !important;
+  left: 0.9rem !important;
+  top: 0.95rem !important;
+  z-index: 90 !important;
+  width: 2.65rem !important;
+  height: 2.65rem !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(142, 96, 24, 0.48) !important;
+  border-radius: 999px !important;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 237, 166, 0.84), transparent 58%),
+    linear-gradient(180deg, rgba(235, 195, 106, 0.98), rgba(169, 111, 24, 0.94)),
+    var(--ui-paper-texture) !important;
+  color: #5d3909 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 214, 0.72),
+    0 5px 12px rgba(96, 59, 10, 0.2),
+    0 0 0 3px rgba(255, 249, 225, 0.42) !important;
+}
+
+#btn-global-back:not(.hidden) .material-symbols-outlined::before {
+  width: 0.72rem !important;
+  height: 0.72rem !important;
+  border-top-width: 2.4px !important;
+  border-right-width: 2.4px !important;
+  opacity: 1 !important;
+}
+
+/* NOTE: 最终修正：保留 Stitch 标题图，但用渐隐消除硬切断层。 */
+#screen-home::before {
+  height: calc(var(--garden-top-height) + 1.45rem) !important;
+  background: url("assets/stitch-derived/garden-top.png") center top / 100% var(--garden-top-height) no-repeat !important;
+  opacity: 0.88 !important;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, rgba(0, 0, 0, 0.42) 86%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 72%, rgba(0, 0, 0, 0.42) 86%, transparent 100%);
+}
+
+#screen-home.active > main::before,
+#screen-home.active > main::after {
+  top: calc(var(--garden-top-height) * 0.72) !important;
+  min-height: calc(100dvh - var(--garden-top-height) * 0.72) !important;
+}
+
+.checkin-stage::before,
+.checkin-stage::after {
+  display: none !important;
+}
+
+#btn-global-back:not(.hidden) {
+  left: 0.78rem !important;
+  top: 0.78rem !important;
+  width: 2.35rem !important;
+  height: 2.35rem !important;
+  border-color: rgba(124, 105, 70, 0.34) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 253, 244, 0.88), rgba(244, 232, 202, 0.72)),
+    var(--ui-paper-texture) !important;
+  color: #3b2a13 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 248, 0.78),
+    0 3px 8px rgba(70, 48, 16, 0.12) !important;
+}
+
+#btn-global-back:not(.hidden) .material-symbols-outlined::before {
+  width: 0.64rem !important;
+  height: 0.64rem !important;
+  border-top-width: 2px !important;
+  border-right-width: 2px !important;
+}
+
+/* NOTE: 最终返回按钮：纸面小控件，不再做金币式强渐变。 */
+button#btn-global-back:not(.hidden) {
+  left: 1rem !important;
+  top: 1rem !important;
+  width: 2.18rem !important;
+  height: 2.18rem !important;
+  border: 1px solid rgba(92, 72, 35, 0.28) !important;
+  border-radius: 0.72rem !important;
+  background: rgba(255, 251, 235, 0.82) !important;
+  color: #2f2414 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 248, 0.8),
+    0 2px 7px rgba(58, 40, 12, 0.12) !important;
+  backdrop-filter: blur(3px);
+}
+
+button#btn-global-back:not(.hidden) .material-symbols-outlined::before {
+  width: 0.62rem !important;
+  height: 0.62rem !important;
+  border-top-width: 2.1px !important;
+  border-right-width: 2.1px !important;
+}
+
+#screen-checkin .focus-panel::after {
+  display: none !important;
+}
+
+#screen-home.active > main::before,
+#screen-home.active > main::after {
+  top: calc(var(--garden-top-height) - 0.15rem) !important;
+  bottom: 0 !important;
+  min-height: calc(100dvh - var(--garden-top-height)) !important;
+  background-position: left top !important;
+}
+
+#screen-home::before {
+  opacity: 0.72 !important;
+  filter:
+    sepia(0.62)
+    saturate(1.2)
+    hue-rotate(352deg)
+    brightness(1.12)
+    contrast(0.92) !important;
+}
+
+#btn-global-back:not(.hidden) {
+  display: inline-flex !important;
+  position: absolute !important;
+  left: 0.9rem !important;
+  top: 0.95rem !important;
+  z-index: 90 !important;
+  width: 2.65rem !important;
+  height: 2.65rem !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(142, 96, 24, 0.48) !important;
+  border-radius: 999px !important;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 237, 166, 0.84), transparent 58%),
+    linear-gradient(180deg, rgba(235, 195, 106, 0.98), rgba(169, 111, 24, 0.94)),
+    var(--ui-paper-texture) !important;
+  color: #5d3909 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 214, 0.72),
+    0 5px 12px rgba(96, 59, 10, 0.2),
+    0 0 0 3px rgba(255, 249, 225, 0.42) !important;
+}
+
+#btn-global-back:not(.hidden) .material-symbols-outlined::before {
+  width: 0.72rem !important;
+  height: 0.72rem !important;
+  border-top-width: 2.4px !important;
+  border-right-width: 2.4px !important;
+  opacity: 1 !important;
+}
+
+#screen-home.active > main::before,
+#screen-home.active > main::after {
+  top: 0 !important;
+  bottom: 0 !important;
+  height: auto !important;
+  min-height: 100dvh !important;
+  background: url("assets/stitch-derived/garden-side-left-gold.png") left top / var(--stitch-vine-width) var(--stitch-vine-height) repeat-y !important;
+}
+
+#screen-home.active > main::before {
+  left: 0 !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+#screen-home.active > main::after {
+  left: auto !important;
+  right: 0 !important;
+  transform: scaleX(-1) !important;
+}
+
 #screen-home.active > main::before,
 #screen-home.active > main::after {
   top: calc(-1 * var(--garden-top-height) - 0.95rem);
@@ -5230,26 +5432,32 @@ textarea::placeholder {
 
 /* NOTE: Stitch 藤蔓背景修正。藤蔓只作为页面边框，不跟随内容高度拉伸。 */
 .app-shell {
-  --stitch-vine-width: clamp(46px, 12vw, 52px);
+  --stitch-vine-width: clamp(48px, 12.5vw, 54px);
+  --stitch-vine-height: min(160vw, 688px);
+}
+
+.app-shell::before,
+.app-shell::after {
+  display: none !important;
+}
+
+.screen.active > main {
+  position: relative;
+  isolation: isolate;
 }
 
 .screen.active > main::before,
 .screen.active > main::after,
 #screen-auth.active > main::before,
 #screen-auth.active > main::after {
-  display: none !important;
-}
-
-.app-shell::before,
-.app-shell::after {
   content: "";
   display: block !important;
   position: absolute;
   top: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 0;
   width: var(--stitch-vine-width) !important;
-  height: 100%;
+  min-height: 100dvh;
   border: 0 !important;
   border-radius: 0 !important;
   pointer-events: none;
@@ -5257,20 +5465,90 @@ textarea::placeholder {
   mix-blend-mode: multiply;
   background-image: url("assets/stitch-derived/garden-side-left-gold.png") !important;
   background-position: left top !important;
-  background-size: auto 100% !important;
-  background-repeat: no-repeat !important;
+  background-size: var(--stitch-vine-width) var(--stitch-vine-height) !important;
+  background-repeat: repeat-y !important;
   filter: drop-shadow(0 0 5px rgba(203, 151, 46, 0.1)) !important;
 }
 
-.app-shell::before {
+.screen.active > main::before,
+#screen-auth.active > main::before {
   left: 0 !important;
   right: auto !important;
   transform: none !important;
 }
 
-.app-shell::after {
+.screen.active > main::after,
+#screen-auth.active > main::after {
   left: auto !important;
   right: 0 !important;
   transform: scaleX(-1) !important;
   transform-origin: center;
+}
+
+.screen.active > main > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* NOTE: 最终覆盖：顶部横向 Stitch 藤蔓和侧边藤蔓分工，避免首页顶区叠得太满。 */
+#screen-home.active > main::before,
+#screen-home.active > main::after {
+  top: calc(var(--garden-top-height) - 0.15rem) !important;
+  bottom: 0 !important;
+  height: auto !important;
+  min-height: calc(100dvh - var(--garden-top-height)) !important;
+  background: url("assets/stitch-derived/garden-side-left-gold.png") left top / var(--stitch-vine-width) var(--stitch-vine-height) repeat-y !important;
+}
+
+#screen-home.active > main::before {
+  left: 0 !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+#screen-home.active > main::after {
+  left: auto !important;
+  right: 0 !important;
+  transform: scaleX(-1) !important;
+}
+
+#screen-home::before {
+  opacity: 0.68 !important;
+  filter:
+    sepia(0.62)
+    saturate(1.12)
+    hue-rotate(352deg)
+    brightness(1.13)
+    contrast(0.9) !important;
+}
+
+#btn-global-back:not(.hidden) {
+  display: inline-flex !important;
+  position: absolute !important;
+  left: 0.9rem !important;
+  top: 0.95rem !important;
+  z-index: 90 !important;
+  width: 2.65rem !important;
+  height: 2.65rem !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(142, 96, 24, 0.48) !important;
+  border-radius: 999px !important;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 237, 166, 0.84), transparent 58%),
+    linear-gradient(180deg, rgba(235, 195, 106, 0.98), rgba(169, 111, 24, 0.94)),
+    var(--ui-paper-texture) !important;
+  color: #5d3909 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 214, 0.72),
+    0 5px 12px rgba(96, 59, 10, 0.2),
+    0 0 0 3px rgba(255, 249, 225, 0.42) !important;
+}
+
+#btn-global-back:not(.hidden) .material-symbols-outlined::before {
+  width: 0.72rem !important;
+  height: 0.72rem !important;
+  border-top-width: 2.4px !important;
+  border-right-width: 2.4px !important;
+  opacity: 1 !important;
 }
