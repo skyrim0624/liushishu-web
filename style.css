@@ -4912,3 +4912,365 @@ input::placeholder,
 textarea::placeholder {
   color: rgba(139, 118, 83, 0.58) !important;
 }
+
+/* NOTE: Stitch 金色重绘终稿。沿用 Stitch 切图，只替换为金色藤蔓与暖金书页皮肤。 */
+:root {
+  --stitch-gold-paper: #fffaf0;
+  --stitch-gold-paper-deep: #f0dfb6;
+  --stitch-gold-ink: #37240d;
+  --stitch-gold-ink-soft: #735a2b;
+  --stitch-gold-muted: #8d784f;
+  --stitch-gold-line: rgba(178, 137, 59, 0.38);
+  --stitch-gold-line-soft: rgba(211, 172, 91, 0.24);
+  --stitch-gold-core: #c89532;
+  --stitch-gold-deep: #946010;
+  --stitch-gold-highlight: #ffe6a3;
+  --stitch-gold-glow: rgba(233, 178, 53, 0.2);
+  --stitch-panel:
+    radial-gradient(140px 96px at 82% 6%, rgba(255, 226, 152, 0.14), transparent 72%),
+    linear-gradient(180deg, rgba(255, 253, 244, 0.82), rgba(249, 241, 218, 0.72)),
+    var(--ui-paper-texture);
+}
+
+body.dune-body {
+  background:
+    radial-gradient(760px 560px at 50% -10%, rgba(255, 221, 127, 0.42), transparent 64%),
+    radial-gradient(620px 480px at 50% 112%, rgba(191, 132, 31, 0.18), transparent 72%),
+    linear-gradient(180deg, #fff7df 0%, #f2dfad 52%, #dbb45f 100%) !important;
+  color: var(--stitch-gold-ink) !important;
+}
+
+body.dune-body::before {
+  opacity: 0.12 !important;
+  mix-blend-mode: multiply !important;
+}
+
+.app-shell {
+  --garden-side-width: min(13.8vw, 59px);
+  background:
+    radial-gradient(320px 300px at 50% -2%, rgba(255, 230, 158, 0.38), transparent 74%),
+    linear-gradient(180deg, rgba(255, 252, 240, 0.98), rgba(248, 238, 208, 0.97)),
+    var(--ui-paper-texture) !important;
+  border-color: rgba(172, 137, 71, 0.24) !important;
+  box-shadow:
+    0 22px 54px rgba(98, 68, 16, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 246, 0.58) !important;
+}
+
+.screen.active,
+.screen.active:not(#screen-home),
+#screen-home.active {
+  background-image:
+    radial-gradient(360px 420px at 50% 2%, rgba(255, 226, 145, 0.18), transparent 72%),
+    linear-gradient(180deg, rgba(255, 251, 234, 0.42), rgba(239, 217, 164, 0.2)) !important;
+}
+
+#screen-home::before {
+  background:
+    url("assets/stitch-derived/garden-top.png") center top / 100% 100% no-repeat,
+    linear-gradient(180deg, rgba(255, 251, 235, 0.98), rgba(255, 251, 235, 0.86)) !important;
+  filter:
+    sepia(0.54)
+    saturate(1.5)
+    hue-rotate(352deg)
+    brightness(1.07)
+    contrast(0.96) !important;
+}
+
+.screen.active > main::before,
+.screen.active > main::after {
+  opacity: 0.96 !important;
+  width: var(--garden-side-width) !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  filter: drop-shadow(0 0 7px rgba(203, 151, 46, 0.12)) !important;
+}
+
+.screen.active > main::before {
+  left: -0.55rem !important;
+  background-image: url("assets/stitch-derived/garden-side-left-gold.png") !important;
+}
+
+.screen.active > main::after {
+  right: -0.55rem !important;
+  background-image: url("assets/stitch-derived/garden-side-right-gold.png") !important;
+}
+
+.paper-card,
+.paper-card-soft,
+.recorded-seed-card,
+#screen-home .home-echo-card,
+#screen-home .home-next-reminder,
+#screen-home .home-heading > div:last-child,
+#timeline-detail > div,
+#ai-report-content > div,
+#reminder-list input[type="time"],
+input,
+textarea {
+  border-color: var(--stitch-gold-line) !important;
+  background: var(--stitch-panel) !important;
+  background-size: auto, auto, 170px 170px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 248, 0.78),
+    0 8px 18px rgba(106, 76, 24, 0.08),
+    0 0 24px var(--stitch-gold-glow) !important;
+  color: var(--stitch-gold-ink) !important;
+}
+
+#screen-home #seed-wealth,
+#screen-home #seed-kindness,
+#screen-home #seed-health,
+.seed-overview > button {
+  border-color: rgba(184, 143, 65, 0.44) !important;
+  background:
+    radial-gradient(96px 90px at 50% 10%, rgba(255, 227, 148, 0.25), transparent 72%),
+    linear-gradient(180deg, rgba(255, 253, 240, 0.86), rgba(248, 238, 207, 0.72)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, auto, 170px 170px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 248, 0.8),
+    0 10px 20px rgba(108, 75, 18, 0.1),
+    0 0 22px rgba(226, 174, 54, 0.12) !important;
+}
+
+#screen-home .seed-overview > button .h-11,
+.avatar-frame,
+.brand-logo,
+.calendar-cell {
+  border-color: var(--stitch-gold-line-soft) !important;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255, 231, 157, 0.46), transparent 70%),
+    linear-gradient(180deg, rgba(255, 254, 247, 0.72), rgba(247, 236, 207, 0.58)),
+    var(--ui-paper-texture) !important;
+}
+
+.text-ink,
+.text-primary,
+.text-secondary,
+.text-tertiary,
+.text-green-700,
+.paper-card h2,
+.paper-card h3,
+.paper-card-soft h2,
+.paper-card-soft h3,
+.paper-card span,
+.paper-card-soft span,
+#screen-home .home-heading p,
+#screen-home #greeting-text,
+#screen-home .home-echo-summary h3,
+#screen-home .seed-overview > button p:first-of-type,
+#profile-display-name,
+#success-title {
+  color: var(--stitch-gold-ink) !important;
+}
+
+.text-muted,
+.home-stage .text-muted,
+.profile-stage .text-muted,
+.checkin-stage .text-muted,
+.timeline-stage .text-muted,
+.guide-stage .text-muted,
+.bedtime-stage .text-muted,
+.insight-stage .text-muted,
+.paper-card p,
+.paper-card-soft p,
+#screen-home #today-session-text,
+#screen-home #next-reminder-countdown,
+#screen-home .home-heading p:last-child,
+#screen-home .seed-overview > button p:last-child {
+  color: var(--stitch-gold-muted) !important;
+}
+
+#screen-home #home-ring-progress,
+#checkin-timer-ring,
+#screen-home .seed-line-icon,
+.nav-icon {
+  color: var(--stitch-gold-core) !important;
+  stroke: var(--stitch-gold-ink-soft) !important;
+  filter: drop-shadow(0 0 4px rgba(226, 174, 54, 0.18)) !important;
+}
+
+#screen-home #current-session-index,
+#checkin-seconds,
+#home-ring-done,
+#home-ring-total,
+#home-offering-pool,
+#profile-current-pool,
+#profile-lifetime-money,
+#success-money,
+#profile-xp,
+#screen-home #next-reminder-time {
+  color: var(--stitch-gold-deep) !important;
+}
+
+#screen-home #next-reminder-label,
+.tag-chip {
+  border-color: rgba(190, 148, 68, 0.34) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 251, 236, 0.88), rgba(244, 222, 172, 0.62)),
+    var(--ui-paper-texture) !important;
+  color: var(--stitch-gold-ink-soft) !important;
+}
+
+.tag-chip.active,
+#calendar-grid > .calendar-cell.is-selected,
+#calendar-grid > .calendar-cell.bg-primary {
+  border-color: rgba(139, 88, 16, 0.48) !important;
+  background:
+    linear-gradient(180deg, rgba(222, 176, 83, 0.94), rgba(153, 98, 19, 0.9)),
+    var(--ui-paper-texture) !important;
+  color: var(--stitch-gold-paper) !important;
+}
+
+.paper-btn,
+#btn-auth-login,
+#btn-submit-checkin,
+#btn-success-home,
+#btn-tutorial-back,
+#btn-bedtime-done,
+#btn-save-reminders,
+#btn-save-profile,
+#btn-auth-register,
+#btn-withdraw-pool,
+#btn-enable-notifications,
+#btn-show-tutorial,
+#btn-logout {
+  border-color: rgba(141, 96, 24, 0.46) !important;
+  background:
+    linear-gradient(180deg, rgba(232, 194, 109, 0.98), rgba(157, 101, 20, 0.94)),
+    var(--ui-paper-texture) !important;
+  color: #fff8df !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 245, 194, 0.64),
+    0 5px 12px rgba(101, 63, 10, 0.18),
+    0 0 20px rgba(226, 174, 54, 0.14) !important;
+}
+
+#bottom-nav {
+  border-color: rgba(184, 143, 65, 0.42) !important;
+  background:
+    radial-gradient(180px 54px at 50% 0%, rgba(255, 228, 151, 0.38), transparent 76%),
+    linear-gradient(180deg, rgba(255, 253, 244, 0.96), rgba(246, 233, 196, 0.92)),
+    var(--ui-paper-texture) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 248, 0.82),
+    0 -6px 18px rgba(95, 66, 18, 0.12),
+    0 0 24px rgba(226, 174, 54, 0.12) !important;
+}
+
+.nav-item {
+  color: #8a7650 !important;
+}
+
+.nav-item.text-primary {
+  color: var(--stitch-gold-deep) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(141, 120, 79, 0.62) !important;
+}
+
+/* NOTE: 登录页不使用带状态栏/底栏的 Stitch 截图片，统一换成纯金色藤蔓素材。 */
+#screen-auth.active > main::before {
+  background-image: url("assets/stitch-derived/garden-side-left-gold.png") !important;
+  background-size: 100% 100dvh !important;
+  background-repeat: no-repeat !important;
+  filter: drop-shadow(0 0 6px rgba(203, 151, 46, 0.1)) !important;
+}
+
+#screen-auth.active > main::after {
+  background-image: url("assets/stitch-derived/garden-side-right-gold.png") !important;
+  background-size: 100% 100dvh !important;
+  background-repeat: no-repeat !important;
+  filter: drop-shadow(0 0 6px rgba(203, 151, 46, 0.1)) !important;
+}
+
+#screen-auth {
+  padding-bottom: 0 !important;
+}
+
+#screen-auth .auth-stage {
+  min-height: 100dvh !important;
+  align-items: flex-start !important;
+  padding-top: 1.7rem !important;
+  padding-bottom: 7rem !important;
+}
+
+#screen-auth .auth-stage > div {
+  max-width: 19.5rem !important;
+  padding: 1.55rem 1.45rem 1.75rem !important;
+  border-color: rgba(180, 140, 62, 0.3) !important;
+  background:
+    radial-gradient(170px 120px at 72% 0%, rgba(255, 228, 154, 0.18), transparent 76%),
+    linear-gradient(180deg, rgba(255, 253, 242, 0.78), rgba(250, 242, 218, 0.64)),
+    var(--ui-paper-texture) !important;
+  background-size: auto, auto, 170px 170px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 248, 0.72),
+    0 16px 32px rgba(105, 75, 22, 0.1) !important;
+}
+
+#screen-auth h2 {
+  border-color: rgba(166, 123, 48, 0.4) !important;
+  background:
+    linear-gradient(180deg, rgba(232, 205, 143, 0.96), rgba(210, 175, 103, 0.92)),
+    var(--ui-paper-texture) !important;
+  color: var(--stitch-gold-ink) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 220, 0.66),
+    0 3px 7px rgba(105, 75, 22, 0.12) !important;
+}
+
+#screen-auth h2::before,
+#screen-auth h2::after {
+  border-color: rgba(166, 123, 48, 0.36) !important;
+  background: rgba(202, 166, 94, 0.78) !important;
+}
+
+/* NOTE: Stitch 藤蔓背景修正。藤蔓只作为页面边框，不跟随内容高度拉伸。 */
+.app-shell {
+  --stitch-vine-width: clamp(46px, 12vw, 52px);
+}
+
+.screen.active > main::before,
+.screen.active > main::after,
+#screen-auth.active > main::before,
+#screen-auth.active > main::after {
+  display: none !important;
+}
+
+.app-shell::before,
+.app-shell::after {
+  content: "";
+  display: block !important;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: var(--stitch-vine-width) !important;
+  height: 100%;
+  border: 0 !important;
+  border-radius: 0 !important;
+  pointer-events: none;
+  opacity: 0.88 !important;
+  mix-blend-mode: multiply;
+  background-image: url("assets/stitch-derived/garden-side-left-gold.png") !important;
+  background-position: left top !important;
+  background-size: auto 100% !important;
+  background-repeat: no-repeat !important;
+  filter: drop-shadow(0 0 5px rgba(203, 151, 46, 0.1)) !important;
+}
+
+.app-shell::before {
+  left: 0 !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+.app-shell::after {
+  left: auto !important;
+  right: 0 !important;
+  transform: scaleX(-1) !important;
+  transform-origin: center;
+}
