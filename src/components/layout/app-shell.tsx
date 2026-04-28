@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { assets } from "../../assets";
 import type { AppState, Screen } from "../../types";
 import { Avatar } from "../ui/avatar";
@@ -18,6 +18,8 @@ const navItems: Array<{ screen: Screen; label: string; icon: ReactNode }> = [
 ];
 
 export function AppShell({ state, children, onShowScreen }: AppShellProps) {
+  useVisualViewportHeight();
+
   const isAuthScreen = state.currentScreen === "auth";
   const shouldHideNav = state.hideNav || isAuthScreen;
 
@@ -94,4 +96,28 @@ export function AppShell({ state, children, onShowScreen }: AppShellProps) {
       </nav>
     </div>
   );
+}
+
+function useVisualViewportHeight() {
+  useEffect(() => {
+    const root = document.documentElement;
+    const viewport = window.visualViewport;
+
+    const updateViewportHeight = () => {
+      const height = Math.floor(viewport?.height || window.innerHeight);
+      root.style.setProperty("--app-viewport-height", `${height}px`);
+    };
+
+    updateViewportHeight();
+    window.addEventListener("resize", updateViewportHeight);
+    viewport?.addEventListener("resize", updateViewportHeight);
+    viewport?.addEventListener("scroll", updateViewportHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateViewportHeight);
+      viewport?.removeEventListener("resize", updateViewportHeight);
+      viewport?.removeEventListener("scroll", updateViewportHeight);
+      root.style.removeProperty("--app-viewport-height");
+    };
+  }, []);
 }

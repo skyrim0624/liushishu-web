@@ -5555,8 +5555,8 @@ textarea::placeholder {
 .app-shell {
   width: min(100vw, 430px) !important;
   max-width: 430px !important;
-  height: 100vh !important;
-  min-height: 100vh !important;
+  height: var(--app-viewport-height, 100dvh) !important;
+  min-height: var(--app-viewport-height, 100dvh) !important;
 }
 
 .botanical-vine-frame {
@@ -5643,12 +5643,25 @@ textarea::placeholder {
 
 #app {
   position: relative;
+  height: var(--app-viewport-height, 100dvh) !important;
   z-index: 1 !important;
 }
 
 .app-header,
 #bottom-nav {
   z-index: 50 !important;
+}
+
+#bottom-nav {
+  bottom: 0 !important;
+}
+
+.screen {
+  padding-bottom: calc(7.75rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.screen > main {
+  padding-bottom: calc(8.5rem + env(safe-area-inset-bottom, 0px)) !important;
 }
 
 @media (max-width: 480px) {
