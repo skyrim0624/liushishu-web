@@ -23,6 +23,11 @@ export function AppShell({ state, children, onShowScreen }: AppShellProps) {
 
   return (
     <div className="app-shell">
+      <div className="botanical-vine-frame" aria-hidden="true">
+        <span className="botanical-vine-frame__side botanical-vine-frame__side--left" />
+        <span className="botanical-vine-frame__side botanical-vine-frame__side--right" />
+      </div>
+
       <header className="app-header absolute top-0 left-0 z-50 flex h-14 w-full items-center justify-between border-b border-outline bg-surface px-5">
         <div className="flex items-center gap-3">
           <button

@@ -2794,13 +2794,13 @@ body.dune-body {
 .app-shell::before {
   left: 0;
   right: auto;
-  background: url("assets/stitch-derived/garden-frame-left.png") left top / 100% 100% no-repeat !important;
+  background: none left top / 100% 100% no-repeat !important;
 }
 
 .app-shell::after {
   left: auto;
   right: 0;
-  background: url("assets/stitch-derived/garden-frame-right.png") right top / 100% 100% no-repeat !important;
+  background: none right top / 100% 100% no-repeat !important;
 }
 
 .app-header {
@@ -3103,12 +3103,12 @@ body.dune-body {
 
 .app-shell::before {
   width: 26%;
-  background: url("assets/stitch-derived/garden-left-overlay.png") left top / 100% 100% no-repeat !important;
+  background: none left top / 100% 100% no-repeat !important;
 }
 
 .app-shell::after {
   width: 26%;
-  background: url("assets/stitch-derived/garden-right-overlay.png") right top / 100% 100% no-repeat !important;
+  background: none right top / 100% 100% no-repeat !important;
 }
 
 .auth-stage,
@@ -3352,12 +3352,12 @@ body.dune-body {
 
 #app::before {
   left: 0;
-  background: url("assets/stitch-derived/garden-left-overlay.png") left top / 100% 100% no-repeat;
+  background: none left top / 100% 100% no-repeat;
 }
 
 #app::after {
   right: 0;
-  background: url("assets/stitch-derived/garden-right-overlay.png") right top / 100% 100% no-repeat;
+  background: none right top / 100% 100% no-repeat;
 }
 
 .screen {
@@ -3415,7 +3415,7 @@ body.dune-body {
   width: 100%;
   height: var(--garden-top-height);
   background:
-    url("assets/stitch-derived/garden-top.png") center top / 100% 100% no-repeat,
+    none center top / 100% 100% no-repeat,
     linear-gradient(180deg, rgba(246, 243, 234, 0.98), rgba(246, 243, 234, 0.92));
   pointer-events: none;
 }
@@ -3580,8 +3580,8 @@ body.dune-body {
 
 .screen.active {
   background-image:
-    url("assets/stitch-derived/garden-left-overlay.png"),
-    url("assets/stitch-derived/garden-right-overlay.png") !important;
+    none,
+    none !important;
   background-position: left top, right top !important;
   background-size: var(--garden-side-width) var(--garden-frame-height), var(--garden-side-width) var(--garden-frame-height) !important;
   background-repeat: repeat-y, repeat-y !important;
@@ -3589,8 +3589,8 @@ body.dune-body {
 
 #screen-home.active {
   background-image:
-    url("assets/stitch-derived/garden-left-overlay.png"),
-    url("assets/stitch-derived/garden-right-overlay.png") !important;
+    none,
+    none !important;
 }
 
 .paper-card,
@@ -4332,8 +4332,8 @@ body.dune-body::before {
 .screen.active:not(#screen-home) {
   background-image:
     linear-gradient(180deg, rgba(255, 244, 192, 0.08), rgba(222, 159, 38, 0.12)),
-    url("assets/stitch-derived/garden-left-overlay.png"),
-    url("assets/stitch-derived/garden-right-overlay.png") !important;
+    none,
+    none !important;
   background-position: center top, left top, right top !important;
   background-size: 100% 100%, var(--garden-side-width) var(--garden-frame-height), var(--garden-side-width) var(--garden-frame-height) !important;
   background-repeat: repeat-y, repeat-y, repeat-y !important;
@@ -4342,8 +4342,8 @@ body.dune-body::before {
 #screen-home.active {
   background-image:
     linear-gradient(180deg, rgba(255, 244, 192, 0.08), rgba(222, 159, 38, 0.12)),
-    url("assets/stitch-derived/garden-left-overlay.png"),
-    url("assets/stitch-derived/garden-right-overlay.png") !important;
+    none,
+    none !important;
   background-position: center top, left top, right top !important;
   background-size: 100% 100%, var(--garden-side-width) var(--garden-frame-height), var(--garden-side-width) var(--garden-frame-height) !important;
   background-repeat: repeat-y, repeat-y, repeat-y !important;
@@ -4604,13 +4604,13 @@ textarea {
 .screen.active > main::before {
   left: 0;
   right: auto !important;
-  background: url("assets/stitch-derived/garden-left-overlay.png") left top / 100% var(--garden-frame-height) repeat-y;
+  background: none left top / 100% var(--garden-frame-height) repeat-y;
 }
 
 .screen.active > main::after {
   left: auto !important;
   right: 0;
-  background: url("assets/stitch-derived/garden-right-overlay.png") right top / 100% var(--garden-frame-height) repeat-y;
+  background: none right top / 100% var(--garden-frame-height) repeat-y;
 }
 
 .screen.active > main > * {
@@ -4625,7 +4625,7 @@ textarea {
   bottom: 0 !important;
   height: auto !important;
   min-height: calc(100dvh - var(--garden-top-height)) !important;
-  background: url("assets/stitch-derived/garden-side-left-gold.png") left top / var(--stitch-vine-width) var(--stitch-vine-height) repeat-y !important;
+  background: none left top / var(--stitch-vine-width) var(--stitch-vine-height) repeat-y !important;
 }
 
 #screen-home.active > main::before {
@@ -4681,13 +4681,11 @@ textarea {
   opacity: 1 !important;
 }
 
-/* NOTE: 最终修正：保留 Stitch 标题图，但用渐隐消除硬切断层。 */
+/* NOTE: 旧首页顶部 Stitch 标题图尺寸，实际藤蔓由 AppShell 统一层接管。 */
 #screen-home::before {
   height: calc(var(--garden-top-height) + 1.45rem) !important;
-  background: url("assets/stitch-derived/garden-top.png") center top / 100% var(--garden-top-height) no-repeat !important;
+  background: none center top / 100% var(--garden-top-height) no-repeat !important;
   opacity: 0.88 !important;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, rgba(0, 0, 0, 0.42) 86%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 72%, rgba(0, 0, 0, 0.42) 86%, transparent 100%);
 }
 
 #screen-home.active > main::before,
@@ -4805,7 +4803,7 @@ button#btn-global-back:not(.hidden) .material-symbols-outlined::before {
   bottom: 0 !important;
   height: auto !important;
   min-height: 100dvh !important;
-  background: url("assets/stitch-derived/garden-side-left-gold.png") left top / var(--stitch-vine-width) var(--stitch-vine-height) repeat-y !important;
+  background: none left top / var(--stitch-vine-width) var(--stitch-vine-height) repeat-y !important;
 }
 
 #screen-home.active > main::before {
@@ -4916,7 +4914,7 @@ body.dune-body::after {
     brightness(1.03)
     contrast(0.98) !important;
   background:
-    url("assets/stitch-derived/garden-top.png") center top / 100% 100% no-repeat,
+    none center top / 100% 100% no-repeat,
     linear-gradient(180deg, rgba(255, 253, 246, 0.98), rgba(255, 253, 246, 0.9)) !important;
 }
 
@@ -5169,7 +5167,7 @@ body.dune-body::before {
 
 #screen-home::before {
   background:
-    url("assets/stitch-derived/garden-top.png") center top / 100% 100% no-repeat,
+    none center top / 100% 100% no-repeat,
     linear-gradient(180deg, rgba(255, 251, 235, 0.98), rgba(255, 251, 235, 0.86)) !important;
   filter:
     sepia(0.54)
@@ -5190,12 +5188,12 @@ body.dune-body::before {
 
 .screen.active > main::before {
   left: -0.55rem !important;
-  background-image: url("assets/stitch-derived/garden-side-left-gold.png") !important;
+  background-image: none !important;
 }
 
 .screen.active > main::after {
   right: -0.55rem !important;
-  background-image: url("assets/stitch-derived/garden-side-right-gold.png") !important;
+  background-image: none !important;
 }
 
 .paper-card,
@@ -5375,14 +5373,14 @@ textarea::placeholder {
 
 /* NOTE: 登录页不使用带状态栏/底栏的 Stitch 截图片，统一换成纯金色藤蔓素材。 */
 #screen-auth.active > main::before {
-  background-image: url("assets/stitch-derived/garden-side-left-gold.png") !important;
+  background-image: none !important;
   background-size: 100% 100dvh !important;
   background-repeat: no-repeat !important;
   filter: drop-shadow(0 0 6px rgba(203, 151, 46, 0.1)) !important;
 }
 
 #screen-auth.active > main::after {
-  background-image: url("assets/stitch-derived/garden-side-right-gold.png") !important;
+  background-image: none !important;
   background-size: 100% 100dvh !important;
   background-repeat: no-repeat !important;
   filter: drop-shadow(0 0 6px rgba(203, 151, 46, 0.1)) !important;
@@ -5463,7 +5461,7 @@ textarea::placeholder {
   pointer-events: none;
   opacity: 0.88 !important;
   mix-blend-mode: multiply;
-  background-image: url("assets/stitch-derived/garden-side-left-gold.png") !important;
+  background-image: none !important;
   background-position: left top !important;
   background-size: var(--stitch-vine-width) var(--stitch-vine-height) !important;
   background-repeat: repeat-y !important;
@@ -5497,7 +5495,7 @@ textarea::placeholder {
   bottom: 0 !important;
   height: auto !important;
   min-height: calc(100dvh - var(--garden-top-height)) !important;
-  background: url("assets/stitch-derived/garden-side-left-gold.png") left top / var(--stitch-vine-width) var(--stitch-vine-height) repeat-y !important;
+  background: none left top / var(--stitch-vine-width) var(--stitch-vine-height) repeat-y !important;
 }
 
 #screen-home.active > main::before {
@@ -5551,4 +5549,149 @@ textarea::placeholder {
   border-top-width: 2.4px !important;
   border-right-width: 2.4px !important;
   opacity: 1 !important;
+}
+
+/* NOTE: 用户明确要求去掉所有藤蔓，保留金色纸面与原有功能布局。 */
+.app-shell {
+  width: min(100vw, 430px) !important;
+  max-width: 430px !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+}
+
+.botanical-vine-frame {
+  display: none !important;
+}
+
+#app {
+  z-index: 1 !important;
+}
+
+#app::before,
+#app::after,
+.app-shell::before,
+.app-shell::after,
+#screen-home::before,
+.screen.active > main::before,
+.screen.active > main::after,
+#screen-auth.active > main::before,
+#screen-auth.active > main::after,
+#screen-home.active > main::before,
+#screen-home.active > main::after {
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+#screen-home .home-stage {
+  padding-top: 2.4rem !important;
+}
+
+@media (max-width: 480px) {
+  #screen-home .home-stage {
+    padding-top: 2.15rem !important;
+  }
+}
+
+/* NOTE: Stitch 金色藤蔓作为外壳装饰层，固定在应用四周且不参与交互。 */
+.botanical-vine-frame {
+  display: block !important;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.botanical-vine-frame::before {
+  display: none !important;
+  content: none;
+}
+
+.botanical-vine-frame__side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: block;
+  width: var(--stitch-vine-width, clamp(48px, 12.5vw, 54px));
+  background:
+    linear-gradient(180deg, #f8e5a4 0%, #d8a73f 20%, #9b681d 43%, #f0ce73 62%, #b97b24 82%, #f7df96 100%);
+  -webkit-mask-position: top;
+  mask-position: top;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  opacity: 0.82;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 0 7px rgba(203, 151, 46, 0.18));
+}
+
+.botanical-vine-frame__side--left {
+  left: 0;
+  -webkit-mask-image: url("assets/stitch-derived/garden-side-left-gold.png");
+  mask-image: url("assets/stitch-derived/garden-side-left-gold.png");
+}
+
+.botanical-vine-frame__side--right {
+  right: 0;
+  -webkit-mask-image: url("assets/stitch-derived/garden-side-right-gold.png");
+  mask-image: url("assets/stitch-derived/garden-side-right-gold.png");
+}
+
+#app {
+  position: relative;
+  z-index: 1 !important;
+}
+
+.app-header,
+#bottom-nav {
+  z-index: 50 !important;
+}
+
+@media (max-width: 480px) {
+  .botanical-vine-frame__side {
+    width: clamp(42px, 11.5vw, 50px);
+  }
+}
+
+/* NOTE: 检查页标题牌和行为标签的最终微调，避免金色藤蔓风格下出现灰色块与拥挤标签。 */
+#screen-checkin .focus-panel::before {
+  border-color: rgba(164, 105, 23, 0.62) !important;
+  background:
+    radial-gradient(180px 56px at 50% 12%, rgba(255, 239, 176, 0.7), transparent 72%),
+    linear-gradient(180deg, rgba(248, 221, 142, 0.96), rgba(208, 153, 52, 0.92) 56%, rgba(155, 97, 18, 0.9)),
+    var(--ui-paper-texture) !important;
+  color: #4a2e08 !important;
+  text-shadow: 0 1px 0 rgba(255, 247, 207, 0.56);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 211, 0.72),
+    0 5px 12px rgba(108, 72, 16, 0.14) !important;
+}
+
+#screen-checkin .paper-card:has(.tag-chip) {
+  padding: 1.25rem 1.15rem 1.35rem !important;
+}
+
+#screen-checkin .paper-card:has(.tag-chip) .flex.flex-wrap {
+  gap: 0.46rem 0.42rem !important;
+}
+
+#screen-checkin .tag-chip {
+  min-height: 2rem;
+  padding: 0.32rem 0.54rem 0.36rem !important;
+  font-size: 0.9rem !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap;
+}
+
+@media (max-width: 390px) {
+  #screen-checkin .tag-chip {
+    padding-left: 0.46rem !important;
+    padding-right: 0.46rem !important;
+    font-size: 0.86rem !important;
+  }
 }
